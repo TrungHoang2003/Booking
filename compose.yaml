@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  # Identity Service API
+  identity-api:
+    container_name: booking-identity-api
+    build:
+      context: .
+      dockerfile: ./services/IdentityService/Dockerfile
+    ports:
+      - "5001:8080" # Map host port 5001 to container port 8080
+    environment:
+      # Pass connection strings and other configs here
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:808
+      - ConnectionStrings__Database=Host=identity-db;Port=5432;Database=IdentityDb;Username=trung;Password=123
+      - ConnectionStrings__Redis=redis:6379
+    networks:
+      - booking-network
+    depends_on:
+      - identity-db
+      - redis
+
+  # PostgreSQL Database for Identity Service
+  identity-db:
+    image: postgres:16-alpine # Using a specific version is better than 'latest'
+    container_name: booking-identity-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=trung 
+      - POSTGRES_PASSWORD=123 
+      - POSTGRES_DB=identitydb
+    volumes:
+      - identity-data:/var/lib/postgresql/data
+    networks:
+      - booking-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: booking-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - booking-network
+
+  # Seq for logging
+  seq:
+    image: datalust/seq:latest
+    container_name: booking-seq
+    ports:
+      - "5341:80" # Seq UI
+      - "5342:5341" # Seq Ingestion Port
+    environment:
+      - ACCEPT_EULA=Y
+    networks:
+      - booking-network
+
+# Define the network for services to communicate
+networks:
+  booking-network:
+    driver: bridge
+
+# Define the volume for database persistence
+volumes:
+  identity-data:
+    driver: local

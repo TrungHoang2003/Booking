@@ -1,0 +1,27 @@
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["services/BookingService/Booking.Api/Booking.Api.csproj", "services/BookingService/Booking.Api/"]
+COPY ["services/BookingService/Booking.Infrastructure/Booking.Infrastructure.csproj", "services/BookingService/Booking.Infrastructure/"]
+COPY ["services/BookingService/Booking.Domain/Booking.Domain.csproj", "services/BookingService/Booking.Domain/"]
+COPY ["shared/BuildingBlocks/BuildingBlocks.csproj", "shared/BuildingBlocks/"]
+COPY ["services/BookingService/Booking.Application/Booking.Application.csproj", "services/BookingService/Booking.Application/"]
+RUN dotnet restore "services/BookingService/Booking.Api/Booking.Api.csproj"
+COPY . .
+WORKDIR "/src/services/BookingService/Booking.Api"
+RUN dotnet build "Booking.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "Booking.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Booking.Api.dll"]

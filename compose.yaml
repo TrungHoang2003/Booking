@@ -1,6 +1,25 @@
 version: "3.9"
 
 services:
+
+  # Api Gateway
+  api-gateway:
+    container_name: booking-api-gateway
+    build:
+      context: .
+      dockerfile: ./services/ApiGateway/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - booking-network
+    depends_on:
+      - identity-api  
+    stdin_open: true
+    tty: true
+
   # Identity Service API
   identity-api:
     container_name: booking-identity-api
@@ -8,11 +27,11 @@ services:
       context: .
       dockerfile: ./services/IdentityService/Dockerfile
     ports:
-      - "5001:8080" # Map host port 5001 to container port 8080
+      - "5194:8080" # Map host port 5001 to container port 8080
     environment:
       # Pass connection strings and other configs here
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:808
+      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__Database=Host=identity-db;Port=5432;Database=IdentityDb;Username=trung;Password=123
       - ConnectionStrings__Redis=redis:6379
     networks:

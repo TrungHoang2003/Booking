@@ -2,7 +2,13 @@
 
 namespace Identity.Application.Commons;
 
-public class RedisService(IConnectionMultiplexer redis)
+public interface IRedisService
+{
+    Task SetValue(string key, string? value, TimeSpan? expiry = null);
+    Task<string> GetValue(string key);
+    Task<bool> DeleteValue(string key);
+}
+public class RedisService(IConnectionMultiplexer redis): IRedisService
 {
     public async Task SetValue(string key, string? value, TimeSpan? expiry = null)
     {

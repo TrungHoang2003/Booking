@@ -20,8 +20,8 @@ public sealed record LoginResponse
 
 public class LoginCommandHandler(
     IUserRepository userRepository,
-    JwtService jwtService,
-    RedisService redisService)
+    IJwtService jwtService,
+    IRedisService redisService)
     : ICommandHandler<LoginCommand, LoginResponse>
 {
     public async Task<Result<LoginResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)

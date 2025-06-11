@@ -1549,7 +1549,9 @@
       "BuildingBlocks/1.0.0": {
         "dependencies": {
           "FluentValidation": "12.0.0",
-          "MediatR": "12.5.0"
+          "MediatR": "12.5.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.3.0"
         },
         "runtime": {
           "BuildingBlocks.dll": {

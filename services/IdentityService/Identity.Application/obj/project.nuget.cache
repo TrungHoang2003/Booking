@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dHWE+3deFW8=",
+  "dgSpecHash": "D+V9+vi/z0c=",
   "success": true,
-  "projectFilePath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+  "projectFilePath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TrungHV16\\.nuget\\packages\\cloudinarydotnet\\1.27.5\\cloudinarydotnet.1.27.5.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",

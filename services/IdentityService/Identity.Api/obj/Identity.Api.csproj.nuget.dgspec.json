@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {}
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {}
   },
   "projects": {
-    "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
         "projectName": "Identity.Api",
-        "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
         "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-        "outputPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\obj\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj"
               },
-              "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
               }
             }
           }
@@ -83,6 +83,38 @@
               "target": "Package",
               "version": "[2.4.13, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Enrichers.CorrelationId": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Serilog.Enrichers.Process": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Serilog.Enrichers.Thread": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "Serilog.Exceptions": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "Serilog.Sinks.Seq": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "payOS": {
               "target": "Package",
               "version": "[1.0.9, )"
@@ -111,14 +143,14 @@
         }
       }
     },
-    "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
         "projectName": "Identity.Application",
-        "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
         "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-        "outputPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -142,11 +174,11 @@
               "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
                 "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
               },
-              "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
               },
-              "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -232,8 +264,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -287,14 +319,14 @@
         }
       }
     },
-    "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
         "projectName": "Identity.Infrastructure",
-        "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-        "outputPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -318,8 +350,8 @@
               "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
                 "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
               },
-              "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -415,14 +447,14 @@
         }
       }
     },
-    "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-        "outputPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
+        "outputPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -468,6 +500,14 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.5.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

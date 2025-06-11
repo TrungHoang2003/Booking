@@ -13,8 +13,8 @@ public static class ApplicationDi
             typeof(ApplicationDi).Assembly
         ));        services.AddValidatorsFromAssembly(typeof(ApplicationDi).Assembly);
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        services.AddSingleton<JwtService>();
-        services.AddSingleton<RedisService>();
+        services.AddSingleton<IJwtService, JwtService>();
+        services.AddSingleton<IRedisService, RedisService>();
         return services;
     }
 }

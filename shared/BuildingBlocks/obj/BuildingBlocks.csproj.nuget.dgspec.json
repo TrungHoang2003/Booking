@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {}
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {}
   },
   "projects": {
-    "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-        "outputPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
+        "outputPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -57,6 +57,14 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.5.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

@@ -1995,7 +1995,9 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "FluentValidation": "12.0.0",
-          "MediatR": "12.5.0"
+          "MediatR": "12.5.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
         },
         "compile": {
           "bin/placeholder/BuildingBlocks.dll": {}
@@ -5835,11 +5837,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+      "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
       "projectName": "Identity.Application",
-      "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+      "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
       "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
-      "outputPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
+      "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5863,11 +5865,11 @@
             "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
               "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
             },
-            "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
-              "projectPath": "c:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
+            "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+              "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
             },
-            "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-              "projectPath": "c:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+            "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+              "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
             }
           }
         }

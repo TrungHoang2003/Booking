@@ -4,7 +4,41 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-
+        {
+            "name": "IdentityService API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-identity",
+            "program": "${workspaceFolder}/services/IdentityService/Identity.Api/bin/Debug/net9.0/Identity.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/services/IdentityService/Identity.Api",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+        },
+        {
+            "name": "ApiGateway",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-gateway",
+            "program": "${workspaceFolder}/services/ApiGateway/bin/Debug/net9.0/ApiGateway.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/services/ApiGateway",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Start All Services",
+            "configurations": [
+                "IdentityService API",
+                "ApiGateway"
+            ],
+            "stopAll": true,
+            "presentation": {
+                "hidden": false,
+                "group": "microservices"
+            }
+        }
     ]
 }

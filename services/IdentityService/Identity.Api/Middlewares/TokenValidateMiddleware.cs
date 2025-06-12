@@ -1,5 +1,4 @@
 using Identity.Application.Commons;
-using Microsoft.AspNetCore.Http;
 
 namespace Identity.Api.Middlewares;
 

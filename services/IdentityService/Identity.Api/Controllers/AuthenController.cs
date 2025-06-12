@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class AuthenController(IMediator mediator, ILogger<AuthenController> logger): Controller
-{    [HttpPost("login")]
+{
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
         logger.LogInformation("Login attempt for user: {UserName}", command.UserName);

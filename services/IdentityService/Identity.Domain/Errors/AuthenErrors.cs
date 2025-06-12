@@ -4,6 +4,6 @@ namespace Identity.Domain.Errors;
 
 public sealed record AuthenErrors
 {
-public static readonly Error WrongPassword= new Error("Authen Erros", "Wrong password.");
-   public static readonly Error UserNotFound = new Error("Authen Erros", "User not found.");
+    public static readonly Error WrongPassword = new("Authen Errors", "Wrong password.");
+    public static readonly Error UserNotFound = new("Authen Errors", "User not found.");
 }

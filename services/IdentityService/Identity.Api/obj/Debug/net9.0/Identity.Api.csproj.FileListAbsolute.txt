@@ -180,3 +180,5 @@ c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Serilo
 c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\DotNetEnv.dll
+c:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Sprache.dll

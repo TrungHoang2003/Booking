@@ -5,16 +5,34 @@ using Identity.Infrastructure;
 using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Exceptions;
+using DotNetEnv;
+
+// Load environment-specific .env file
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+var envFile = environment switch
+{
+    "Development" => ".env.local",
+    "Docker" => ".env.docker",
+    "Production" => ".env.production",
+    _ => ".env.local"
+};
+
+var envPath = Path.Combine(Directory.GetCurrentDirectory(),envFile);
+if (File.Exists(envPath))
+{
+    Env.Load(envPath);
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
 // Get connection string from configuration
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+var postgresConnectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+var redisConnectionString = builder.Configuration["ConnectionStrings:Redis"];
 
 // Add Infrastructure layer with PostgreSQL configuration
-builder.Services.AddInfrastructure(connectionString);
+builder.Services.AddInfrastructure(postgresConnectionString, redisConnectionString);
 
 // Add Application layer
 builder.Services.AddApplication();
@@ -41,7 +59,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlerMiddleWare>();
-app.UseMiddleware<TokenValidateMiddleware>();
+//app.UseMiddleware<TokenValidateMiddleware>();
 app.UseHttpsRedirection();
 // Add Serilog request logging
 app.UseSerilogRequestLogging();
@@ -50,6 +68,9 @@ app.MapControllers();
 try
 {
     Log.Information("Starting Identity Service...");
+    Log.Information("Using connection string: {ConnectionString}", postgresConnectionString);
+    Log.Information("Using Redis connection string: {RedisConnectionString}", redisConnectionString);
+    Log.Information("Environment: {Environment}", environment);
     app.Run();
 }
 catch (Exception ex)

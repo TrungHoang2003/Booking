@@ -5,6 +5,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{5854FF58-B8C5-05C6-5BF2-ACE42193F22B}"
 	ProjectSection(SolutionItems) = preProject
 		services\IdentityService\IdentityService.sln = services\IdentityService\IdentityService.sln
+		services\ApiGateway\ApiGateway.sln = services\ApiGateway\ApiGateway.sn
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{4F52FD11-658E-A102-6CD3-7D7C16FFA15B}"
@@ -14,8 +15,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookingService", "BookingService", "{B2E376F8-3E7D-4D19-AFD5-C1C753E1B5B9}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
-		services\BookingService\Dockerfile = services\BookingService\Dockerfile
-		services\BookingService\.dockerignore = services\BookingService\.dockerignore
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Api", "services\BookingService\Booking.Api\Booking.Api.csproj", "{883FFB8B-E584-48E0-B86C-1E99952021F3}"

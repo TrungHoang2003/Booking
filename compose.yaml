@@ -1,59 +1,66 @@
 version: "3.9"
 
 services:
-
-  # Api Gateway
-  api-gateway:
-    container_name: booking-api-gateway
-    build:
-      context: .
-      dockerfile: ./services/ApiGateway/Dockerfile
-    ports:
-      - "5000:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-    networks:
-      - booking-network
-    depends_on:
-      - identity-api  
-    stdin_open: true
-    tty: true
+#   # Api Gateway
+#   api-gateway:
+#     container_name: booking-api-gateway
+#     build:
+#       context: .
+#       dockerfile: ./services/ApiGateway/Dockerfile
+#     ports:
+#       - "5000:80"
+#     env_file:
+#       - .env.docker
+#     networks:
+#       - booking-network
+#     depends_on:
+#       identity-api:
+#         condition: service_healthy
 
   # Identity Service API
-  identity-api:
-    container_name: booking-identity-api
-    build:
-      context: .
-      dockerfile: ./services/IdentityService/Dockerfile
-    ports:
-      - "5194:8080" # Map host port 5001 to container port 8080
-    environment:
-      # Pass connection strings and other configs here
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__Database=Host=identity-db;Port=5432;Database=IdentityDb;Username=trung;Password=123
-      - ConnectionStrings__Redis=redis:6379
-    networks:
-      - booking-network
-    depends_on:
-      - identity-db
-      - redis
+  # identity-api:
+  #   container_name: booking-identity-api
+  #   build:
+  #     context: .
+  #     dockerfile: ./services/IdentityService/Dockerfile
+  #   ports:
+  #     - "5194:8080"
+  #   env_file:
+  #     -  .env.docker
+  #   networks:
+  #     - booking-network
+  #   depends_on:
+  #     identity-db:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 40s
 
-  # PostgreSQL Database for Identity Service
+  # PostgreSQL Database
   identity-db:
-    image: postgres:16-alpine # Using a specific version is better than 'latest'
+    image: postgres:16-alpine
     container_name: booking-identity-db
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=trung 
-      - POSTGRES_PASSWORD=123 
+      - POSTGRES_USER=trung
+      - POSTGRES_PASSWORD=123
       - POSTGRES_DB=identitydb
     volumes:
       - identity-data:/var/lib/postgresql/data
     networks:
       - booking-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trung -d identitydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   # Redis Cache
   redis:
@@ -63,25 +70,29 @@ services:
       - "6379:6379"
     networks:
       - booking-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   # Seq for logging
   seq:
     image: datalust/seq:latest
     container_name: booking-seq
     ports:
-      - "5341:80" # Seq UI
-      - "5342:5341" # Seq Ingestion Port
+      - "5341:80"
+      - "5342:5341"
     environment:
       - ACCEPT_EULA=Y
     networks:
       - booking-network
 
-# Define the network for services to communicate
 networks:
   booking-network:
     driver: bridge
 
-# Define the volume for database persistence
 volumes:
   identity-data:
     driver: local

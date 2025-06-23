@@ -1,36 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {}
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
         "projectName": "Identity.Api",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Api\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj"
               },
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
               }
             }
           }
@@ -69,17 +75,17 @@
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "Scalar.AspNetCore": {
               "target": "Package",
-              "version": "[2.4.13, )"
+              "version": "[2.5.0, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
@@ -111,7 +117,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.5.0, )"
+              "version": "[9.0.1, )"
             },
             "payOS": {
               "target": "Package",
@@ -137,40 +143,46 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
         "projectName": "Identity.Application",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\Identity.Application.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
               },
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj"
               },
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -197,15 +209,15 @@
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.8.31, )"
+              "version": "[2.8.41, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.6.1, )"
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -224,34 +236,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
         "projectName": "Identity.Domain",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -274,15 +292,15 @@
           "dependencies": {
             "CloudinaryDotNet": {
               "target": "Package",
-              "version": "[1.27.5, )"
+              "version": "[1.27.6, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[5.0.17, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             }
           },
           "imports": [
@@ -301,37 +319,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
         "projectName": "Identity.Infrastructure",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
               },
-              "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -370,17 +394,17 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -388,7 +412,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.4, )"
             },
             "Serilog": {
               "target": "Package",
@@ -404,11 +428,11 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.8.31, )"
+              "version": "[2.8.41, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.6.1, )"
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -427,26 +451,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\shared\\BuildingBlocks\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -481,11 +511,11 @@
             },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.3.0, )"
             },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.3.0, )"
             }
           },
           "imports": [
@@ -504,7 +534,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

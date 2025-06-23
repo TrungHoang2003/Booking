@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\ApiGateway\\ApiGateway.csproj": {}
+    "C:\\Sandbox\\Booking\\services\\ApiGateway\\ApiGateway.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\ApiGateway\\ApiGateway.csproj": {
+    "C:\\Sandbox\\Booking\\services\\ApiGateway\\ApiGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\ApiGateway\\ApiGateway.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\ApiGateway\\ApiGateway.csproj",
         "projectName": "ApiGateway",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\ApiGateway\\ApiGateway.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Trung\\Booking\\services\\ApiGateway\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\ApiGateway\\ApiGateway.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\ApiGateway\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -50,11 +56,11 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.12.0, )"
+              "version": "[8.12.1, )"
             },
             "Yarp.ReverseProxy": {
               "target": "Package",
-              "version": "[2.1.0, )"
+              "version": "[2.3.0, )"
             }
           },
           "imports": [
@@ -76,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

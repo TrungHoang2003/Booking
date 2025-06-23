@@ -51,8 +51,6 @@ services:
       - POSTGRES_USER=trung
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=identitydb
-    volumes:
-      - identity-data:/var/lib/postgresql/data
     networks:
       - booking-network
     healthcheck:
@@ -62,6 +60,24 @@ services:
       retries: 5
       start_period: 10s
 
+  Property-db:
+    image: postgres:16-alpine
+    container_name: booking-property-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=trung
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=propertydb
+    networks:
+      - booking-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trung -d propertydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+      
   # Redis Cache
   redis:
     image: redis:7-alpine

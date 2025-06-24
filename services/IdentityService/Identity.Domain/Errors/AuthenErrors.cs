@@ -1,4 +1,4 @@
-using BuildingBlocks.ResultPattern;
+using BuildingBlocks.Commons;
 
 namespace Identity.Domain.Errors;
 

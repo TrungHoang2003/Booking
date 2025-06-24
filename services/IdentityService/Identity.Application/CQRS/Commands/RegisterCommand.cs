@@ -1,6 +1,5 @@
 using System.Windows.Input;
 using BuildingBlocks.Commons;
-using BuildingBlocks.ResultPattern;
 using Identity.Domain.Entities;
 using Identity.Infrastructure.Repositories;
 using MediatR;

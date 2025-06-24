@@ -1,0 +1,3 @@
+namespace BuildingBlocks.DomainDrivenPattern;
+
+public interface IAggregateRoot;

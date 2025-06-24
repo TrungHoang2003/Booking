@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Commons;
-using BuildingBlocks.ResultPattern;
 using Identity.Application.Commons;
 using Identity.Domain.Errors;
 using Identity.Infrastructure.Repositories;

@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.ResultPattern;
+﻿namespace BuildingBlocks.Commons;
 
 public class Result(bool isSuccess, Error error)
 {

@@ -1,6 +1,8 @@
+using BuildingBlocks.DomainDrivenPattern;
+
 namespace Property.Domain.Entities;
 
-public class Property
+public class Property: IAggregateRoot
 {
     public Guid Id { get; set; }
     public Guid PropertyTypeId { get; set; }

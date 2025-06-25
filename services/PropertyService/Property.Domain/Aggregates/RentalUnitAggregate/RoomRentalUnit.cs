@@ -4,17 +4,17 @@ namespace Property.Domain.Aggregates.RentalUnitAggregate;
 
 public class RoomRentalUnit : RentalUnit
 {
-    public RoomRentalUnit(int propertyId, string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity, bool useSharedBathroom) : base(propertyId, name, description, basePricePerNight, maxAdults, maxChildren, quantity)
+    public RoomRentalUnit(int propertyId, string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity, bool sharedBathroom) : base(propertyId, name, description, basePricePerNight, maxAdults, maxChildren, quantity)
     {
-        UseSharedBathroom = useSharedBathroom;
+        SharedBathroom = sharedBathroom;
     }
 
-    public RoomRentalUnit(int id, int propertyId, string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity, bool useSharedBathroom) : base(id, propertyId, name, description, basePricePerNight, maxAdults, maxChildren, quantity)
+    public RoomRentalUnit(int id, int propertyId, string name, string description, int maxAdults, int maxChildren, int quantity, bool sharedBathroom) : base(id, propertyId, name, description, maxAdults, maxChildren, quantity)
     {
-        UseSharedBathroom = useSharedBathroom;
+        SharedBathroom = sharedBathroom;
     }
 
-    public bool UseSharedBathroom { get; private set; }
+    public bool SharedBathroom { get; private set; }
    
     public override RentalUnitType GetRentalUnitType()
     {

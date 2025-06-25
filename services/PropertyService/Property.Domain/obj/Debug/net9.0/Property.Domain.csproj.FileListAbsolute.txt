@@ -1,0 +1,16 @@
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\bin\Debug\net9.0\Property.Domain.deps.json
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\bin\Debug\net9.0\Property.Domain.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\bin\Debug\net9.0\Property.Domain.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\bin\Debug\net9.0\BuildingBlocks.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\bin\Debug\net9.0\BuildingBlocks.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.csproj.AssemblyReference.cache
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.AssemblyInfoInputs.cache
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.AssemblyInfo.cs
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.csproj.CoreCompileInputs.cache
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.sourcelink.json
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.68E29185.Up2Date
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\refint\Property.Domain.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\Property.Domain.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Domain\obj\Debug\net9.0\ref\Property.Domain.dll

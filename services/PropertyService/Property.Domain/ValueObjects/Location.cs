@@ -15,8 +15,8 @@ public record Location
         if(string.IsNullOrEmpty(postCode)) throw new ArgumentException("PostCode cannot be null or empty", nameof(postCode));
     }
 
-    protected string Address { get; init; } 
-    protected string City { get; init; }
-    protected string Country { get; init; }
-    protected string PostCode{ get; init; }
+    public string Address { get; init; }
+    public string City { get; init; }
+    public string Country { get; init; }
+    public string PostCode{ get; init; }
 }

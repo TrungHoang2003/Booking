@@ -71,6 +71,12 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
             "Scalar.AspNetCore": {
               "target": "Package",
               "version": "[2.5.0, )"
@@ -274,7 +280,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

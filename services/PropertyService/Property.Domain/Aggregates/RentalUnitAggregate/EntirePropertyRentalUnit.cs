@@ -11,7 +11,7 @@ public class EntirePropertyRentalUnit : RentalUnit
         BathroomsCount = bathroomsCount;
     }
 
-    public EntirePropertyRentalUnit(int id, int propertyId, string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity, int size, int bedroomsCount, int bathroomsCount) : base(id, propertyId, name, description, basePricePerNight, maxAdults, maxChildren, quantity)
+    private EntirePropertyRentalUnit(int id, int propertyId, string name, string description, int maxAdults, int maxChildren, int quantity, int size, int bedroomsCount, int bathroomsCount) : base(id, propertyId, name, description, maxAdults, maxChildren, quantity)
     {
         Size = size;
         BedroomsCount = bedroomsCount;

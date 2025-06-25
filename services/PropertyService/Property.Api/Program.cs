@@ -24,7 +24,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 // Get connection string from configuration
 var postgresConnectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
-var redisConnectionString = builder.Configuration["ConnectionStrings:Redis"];
 
 // Add Infrastructure layer with PostgreSQL configuration
 builder.Services.AddInfrastructure(postgresConnectionString);

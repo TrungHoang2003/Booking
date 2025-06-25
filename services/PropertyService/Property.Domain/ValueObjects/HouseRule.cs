@@ -2,10 +2,10 @@ namespace Property.Domain.ValueObjects;
 
 public record HouseRule
 {
-    private TimeSpan CheckInTimeFrom { get; init; }
-    private TimeSpan CheckInTimeUntil{ get; init; }
+    public TimeSpan CheckInTimeFrom { get; init; }
+    public TimeSpan CheckInTimeUntil{ get; init; }
     private TimeSpan CheckOutTimeFrom { get; init; }
-    private TimeSpan CheckOutTimeUntil{ get; init; }
+    public TimeSpan CheckOutTimeUntil{ get; init; }
     public bool PetAllowed { get; init; }
     public bool SmokingAllowed { get; init; }
     public bool PartyAllowed { get; init; }

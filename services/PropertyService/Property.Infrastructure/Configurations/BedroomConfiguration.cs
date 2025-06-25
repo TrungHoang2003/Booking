@@ -22,6 +22,10 @@ public class BedroomConfiguration:IEntityTypeConfiguration<Bedroom>
             price.Property(cp=>cp.Currency).IsRequired();
         });
 
-        builder.OwnsOne(b => b.Type);
+        builder.OwnsOne(b => b.Type, bedType =>
+            {
+               bedType.Property<string>("Value").HasColumnName("Type").IsRequired(); 
+            }
+        );
     }
 }

@@ -37,9 +37,10 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
             location.Property(l => l.Country).IsRequired();
         });
         
-        // Config Relationships
         builder.HasMany(p => p.Amenities)
-            .WithMany();
+            .WithOne()
+            .HasForeignKey(pa => pa.PropertyId)
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.HasMany(p=>p.RentalUnits)
             .WithOne()

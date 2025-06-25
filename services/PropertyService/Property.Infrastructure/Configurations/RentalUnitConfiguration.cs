@@ -29,9 +29,10 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
         // Config Value Objects
         builder.OwnsOne(r => r.BasePricePerNight);
 
-        // Config Relationships
         builder.HasMany(r => r.Amenities)
-            .WithMany();
+            .WithOne()
+            .HasForeignKey(ra => ra.RentalUnitId)
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.HasMany(r => r.Images)
             .WithOne()
@@ -39,6 +40,6 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
 
         builder.HasMany(r => r.Bedrooms)
             .WithOne()
-            .HasForeignKey(b => b.Id);
+            .HasForeignKey(b => b.RentalUnitId);
     }
 }

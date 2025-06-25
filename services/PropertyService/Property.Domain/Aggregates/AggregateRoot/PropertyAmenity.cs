@@ -1,4 +1,5 @@
 using BuildingBlocks.DomainDrivenPattern;
+using Property.Domain.Aggregates.AmenityAggregate;
 
 namespace Property.Domain.Aggregates.AggregateRoot;
 

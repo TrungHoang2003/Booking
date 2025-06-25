@@ -10,3 +10,15 @@ C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.
 C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.0\refint\Property.Application.dll
 C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.pdb
 C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.0\ref\Property.Application.dll
+C:\Sandbox\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Application.deps.json
+C:\Sandbox\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Application.dll
+C:\Sandbox\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Application.pdb
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.AssemblyInfoInputs.cache
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.AssemblyInfo.cs
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.csproj.CoreCompileInputs.cache
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.sourcelink.json
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.dll
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\refint\Property.Application.dll
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.pdb
+C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\ref\Property.Application.dll

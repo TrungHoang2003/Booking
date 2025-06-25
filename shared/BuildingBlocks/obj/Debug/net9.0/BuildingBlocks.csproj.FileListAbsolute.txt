@@ -24,3 +24,16 @@ C:\Sandbox\Booking\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.dll
 C:\Sandbox\Booking\shared\BuildingBlocks\obj\Debug\net9.0\refint\BuildingBlocks.dll
 C:\Sandbox\Booking\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.pdb
 C:\Sandbox\Booking\shared\BuildingBlocks\obj\Debug\net9.0\ref\BuildingBlocks.dll
+C:\Sandbox\shared\BuildingBlocks\bin\Debug\net9.0\BuildingBlocks.deps.json
+C:\Sandbox\shared\BuildingBlocks\bin\Debug\net9.0\BuildingBlocks.dll
+C:\Sandbox\shared\BuildingBlocks\bin\Debug\net9.0\BuildingBlocks.pdb
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.csproj.AssemblyReference.cache
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.AssemblyInfoInputs.cache
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.AssemblyInfo.cs
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.csproj.CoreCompileInputs.cache
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.sourcelink.json
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.dll
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\refint\BuildingBlocks.dll
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\BuildingBlocks.pdb
+C:\Sandbox\shared\BuildingBlocks\obj\Debug\net9.0\ref\BuildingBlocks.dll

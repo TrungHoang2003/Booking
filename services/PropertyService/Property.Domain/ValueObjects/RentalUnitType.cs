@@ -1,4 +1,4 @@
-namespace Property.Domain.Aggregates.RentalUnitAggregate;
+namespace Property.Domain.ValueObjects;
 
 public record RentalUnitType
 {

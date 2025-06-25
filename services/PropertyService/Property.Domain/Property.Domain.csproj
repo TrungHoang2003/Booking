@@ -11,12 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="ValueObjects\" />
+    <ProjectReference Include="..\..\..\shared\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\shared\BuildingBlocks\BuildingBlocks.csproj" />
+    <Folder Include="Events\" />
   </ItemGroup>
 
 </Project>

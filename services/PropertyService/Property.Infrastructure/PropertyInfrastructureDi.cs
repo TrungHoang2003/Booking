@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Property.Infrastructure.DbHelper;
+using Property.Infrastructure.Repositories;
 using Serilog;
 
 namespace Property.Infrastructure;
@@ -21,5 +23,8 @@ public static class PropertyInfrastructureDi
          Log.Error(ex,"Failed to configure Property Infrastructure: {ErrorMessage}", ex.Message);
          throw;
       }
+
+      services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
+      services.AddScoped<PostgresServer>();
    }
 }

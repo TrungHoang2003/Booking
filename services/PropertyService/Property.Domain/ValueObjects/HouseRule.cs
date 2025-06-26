@@ -10,10 +10,9 @@ public record HouseRule
     public bool SmokingAllowed { get; init; }
     public bool PartyAllowed { get; init; }
     public int AgeRestriction { get; init; }
-    public int FloorNumber { get; init; }
 
     public HouseRule(TimeSpan checkInTimeFrom, TimeSpan checkInTimeUntil, TimeSpan checkOutTimeFrom, TimeSpan checkOutTimeUntil, 
-                     bool petAllowed, bool smokingAllowed, bool partyAllowed, int ageRestriction, int floorNumber)
+                     bool petAllowed, bool smokingAllowed, bool partyAllowed, int ageRestriction)
     {
         CheckInTimeFrom = checkInTimeFrom;
         CheckInTimeUntil = checkInTimeUntil;
@@ -23,8 +22,7 @@ public record HouseRule
         SmokingAllowed = smokingAllowed;
         PartyAllowed = partyAllowed;
         AgeRestriction = ageRestriction;
-        FloorNumber = floorNumber;
-        
+
         if(CheckInTimeFrom > CheckInTimeUntil) throw new ArgumentException("Check-in time from cannot be later than check-in time until", nameof(checkInTimeFrom));
         if(CheckOutTimeFrom > CheckOutTimeUntil) throw new ArgumentException("Check-out time from cannot be later than check-out time until", nameof(checkOutTimeFrom));
     }
@@ -34,5 +32,5 @@ public record HouseRule
     private HouseRule() : this(
         TimeSpan.FromHours(15), TimeSpan.FromHours(23),
         TimeSpan.FromHours(7), TimeSpan.FromHours(11),
-        false, false, false, 0, 0){}
+        false, false, false, 0){}
 }

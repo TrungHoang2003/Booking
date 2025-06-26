@@ -2,7 +2,7 @@ namespace Property.Domain.ValueObjects;
 
 public record BedType
 {
-   private string Value { get; init; }
+   public string Value { get; init; }
    public static BedType Single() => new("Single");
    public static BedType Double() => new("Double");
    public static BedType Queen() => new("Queen");

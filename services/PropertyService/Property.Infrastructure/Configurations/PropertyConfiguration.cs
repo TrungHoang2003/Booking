@@ -18,25 +18,25 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
         // Config Value Objects
         builder.OwnsOne(p => p.Rules, rules =>
         {
-            rules.Property(hr=>hr.AgeRestriction).IsRequired();
-            rules.Property(hr=>hr.FloorNumber).IsRequired();
-            rules.Property(hr=>hr.PartyAllowed).IsRequired();
-            rules.Property(hr=>hr.PetAllowed).IsRequired();
-            rules.Property(hr=>hr.SmokingAllowed).IsRequired();
-            rules.Property(hr => hr.CheckInTimeFrom).IsRequired();
-            rules.Property(hr => hr.CheckInTimeUntil).IsRequired();
-            rules.Property(hr => hr.CheckOutTimeUntil).IsRequired();
-            rules.Property(hr => hr.CheckInTimeFrom).IsRequired();
+            rules.Property(hr=>hr.AgeRestriction).HasColumnName("AgeRestriction").IsRequired();
+            rules.Property(hr=>hr.FloorNumber).HasColumnName("FloorNumber").IsRequired();
+            rules.Property(hr=>hr.PartyAllowed).HasColumnName("PartyAllowed").IsRequired();
+            rules.Property(hr=>hr.PetAllowed).HasColumnName("PetAllowed").IsRequired();
+            rules.Property(hr=>hr.SmokingAllowed).HasColumnName("SmokingAllowed").IsRequired();
+            rules.Property(hr => hr.CheckInTimeFrom).HasColumnName("CheckInTimeFrom").IsRequired();
+            rules.Property(hr => hr.CheckInTimeUntil).HasColumnName("CheckInTimeUntil").IsRequired();
+            rules.Property(hr => hr.CheckOutTimeUntil).HasColumnName("CheckOutTimeUntil").IsRequired();
         });
 
         builder.OwnsOne(p => p.Location, location =>
         {
-            location.Property(l => l.PostCode).IsRequired();
-            location.Property(l => l.Address).IsRequired();
-            location.Property(l => l.City).IsRequired();
-            location.Property(l => l.Country).IsRequired();
+            location.Property(l => l.PostCode).HasColumnName("PostCode").IsRequired();
+            location.Property(l => l.Address).HasColumnName("Address").IsRequired();
+            location.Property(l => l.City).HasColumnName("City").IsRequired();
+            location.Property(l => l.Country).HasColumnName("Country").IsRequired();
         });
         
+        // Configuring relationships
         builder.HasMany(p => p.Amenities)
             .WithOne()
             .HasForeignKey(pa => pa.PropertyId)

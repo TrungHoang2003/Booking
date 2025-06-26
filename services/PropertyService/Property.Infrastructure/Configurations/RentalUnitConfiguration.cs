@@ -27,8 +27,13 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
         builder.Property<int>("BathroomsCount").HasColumnName("BathroomsCount");
          
         // Config Value Objects
-        builder.OwnsOne(r => r.BasePricePerNight);
 
+        builder.OwnsOne(r => r.BasePricePerNight, basePricePerNight =>
+        {
+            basePricePerNight.Property(p => p.Amount).HasColumnName("BasePricePerNight").IsRequired();
+            basePricePerNight.Property(p => p.Currency).HasColumnName("PriceCurrency").IsRequired();
+        });
+        
         builder.HasMany(r => r.Amenities)
             .WithOne()
             .HasForeignKey(ra => ra.RentalUnitId)

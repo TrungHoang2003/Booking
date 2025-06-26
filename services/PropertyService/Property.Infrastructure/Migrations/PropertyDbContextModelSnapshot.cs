@@ -53,7 +53,11 @@ namespace Property.Infrastructure.Migrations
 
                     b.HasIndex("PropertyTypeId");
 
-                    b.ToTable("Properties", (string)null);
+                    b.ToTable("Properties", null, t =>
+                        {
+                            t.Property("FloorNumber")
+                                .HasColumnName("Property_FloorNumber");
+                        });
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.AggregateRoot.PropertyAmenity", b =>
@@ -90,9 +94,8 @@ namespace Property.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
-                    b.Property<string>("IconUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<bool>("IsRoomBased")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -102,6 +105,162 @@ namespace Property.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PropertyTypes", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Furnished and self-catering accommodation available for short- and long-term rental",
+                            IsRoomBased = false,
+                            Name = "Apartment"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Free-standing home with private, external entrance and rented specifically for holidays",
+                            IsRoomBased = false,
+                            Name = "Holiday home"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Private self-standing and self-catering home with luxury feel",
+                            IsRoomBased = false,
+                            Name = "Villa"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Free-standing home characterised by sloped roof and rented specifically for holidays",
+                            IsRoomBased = false,
+                            Name = "Chalet"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Private self-catering residences located on a shared grounds with shared facilities or recreational activities",
+                            IsRoomBased = false,
+                            Name = "Holiday park"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "A self-catering apartment with some hotel facilities like a reception desk",
+                            IsRoomBased = false,
+                            Name = "Aparthotel"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Accommodation for travellers often offering restaurants, meeting rooms and other guest services",
+                            IsRoomBased = true,
+                            Name = "Hotel"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Private home with separate living facilities for host and guest",
+                            IsRoomBased = true,
+                            Name = "Guest house"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Private home offering overnight stays and breakfast",
+                            IsRoomBased = true,
+                            Name = "Bed and breakfast"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Private home with shared living facilities for host and guest",
+                            IsRoomBased = true,
+                            Name = "Homestay"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Budget accommodation with mostly dorm-style bedding and a social atmosphere",
+                            IsRoomBased = true,
+                            Name = "Hostel"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "A self-catering apartment with some hotel facilities like a reception desk",
+                            IsRoomBased = true,
+                            Name = "Aparthotel"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "Extremely small units or capsules offering cheap and basic overnight accommodation",
+                            IsRoomBased = true,
+                            Name = "Capsule hotel"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "Private home with simple accommodation in the countryside",
+                            IsRoomBased = true,
+                            Name = "Country house"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Description = "Private farm with simple accommodation",
+                            IsRoomBased = true,
+                            Name = "Farm stay"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "Small and basic accommodation with a rustic feel",
+                            IsRoomBased = true,
+                            Name = "Inn"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "Adult-only accommodation rented per hour or night",
+                            IsRoomBased = true,
+                            Name = "Love hotel"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "Roadside hotel usually for motorists, with direct access to parking and little to no amenities",
+                            IsRoomBased = true,
+                            Name = "Motel"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "Traditional Moroccan accommodation with a courtyard and luxury feel",
+                            IsRoomBased = true,
+                            Name = "Riad"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Description = "A place for relaxation with onsite restaurants, activities and often with a luxury feel",
+                            IsRoomBased = true,
+                            Name = "Resort"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Description = "Traditional Japanese-style accommodation with meal options",
+                            IsRoomBased = true,
+                            Name = "Ryokan"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Description = "Private home with accommodation surrounded by nature, such as mountains or forest",
+                            IsRoomBased = true,
+                            Name = "Lodge"
+                        });
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.AmenityAggregate.Amenity", b =>
@@ -326,28 +485,36 @@ namespace Property.Infrastructure.Migrations
                                 .HasColumnType("integer");
 
                             b1.Property<int>("AgeRestriction")
-                                .HasColumnType("integer");
+                                .HasColumnType("integer")
+                                .HasColumnName("AgeRestriction");
 
                             b1.Property<TimeSpan>("CheckInTimeFrom")
-                                .HasColumnType("interval");
+                                .HasColumnType("interval")
+                                .HasColumnName("CheckInTimeFrom");
 
                             b1.Property<TimeSpan>("CheckInTimeUntil")
-                                .HasColumnType("interval");
+                                .HasColumnType("interval")
+                                .HasColumnName("CheckInTimeUntil");
 
                             b1.Property<TimeSpan>("CheckOutTimeUntil")
-                                .HasColumnType("interval");
+                                .HasColumnType("interval")
+                                .HasColumnName("CheckOutTimeUntil");
 
                             b1.Property<int>("FloorNumber")
-                                .HasColumnType("integer");
+                                .HasColumnType("integer")
+                                .HasColumnName("FloorNumber");
 
                             b1.Property<bool>("PartyAllowed")
-                                .HasColumnType("boolean");
+                                .HasColumnType("boolean")
+                                .HasColumnName("PartyAllowed");
 
                             b1.Property<bool>("PetAllowed")
-                                .HasColumnType("boolean");
+                                .HasColumnType("boolean")
+                                .HasColumnName("PetAllowed");
 
                             b1.Property<bool>("SmokingAllowed")
-                                .HasColumnType("boolean");
+                                .HasColumnType("boolean")
+                                .HasColumnName("SmokingAllowed");
 
                             b1.HasKey("PropertyId");
 
@@ -364,19 +531,23 @@ namespace Property.Infrastructure.Migrations
 
                             b1.Property<string>("Address")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("Address");
 
                             b1.Property<string>("City")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("City");
 
                             b1.Property<string>("Country")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("Country");
 
                             b1.Property<string>("PostCode")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("PostCode");
 
                             b1.HasKey("PropertyId");
 
@@ -412,11 +583,13 @@ namespace Property.Infrastructure.Migrations
                                 .HasColumnType("integer");
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("numeric");
+                                .HasColumnType("numeric")
+                                .HasColumnName("Price");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("PriceCurrency");
 
                             b1.HasKey("AmenityId");
 
@@ -444,11 +617,13 @@ namespace Property.Infrastructure.Migrations
                                 .HasColumnType("integer");
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("numeric");
+                                .HasColumnType("numeric")
+                                .HasColumnName("CotPrice");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("CotPriceCurrency");
 
                             b1.HasKey("BedroomId");
 
@@ -465,8 +640,7 @@ namespace Property.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Type");
+                                .HasColumnType("text");
 
                             b1.HasKey("BedroomId");
 
@@ -512,11 +686,13 @@ namespace Property.Infrastructure.Migrations
                                 .HasColumnType("integer");
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("numeric");
+                                .HasColumnType("numeric")
+                                .HasColumnName("BasePricePerNight");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("PriceCurrency");
 
                             b1.HasKey("RentalUnitId");
 

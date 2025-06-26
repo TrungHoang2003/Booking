@@ -18,13 +18,13 @@ public class Property: BuildingBlocks.DomainDrivenPattern.AggregateRoot
     public Location Location{ get; private set; }
     
     // Navigation Properties
-    public PropertyType Type;
+    public PropertyType? Type;
     public List<PropertyAmenity> Amenities = []; 
     public List<RentalUnit> RentalUnits = [];
     public List<Image> Images = [];
     
     //Constructors
-    public Property(int propertyTypeId, int hostId, string name, string? description, int? floorNumber, string? thumbnailUrl, HouseRule rules, Location location, PropertyType type)
+    public Property(int propertyTypeId, int hostId, string name, string? description, int? floorNumber, string? thumbnailUrl, HouseRule rules, Location location)
     {
         PropertyTypeId = propertyTypeId;
         HostId = hostId;
@@ -34,21 +34,10 @@ public class Property: BuildingBlocks.DomainDrivenPattern.AggregateRoot
         ThumbnailUrl = thumbnailUrl;
         Rules = rules;
         Location = location;
-        Type = type;
 
         //AddDomainEvent(new PropertyCreatedDomainEvent(this.Id, propertyTypeId, hostId, name, description, floorNumber, rules, location, thumbnailUrl));
         if(hostId <= 0) throw new ArgumentException("hostId must be valid");
         if(propertyTypeId <= 0) throw new ArgumentException("propertyTypeId must be valid");
-    }
-
-    private Property(int id, int propertyTypeId, int hostId, string name, string? description, int? floorNumber, string? thumbnailUrl):base(id)
-    {
-        PropertyTypeId = propertyTypeId;
-        HostId = hostId;
-        Name = name;
-        Description = description;
-        FloorNumber = floorNumber;
-        ThumbnailUrl = thumbnailUrl;
     }
     
     // Domain Business Logics

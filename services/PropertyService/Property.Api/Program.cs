@@ -1,5 +1,7 @@
 using BuildingBlocks.Middlewares;
 using DotNetEnv;
+using Property.Api;
+using Property.Application;
 using Property.Infrastructure;
 using Scalar.AspNetCore;
 using Serilog;
@@ -25,14 +27,17 @@ builder.Services.AddOpenApi();
 // Get connection string from configuration
 var postgresConnectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 
-// Add Infrastructure layer with PostgreSQL configuration
+// Add Infrastructure layer with PostgresSQL configuration
 builder.Services.AddInfrastructure(postgresConnectionString);
 
 // Add Application layer
-// builder.Services.AddApplication();
+ builder.Services.AddApplication();
 
 // Add Controllers
 builder.Services.AddControllers();
+
+// Add HttpContextAccessor for accessing current user
+builder.Services.AddHttpContextAccessor();
 
 // Serilog
 builder.Host.UseSerilog((context, services, configuration) => configuration

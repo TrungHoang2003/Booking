@@ -6,19 +6,20 @@ public class PropertyType:Entity
 {
     public string Name { get; private set; }
     public string Description { get; private set; }
-    public string IconUrl { get; private set; }
+    public bool IsRoomBased { get; private set; }
     
     // Constructors
-    public PropertyType(string name, string description, string iconUrl)
+    public PropertyType(string name, string description, bool isRoomBased)
     {
         Name = name;
         Description = description;
-        IconUrl = iconUrl;
+        IsRoomBased = isRoomBased;
     }
-    public PropertyType(int id, string name, string description, string iconUrl) : base(id)
+
+    public PropertyType(int id, string name, string description, bool isRoomBased) : base(id)
     {
         Name = name;
         Description = description;
-        IconUrl = iconUrl;
+        IsRoomBased = isRoomBased;
     }
 }

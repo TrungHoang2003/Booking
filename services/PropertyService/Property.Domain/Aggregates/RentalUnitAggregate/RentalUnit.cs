@@ -23,22 +23,11 @@ public abstract class RentalUnit: Entity
     public List<Bedroom> Bedrooms = [];
    
     // Constructors
-    public RentalUnit(int propertyId, string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity) 
+    public RentalUnit(string name, string description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity) 
     {
-        PropertyId = propertyId;
         Name = name;
         Description = description;
         BasePricePerNight = basePricePerNight;
-        MaxAdults = maxAdults;
-        MaxChildren = maxChildren;
-        Quantity = quantity;
-    }
-
-    protected RentalUnit(int id, int propertyId, string name, string description, int maxAdults, int maxChildren, int quantity):base(id)
-    {
-        PropertyId = propertyId;
-        Name = name;
-        Description = description;
         MaxAdults = maxAdults;
         MaxChildren = maxChildren;
         Quantity = quantity;

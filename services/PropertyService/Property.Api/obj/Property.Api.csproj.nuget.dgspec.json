@@ -1,42 +1,48 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Sandbox\\services\\PropertyService\\Property.Api\\Property.Api.csproj": {}
+    "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Api\\Property.Api.csproj": {}
   },
   "projects": {
-    "C:\\Sandbox\\services\\PropertyService\\Property.Api\\Property.Api.csproj": {
+    "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Api\\Property.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sandbox\\services\\PropertyService\\Property.Api\\Property.Api.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Api\\Property.Api.csproj",
         "projectName": "Property.Api",
-        "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Api\\Property.Api.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Sandbox\\services\\PropertyService\\Property.Api\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Api\\Property.Api.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Sandbox\\services\\PropertyService\\Property.Application\\Property.Application.csproj": {
-                "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Application\\Property.Application.csproj"
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\Property.Application.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\Property.Application.csproj"
               },
-              "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
-                "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
               },
-              "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj": {
-                "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj"
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj"
               },
-              "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -103,32 +109,48 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Sandbox\\services\\PropertyService\\Property.Application\\Property.Application.csproj": {
+    "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\Property.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sandbox\\services\\PropertyService\\Property.Application\\Property.Application.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\Property.Application.csproj",
         "projectName": "Property.Application",
-        "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Application\\Property.Application.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Sandbox\\services\\PropertyService\\Property.Application\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\Property.Application.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
+              },
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj"
+              },
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -146,6 +168,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -162,34 +190,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
+    "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj",
         "projectName": "Property.Domain",
-        "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -231,34 +265,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj": {
+    "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj",
         "projectName": "Property.Infrastructure",
-        "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Sandbox\\services\\PropertyService\\Property.Infrastructure\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\Property.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
-                "projectPath": "C:\\Sandbox\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
+              "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
               }
             }
           }
@@ -279,9 +319,17 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.66, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -308,26 +356,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "C:\\Sandbox\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Sandbox\\shared\\BuildingBlocks\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -385,7 +439,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

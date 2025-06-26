@@ -8,12 +8,13 @@ public class GatewayAuthMiddleware(RequestDelegate next, IConnectionMultiplexer 
     public async Task InvokeAsync(HttpContext context)
     {
         var path = context.Request.Path.Value?.ToLowerInvariant();
+        logger.LogInformation("GatewayAuthMiddleware is processing request: {Path}", path);
 
         // Skip authentication for login/register endpoints
         if (path != null && 
-            (path.StartsWith("/authen/login") ||
-             path.StartsWith("/authen/register") ||
-             path.StartsWith("/authen/refreshtoken")))
+            (path.StartsWith("/identity/authen/login") ||
+             path.StartsWith("/identity/authen/register") ||
+             path.StartsWith("/identity/authen/refreshtoken")))
         {
             await next(context);
             return;

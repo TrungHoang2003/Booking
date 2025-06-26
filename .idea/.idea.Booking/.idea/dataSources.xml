@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="identitydb@localhost" uuid="8fe054da-0f59-4b83-be4a-473bee03a2b7">
+    <data-source source="LOCAL" name="identitydb@localhost" uuid="83031b7c-929c-40c2-bcb5-25f474ad5a7c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/identitydb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="propertydb@localhost" uuid="872cf819-c65c-4886-8a33-907fe223dec1">
+    <data-source source="LOCAL" name="propertydb@localhost" uuid="1eee6708-3fe5-445f-9558-bd9dc2dd6186">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

@@ -366,3 +366,4 @@ C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\refint\Identit
 C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\Identity.Api.pdb
 C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\Identity.Api.genruntimeconfig.cache
 C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\ref\Identity.Api.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\System.Text.Json.dll

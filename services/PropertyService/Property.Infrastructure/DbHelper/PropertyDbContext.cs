@@ -1,4 +1,5 @@
 using System.Reflection;
+using BuildingBlocks.Commons;
 using Microsoft.EntityFrameworkCore;
 using Property.Domain.Aggregates.AggregateRoot;
 using Property.Domain.Aggregates.AmenityAggregate;
@@ -8,7 +9,7 @@ using Property.Domain.Aggregates.RentalUnitAggregate;
 
 namespace Property.Infrastructure.DbHelper;
 
-public class PropertyDbContext(DbContextOptions<PropertyDbContext> options): DbContext(options)
+public class PropertyDbContext(DbContextOptions<PropertyDbContext> options): DbContext(options), IUnitOfWork
 {
     public DbSet<Domain.Aggregates.AggregateRoot.Property> Properties { get; set; }
     public DbSet<Amenity> Amenities { get; set; }
@@ -25,5 +26,11 @@ public class PropertyDbContext(DbContextOptions<PropertyDbContext> options): DbC
         
         // Áp dụng tất cả các class kế thừa từ IEntityTypeConfiguration<> trong thư mục Configurations
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); 
+    }
+
+    public new async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        var result = await base.SaveChangesAsync(cancellationToken);
+        return result > 0;
     }
 }

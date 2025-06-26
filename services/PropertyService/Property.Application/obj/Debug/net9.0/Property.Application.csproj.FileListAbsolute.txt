@@ -22,3 +22,11 @@ C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Proper
 C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\refint\Property.Application.dll
 C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.pdb
 C:\Sandbox\services\PropertyService\Property.Application\obj\Debug\net9.0\ref\Property.Application.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\BuildingBlocks.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Domain.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Infrastructure.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\BuildingBlocks.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Domain.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Application\bin\Debug\net9.0\Property.Infrastructure.pdb
+C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.Application.csproj.AssemblyReference.cache
+C:\Sandbox\Booking\services\PropertyService\Property.Application\obj\Debug\net9.0\Property.2A03A6A5.Up2Date

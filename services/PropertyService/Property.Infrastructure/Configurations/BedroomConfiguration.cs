@@ -4,7 +4,7 @@ using Property.Domain.Aggregates.BedroomAggregate;
 
 namespace Property.Infrastructure.Configurations;
 
-public class BedroomConfiguration:IEntityTypeConfiguration<Bedroom>
+public class BedroomConfiguration : IEntityTypeConfiguration<Bedroom>
 {
     public void Configure(EntityTypeBuilder<Bedroom> builder)
     {
@@ -16,16 +16,15 @@ public class BedroomConfiguration:IEntityTypeConfiguration<Bedroom>
             .IsRequired();
 
         // Config Value Objects
-        builder.OwnsOne(b => b.CotPrice, price=>
+        builder.OwnsOne(b => b.CotPrice, price =>
         {
-            price.Property(cp=>cp.Amount).IsRequired();
-            price.Property(cp=>cp.Currency).IsRequired();
+            price.Property(p => p.Amount).HasColumnName("CotPrice").IsRequired();
+            price.Property(p => p.Currency).HasColumnName("CotPriceCurrency").IsRequired();
         });
 
-        builder.OwnsOne(b => b.Type, bedType =>
-            {
-               bedType.Property<string>("Value").HasColumnName("Type").IsRequired(); 
-            }
-        );
+        builder.OwnsOne(b => b.Type, b =>
+        {
+            b.Property(bt => bt.Value).IsRequired();
+        });
     }
 }

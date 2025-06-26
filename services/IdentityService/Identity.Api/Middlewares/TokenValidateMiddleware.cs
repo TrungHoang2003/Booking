@@ -11,12 +11,12 @@ public class TokenValidateMiddleware(ILogger<TokenValidateMiddleware> logger, Re
 
         // Bỏ qua middleware cho các endpoint không cần xác thực
         if (path != null &&
-            (path.StartsWith("/authen/login") ||
-             path.StartsWith("/authen/refreshtoken") ||
-             path.StartsWith("/authen/googlelogin") ||
-             path.StartsWith("/authen/googlecallback") ||
-             path.StartsWith("/authen/register") ||
-             path.StartsWith("/scalar")))
+            (path.StartsWith("authen/login") ||
+             path.StartsWith("authen/refreshtoken") ||
+             path.StartsWith("authen/googlelogin") ||
+             path.StartsWith("authen/googlecallback") ||
+             path.StartsWith("authen/register") ||
+             path.StartsWith("scalar")))
         {
             await next(context);
             return;

@@ -1,5 +1,4 @@
 using StackExchange.Redis;
-using System.IdentityModel.Tokens.Jwt;
 using ApiGateway.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +15,7 @@ builder.Services.AddReverseProxy()
 
 var app = builder.Build();
 
-app.UseMiddleware<GatewayAuthMiddleware>();
+//app.UseMiddleware<GatewayAuthMiddleware>();
 
 // 2. Thêm middleware YARP vào pipeline yêu cầu
 app.MapReverseProxy();

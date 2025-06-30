@@ -19,7 +19,6 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
         builder.OwnsOne(p => p.Rules, rules =>
         {
             rules.Property(hr=>hr.AgeRestriction).HasColumnName("AgeRestriction").IsRequired();
-            rules.Property(hr=>hr.FloorNumber).HasColumnName("FloorNumber").IsRequired();
             rules.Property(hr=>hr.PartyAllowed).HasColumnName("PartyAllowed").IsRequired();
             rules.Property(hr=>hr.PetAllowed).HasColumnName("PetAllowed").IsRequired();
             rules.Property(hr=>hr.SmokingAllowed).HasColumnName("SmokingAllowed").IsRequired();

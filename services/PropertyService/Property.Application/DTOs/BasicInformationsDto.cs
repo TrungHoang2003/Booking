@@ -9,5 +9,5 @@ public record BasicInformationsDto
     string Address,
     string City,
     string Country,
-    string PostCode
+    int PostCode
 );

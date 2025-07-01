@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 #   # Api Gateway
 #   api-gateway:
@@ -102,6 +100,20 @@ services:
       - "5342:5341"
     environment:
       - ACCEPT_EULA=Y
+    networks:
+      - booking-network
+    
+  # rabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: booking-rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     networks:
       - booking-network
 

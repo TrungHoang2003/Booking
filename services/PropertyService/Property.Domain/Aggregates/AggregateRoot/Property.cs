@@ -49,4 +49,20 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
         RentalUnits.Add(rentalUnit);
         //AddDomainEvent(new RentalUnitAddedToPropertyDomainEvent(this.Id, rentalUnit.Id));
     }
+    
+    public void AddAmenity(PropertyAmenity propertyAmenity)
+    {
+        ArgumentNullException.ThrowIfNull(propertyAmenity);
+
+        Amenities.Add(propertyAmenity);
+        //AddDomainEvent(new PropertyAmenityAddedDomainEvent(this.Id, propertyAmenity.AmenityId));
+    }
+    
+    public void AddDescription(string description)
+    {
+        if (string.IsNullOrWhiteSpace(description))
+            throw new ArgumentException("Description cannot be null or empty.", nameof(description));
+
+        Description = description;
+    }
 }

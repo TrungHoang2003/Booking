@@ -1,3 +1,5 @@
+using Property.Domain.ValueObjects;
+
 namespace Property.Application.DTOs;
 
 public record EntirePropertyRentalUnitDto
@@ -7,6 +9,5 @@ public record EntirePropertyRentalUnitDto
     int Size,
     int BedroomsCount,
     int BathroomsCount,
-    int BasePricePerNight,
-    string Currency
+    Price Price
 );

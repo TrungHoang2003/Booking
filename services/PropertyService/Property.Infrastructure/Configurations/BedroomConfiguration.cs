@@ -15,13 +15,6 @@ public class BedroomConfiguration : IEntityTypeConfiguration<Bedroom>
             .ValueGeneratedOnAdd()
             .IsRequired();
 
-        // Config Value Objects
-        builder.OwnsOne(b => b.CotPrice, price =>
-        {
-            price.Property(p => p.Amount).HasColumnName("CotPrice").IsRequired();
-            price.Property(p => p.Currency).HasColumnName("CotPriceCurrency").IsRequired();
-        });
-
         builder.OwnsOne(b => b.Type, b =>
         {
             b.Property(bt => bt.Value).IsRequired();

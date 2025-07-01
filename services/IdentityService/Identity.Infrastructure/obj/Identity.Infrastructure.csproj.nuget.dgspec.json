@@ -1,38 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {}
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
         "projectName": "Identity.Domain",
-        "projectPath": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
-        "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -82,42 +83,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
+    "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
         "projectName": "Identity.Infrastructure",
-        "projectPath": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
-                "projectPath": "C:\\Snowbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
+              "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Domain\\Identity.Domain.csproj"
               },
-              "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
-                "projectPath": "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+              "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
               }
             }
           }
@@ -213,31 +215,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
+    "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "projectUniqueName": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
         "projectName": "BuildingBlocks",
-        "projectPath": "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
-        "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Snowbox\\Booking\\shared\\BuildingBlocks\\obj\\",
+        "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj",
+        "packagesPath": "C:\\Users\\TrungHV16\\.nuget\\packages\\",
+        "outputPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "C:\\Users\\TrungHV16\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -295,7 +298,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -6,6 +6,8 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Exceptions;
 using DotNetEnv;
+using Identity.Infrastructure.MessageBroker;
+using MassTransit;
 
 // Load environment-specific .env file
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
@@ -24,6 +26,15 @@ if (File.Exists(envPath))
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("MessageBroker"));
+
+builder.Services.AddSingleton(sp=>sp.GetRequiredKeyedService<IOptions<MessageBrokerSettings())
+
+builder.Services.AddMassTransit(busConfigurator => busConfigurator.UsingRabbitMq (context, configurator) =>
+{
+    messa
+});
 
 builder.Services.AddOpenApi();
 

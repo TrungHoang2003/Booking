@@ -7,11 +7,16 @@ public interface IGenericRepository<T> where T : class
     public Task Update(T entity);
     public Task Create(T entity);
     public Task Delete(T entity);
+    public Task AddRangeAsync(IEnumerable<T> entities);
 }
 
 public class GenericRepository<T>(PropertyDbContext dbContext):IGenericRepository<T> 
     where T : class
 {
+    public async Task AddRangeAsync(IEnumerable<T> entities)
+    {
+        await dbContext.Set<T>().AddRangeAsync(entities);
+    }
     public async Task Create(T entity)
     {
         await dbContext.Set<T>().AddAsync(entity);

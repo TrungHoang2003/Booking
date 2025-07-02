@@ -17,7 +17,7 @@ public sealed record SignUpPropertyCommand
     HostProfileDto? hostProfileDto 
 ):ICommand;
 
-public class SignUpPropertyCommandHandler(IAmenityRepository amenityRepo, IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : ICommandHandler<SignUpPropertyCommand>
+public class SignUpPropertyCommandHandler(IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : ICommandHandler<SignUpPropertyCommand>
 {
     public async Task<Result> Handle(SignUpPropertyCommand command, CancellationToken cancellationToken)
     {

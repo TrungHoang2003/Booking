@@ -1,0 +1,38 @@
+using BuildingBlocks.Commons;
+using Contracts.Events;
+using Identity.Domain.Entities;
+using Identity.Domain.Errors;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+
+namespace Identity.Application.CQRS.Commands;
+
+public sealed record UpdateUserProfileCommand(int UserId, string FullName, string Description) : ICommand;
+
+public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUnitOfWork unitOfWork,
+    IEventBus eventBus, ILogger<UpdateUserProfileCommandHandler> logger) : ICommandHandler<UpdateUserProfileCommand>
+{
+    public async Task<Result> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
+    {
+        var user = await userManager.FindByIdAsync(command.UserId.ToString());
+        if(user == null) return Result.Failure(UserErrors.UserNotFound);
+        
+        user.FullName = command.FullName;
+        user.Description = command.Description;
+        
+        var result = await userManager.UpdateAsync(user);
+        
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors.Select(e => new Error(e.Code, e.Description));
+            return Result.Failure(new Error("Update User Error", string.Join("\n", errors)));
+        }
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+        
+        await eventBus.PublishAsync(new UpdateUserProfileEvent(user.Id, command.FullName, command.Description), cancellationToken);
+        logger.LogInformation("User profile updated successfully for UserId: {UserId}", command.UserId);
+        
+        return Result.Success();
+    }
+}

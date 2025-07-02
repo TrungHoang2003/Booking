@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\..\..\shared\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\Property.Domain\Property.Domain.csproj" />
     <ProjectReference Include="..\Property.Infrastructure\Property.Infrastructure.csproj" />
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="MassTransit.Abstractions" Version="8.5.0" />
   </ItemGroup>
 
 </Project>

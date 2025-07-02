@@ -1,3 +1,4 @@
+using BuildingBlocks.MessageBrokerSettings;
 using BuildingBlocks.Middlewares;
 using Identity.Api.Middlewares;
 using Identity.Application;
@@ -6,8 +7,8 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Exceptions;
 using DotNetEnv;
-using Identity.Infrastructure.MessageBroker;
 using MassTransit;
+using Microsoft.Extensions.Options;
 
 // Load environment-specific .env file
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
@@ -29,11 +30,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("MessageBroker"));
 
-builder.Services.AddSingleton(sp=>sp.GetRequiredKeyedService<IOptions<MessageBrokerSettings())
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
 
-builder.Services.AddMassTransit(busConfigurator => busConfigurator.UsingRabbitMq (context, configurator) =>
+builder.Services.AddMassTransit(busConfigurator =>
 {
-    messa
+    // Register consumers
+    
+    busConfigurator.UsingRabbitMq((context, configurator) =>
+    {
+        var settings = context.GetRequiredService<MessageBrokerSettings>();
+        
+        configurator.Host(new Uri(settings.Host), h =>
+        {
+           h.Username(settings.Username); 
+           h.Password(settings.Password);
+        });
+        
+        // Configure endpoints for consumers
+        configurator.ConfigureEndpoints(context);
+    });
 });
 
 builder.Services.AddOpenApi();

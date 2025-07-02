@@ -1,5 +1,7 @@
+using BuildingBlocks.MessageBrokerSettings;
 using BuildingBlocks.Middlewares;
 using DotNetEnv;
+using MassTransit;
 using Property.Api;
 using Property.Application;
 using Property.Infrastructure;
@@ -22,6 +24,20 @@ if (File.Exists(envPath))
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(busConfigurator =>
+{
+   busConfigurator.UsingRabbitMq((context, cfg) =>
+   {
+       var settings = context.GetRequiredService<MessageBrokerSettings>();
+       
+       cfg.Host(new Uri(settings.Host), h =>
+       {
+           h.Username(settings.Username);
+           h.Password(settings.Password);
+       });
+   }); 
+});
 
 builder.Services.AddOpenApi();
 // Get connection string from configuration

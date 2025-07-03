@@ -21,6 +21,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Contracts\Contracts.csproj" />
       <ProjectReference Include="..\..\..\shared\BuildingBlocks\BuildingBlocks.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Contracts\Contracts.csproj" />
       <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
       <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
     </ItemGroup>

@@ -1,0 +1,73 @@
+/* Car rental hero section background */
+.hero-car-rental {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* Yellow search bar styling */
+.search-bar-yellow {
+  background: #ffb000;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Property card hover effects */
+.property-card {
+  transition: all 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Destination card overlay */
+.destination-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.destination-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 1;
+}
+
+.destination-card .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Booking.com specific colors */
+:root {
+  --booking-blue: #003580;
+  --booking-light-blue: #0071c2;
+  --booking-yellow: #ffb000;
+  --booking-green: #22c55e;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+  
+  .search-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

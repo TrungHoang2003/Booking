@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bQSFJx1iSIk=",
+  "dgSpecHash": "9KDjjVUWZ6M=",
   "success": true,
   "projectFilePath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,7 @@
     "C:\\Users\\TrungHV16\\.nuget\\packages\\masstransit\\8.5.0\\masstransit.8.5.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\masstransit.abstractions\\8.5.0\\masstransit.abstractions.8.5.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\masstransit.rabbitmq\\8.5.0\\masstransit.rabbitmq.8.5.0.nupkg.sha512",
-    "C:\\Users\\TrungHV16\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",
+    "C:\\Users\\TrungHV16\\.nuget\\packages\\mediatr\\13.0.0\\mediatr.13.0.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
@@ -106,7 +106,7 @@
     "C:\\Users\\TrungHV16\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
-    "C:\\Users\\TrungHV16\\.nuget\\packages\\scalar.aspnetcore\\2.5.0\\scalar.aspnetcore.2.5.0.nupkg.sha512",
+    "C:\\Users\\TrungHV16\\.nuget\\packages\\scalar.aspnetcore\\2.5.3\\scalar.aspnetcore.2.5.3.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\serilog.aspnetcore\\9.0.0\\serilog.aspnetcore.9.0.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\serilog.enrichers.correlationid\\3.0.1\\serilog.enrichers.correlationid.3.0.1.nupkg.sha512",

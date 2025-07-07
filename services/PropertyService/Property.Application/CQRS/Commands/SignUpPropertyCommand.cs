@@ -1,5 +1,6 @@
 using System.Windows.Input;
 using BuildingBlocks.Commons;
+using Contracts.Events;
 using Property.Application.DTOs;
 using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
@@ -10,20 +11,20 @@ namespace Property.Application.CQRS.Commands;
 
 public sealed record SignUpPropertyCommand
 (
-    int hostId,
-    HouseRuleDto houseRuleDto, 
-    BasicInformationsDto basicInfoDto,
-    EntirePropertyRentalUnitDto entireRentalUnitDto,
-    HostProfileDto? hostProfileDto 
+    int HostId,
+    HouseRuleDto HouseRuleDto, 
+    BasicInformationsDto BasicInfoDto,
+    EntirePropertyRentalUnitDto EntireRentalUnitDto,
+    HostProfileDto? HostProfileDto 
 ):ICommand;
 
-public class SignUpPropertyCommandHandler(IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : ICommandHandler<SignUpPropertyCommand>
+public class SignUpPropertyCommandHandler(IEventBus bus, IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : ICommandHandler<SignUpPropertyCommand>
 {
     public async Task<Result> Handle(SignUpPropertyCommand command, CancellationToken cancellationToken)
     {
-        var basicInfoDto = command.basicInfoDto;
-        var houseRuleDto = command.houseRuleDto;
-        var entireRentalUnitDto= command.entireRentalUnitDto;
+        var basicInfoDto = command.BasicInfoDto;
+        var houseRuleDto = command.HouseRuleDto;
+        var entireRentalUnitDto= command.EntireRentalUnitDto;
 
         var location = new Location(basicInfoDto.Address, basicInfoDto.City, basicInfoDto.Country, basicInfoDto.PostCode);
         
@@ -45,7 +46,7 @@ public class SignUpPropertyCommandHandler(IPropertyRepository propertyRepo, IUni
         
         var property = new Domain.Aggregates.AggregateRoot.Property(
             basicInfoDto.PropertyTypeId,
-            command.hostId, 
+            command.HostId, 
             basicInfoDto.Name,
             null,
             null,
@@ -55,11 +56,12 @@ public class SignUpPropertyCommandHandler(IPropertyRepository propertyRepo, IUni
         );
         property.AddRentalUnit(rentalUnit);
 
-        if (command.hostProfileDto != null)
+        if (command.HostProfileDto != null)
         {
-            var hostProfileDto = command.hostProfileDto;
+            var hostProfileDto = command.HostProfileDto;
             property.AddDescription(hostProfileDto.PropertyDescription);
         }
+        
         
         await propertyRepo.Create(property);
         await unitOfWork.SaveChangesAsync(cancellationToken);

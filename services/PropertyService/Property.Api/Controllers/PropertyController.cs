@@ -16,7 +16,7 @@ public class PropertyController(IMediator mediator): Controller
       
       if(!string.IsNullOrEmpty(userIdClaim?.Value) && int.TryParse(userIdClaim.Value, out var userId))
       {
-         command = command with { hostId = userId };
+         command = command with { HostId = userId };
          var result = await mediator.Send(command);
          return result.IsSuccess ? Ok(result) : BadRequest(result);
       }

@@ -8919,8 +8919,8 @@
     },
     "Contracts/1.0.0": {
       "type": "project",
-      "path": "../../../Contracts/Contracts.csproj",
-      "msbuildProject": "../../../Contracts/Contracts.csproj"
+      "path": "../../../Shared/Contracts/Contracts.csproj",
+      "msbuildProject": "../../../Shared/Contracts/Contracts.csproj"
     },
     "Property.Application/1.0.0": {
       "type": "project",

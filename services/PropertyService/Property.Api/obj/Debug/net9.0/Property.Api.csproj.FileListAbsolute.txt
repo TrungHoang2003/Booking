@@ -309,3 +309,14 @@ C:\Sandbox\services\PropertyService\Property.Api\obj\Debug\net9.0\Property.Api.g
 C:\Sandbox\services\PropertyService\Property.Api\obj\Debug\net9.0\ref\Property.Api.dll
 C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Dapper.dll
 C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\MassTransit.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\MassTransit.Abstractions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\MassTransit.RabbitMqTransport.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\RabbitMQ.Client.dll

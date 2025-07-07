@@ -1760,8 +1760,8 @@
     },
     "Contracts/1.0.0": {
       "type": "project",
-      "path": "../../../Contracts/Contracts.csproj",
-      "msbuildProject": "../../../Contracts/Contracts.csproj"
+      "path": "../../../Shared/Contracts/Contracts.csproj",
+      "msbuildProject": "../../../Shared/Contracts/Contracts.csproj"
     },
     "Property.Domain/1.0.0": {
       "type": "project",
@@ -1816,9 +1816,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj": {
-              "projectPath": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj"
-            },
             "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
               "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
             },
@@ -1827,6 +1824,9 @@
             },
             "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
               "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+            },
+            "C:\\Sandbox\\Booking\\Shared\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Sandbox\\Booking\\Shared\\Contracts\\Contracts.csproj"
             }
           }
         }

@@ -1,5 +1,6 @@
 using BuildingBlocks.Commons;
 using Contracts.Events;
+using Identity.Application.Errors;
 using Identity.Domain.Entities;
 using Identity.Domain.Errors;
 using Microsoft.AspNetCore.Identity;
@@ -29,9 +30,6 @@ public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUni
         }
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        
-        await eventBus.PublishAsync(new UpdateUserProfileEvent(user.Id, command.FullName, command.Description), cancellationToken);
-        logger.LogInformation("User profile updated successfully for UserId: {UserId}", command.UserId);
         
         return Result.Success();
     }

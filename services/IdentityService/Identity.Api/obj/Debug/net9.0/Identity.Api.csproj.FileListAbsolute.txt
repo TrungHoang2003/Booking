@@ -367,3 +367,9 @@ C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\Identity.Api.p
 C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\Identity.Api.genruntimeconfig.cache
 C:\Sandbox\services\IdentityService\Identity.Api\obj\Debug\net9.0\ref\Identity.Api.dll
 C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\System.Text.Json.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\MassTransit.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\MassTransit.Abstractions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\MassTransit.RabbitMqTransport.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\RabbitMQ.Client.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Contracts.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Contracts.pdb

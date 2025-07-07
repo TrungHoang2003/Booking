@@ -13,7 +13,7 @@ public class Result<T>(bool isSuccess, T value, Error error) : Result(isSuccess,
 {
     public T Value { get; } = value;
     public static Result<T> Success(T value) => new(true, value, Error.None);
-    public static new Result<T> Failure(Error error) => new(false, default!, error);
+    public new static Result<T> Failure(Error error) => new(false, default!, error);
 }
 
 public class Error(string? code, string? description)

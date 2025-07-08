@@ -7,8 +7,8 @@ using Property.Infrastructure.Repositories;
 namespace Property.Application.CQRS.Commands;
 
 public sealed record SetUpPropertyAmenityCommand(
-    int propertyId,
-    List<SetupPropertyAmenityDto> listSetupPropertyAmenityDto): ICommand;
+    int PropertyId,
+    List<SetupPropertyAmenityDto> ListSetupPropertyAmenityDto): ICommand;
 
 public class SetUpPropertyAmenityCommandHandler(
     IAmenityRepository amenityRepo, 
@@ -18,13 +18,13 @@ public class SetUpPropertyAmenityCommandHandler(
 {
     public async Task<Result> Handle(SetUpPropertyAmenityCommand command, CancellationToken cancellationToken)
     {
-        var listSetupPropertyAmenityDto = command.listSetupPropertyAmenityDto;
+        var listSetupPropertyAmenityDto = command.ListSetupPropertyAmenityDto;
 
         var listPropertyAmenity = new List<PropertyAmenity>();
 
         foreach (var setupPropertyAmenityDto in listSetupPropertyAmenityDto)
         {
-            var property = await propertyRepo.GetByIdAsync(command.propertyId);
+            var property = await propertyRepo.GetByIdAsync(command.PropertyId);
             if (property == null)
             {
                 return Result.Failure(PropertyErrors.PropertyNotFound);

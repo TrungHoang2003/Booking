@@ -581,6 +581,16 @@
         "runtime": {
           "bin/placeholder/BuildingBlocks.dll": {}
         }
+      },
+      "Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Contracts.dll": {}
+        }
       }
     }
   },
@@ -1395,11 +1405,17 @@
       "type": "project",
       "path": "../../../shared/BuildingBlocks/BuildingBlocks.csproj",
       "msbuildProject": "../../../shared/BuildingBlocks/BuildingBlocks.csproj"
+    },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "path": "../../../Shared/Contracts/Contracts.csproj",
+      "msbuildProject": "../../../Shared/Contracts/Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "BuildingBlocks >= 1.0.0",
+      "Contracts >= 1.0.0",
       "MassTransit >= 8.5.0",
       "MassTransit.RabbitMQ >= 8.5.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.3"
@@ -1439,6 +1455,9 @@
           "projectReferences": {
             "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj": {
               "projectPath": "C:\\Sandbox\\Booking\\shared\\BuildingBlocks\\BuildingBlocks.csproj"
+            },
+            "C:\\Sandbox\\Booking\\Shared\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Sandbox\\Booking\\Shared\\Contracts\\Contracts.csproj"
             }
           }
         }

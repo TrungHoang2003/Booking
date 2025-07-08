@@ -1,17 +1,13 @@
 using BuildingBlocks.Commons;
-using Contracts.Events;
 using Identity.Application.Errors;
 using Identity.Domain.Entities;
-using Identity.Domain.Errors;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 
-namespace Identity.Application.CQRS.Commands;
+namespace Identity.Application.UseCases.Commands;
 
 public sealed record UpdateUserProfileCommand(int UserId, string FullName, string Description) : ICommand;
 
-public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUnitOfWork unitOfWork,
-    IEventBus eventBus, ILogger<UpdateUserProfileCommandHandler> logger) : ICommandHandler<UpdateUserProfileCommand>
+public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUnitOfWork unitOfWork) : ICommandHandler<UpdateUserProfileCommand>
 {
     public async Task<Result> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
     {

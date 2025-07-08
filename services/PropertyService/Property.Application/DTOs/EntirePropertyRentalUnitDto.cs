@@ -11,3 +11,4 @@ public record EntirePropertyRentalUnitDto
     int BathroomsCount,
     Price Price
 );
+

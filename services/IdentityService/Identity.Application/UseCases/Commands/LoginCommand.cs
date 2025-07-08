@@ -2,9 +2,8 @@
 using Identity.Application.Commons;
 using Identity.Domain.Errors;
 using Identity.Infrastructure.Repositories;
-using MediatR;
 
-namespace Identity.Application.CQRS.Commands;
+namespace Identity.Application.UseCases.Commands;
 
 public sealed record LoginCommand(
     string UserName,

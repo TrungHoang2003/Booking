@@ -141,6 +141,9 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj": {
+                "projectPath": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj"
+              },
               "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
                 "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
               },

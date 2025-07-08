@@ -1777,6 +1777,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "BuildingBlocks >= 1.0.0",
+      "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj",
       "Contracts >= 1.0.0",
       "FluentValidation.DependencyInjectionExtensions >= 12.0.0",
       "MassTransit.Abstractions >= 8.5.0",
@@ -1816,6 +1817,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj"
+            },
             "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj": {
               "projectPath": "C:\\Sandbox\\Booking\\services\\PropertyService\\Property.Domain\\Property.Domain.csproj"
             },
@@ -1875,5 +1879,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

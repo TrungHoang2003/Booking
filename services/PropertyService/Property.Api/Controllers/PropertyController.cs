@@ -10,7 +10,7 @@ namespace Property.Api.Controllers;
 public class PropertyController(IMediator mediator): Controller
 {
    [HttpPost("CreateProperty")] 
-   public async Task<IActionResult> CreateProperty([FromBody] SignUpPropertyCommand command)
+   public async Task<IActionResult> CreateProperty([FromBody] CreatePropertyCommand command)
    {
       var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
       

@@ -1,4 +1,5 @@
 using Identity.Application.CQRS.Commands;
+using Identity.Application.UseCases.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

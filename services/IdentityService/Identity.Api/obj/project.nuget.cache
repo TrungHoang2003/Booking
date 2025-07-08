@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "LImUrN1YC6w=",
-  "success": true,
+  "dgSpecHash": "andFIFRqVQw=",
+  "success": false,
   "projectFilePath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TrungHV16\\.nuget\\packages\\cloudinarydotnet\\1.27.6\\cloudinarydotnet.1.27.6.nupkg.sha512",
@@ -206,5 +206,17 @@
     "C:\\Users\\TrungHV16\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\TrungHV16\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj'. Check that the project reference is valid and that the project file exists.",
+      "projectPath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+      "filePath": "C:\\Sandbox\\Booking\\services\\IdentityService\\Identity.Api\\Identity.Api.csproj",
+      "libraryId": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

@@ -1,13 +1,9 @@
-using System.Windows.Input;
 using BuildingBlocks.Commons;
-using Contracts.Events;
-using Property.Application.DTOs;
-using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
 using Property.Infrastructure.Repositories;
 using ICommand = BuildingBlocks.Commons.ICommand;
 
-namespace Property.Application.CQRS.Commands;
+namespace Property.Application.UseCases.Commands;
 
 public sealed record CreatePropertyCommand
 (

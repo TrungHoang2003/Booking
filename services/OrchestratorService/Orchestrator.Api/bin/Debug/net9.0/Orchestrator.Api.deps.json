@@ -9,6 +9,7 @@
       "Orchestrator.Api/1.0.0": {
         "dependencies": {
           "BuildingBlocks": "1.0.0",
+          "Contracts": "1.0.0",
           "MassTransit": "8.5.0",
           "MassTransit.RabbitMQ": "8.5.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.3"
@@ -258,6 +259,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Contracts/1.0.0": {
+        "runtime": {
+          "Contracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -499,6 +508,11 @@
       "hashPath": "system.threading.ratelimiting.8.0.0.nupkg.sha512"
     },
     "BuildingBlocks/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -45,3 +45,5 @@ C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\obj\Debug\net9.
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\obj\Debug\net9.0\Orchestrator.Api.pdb
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\obj\Debug\net9.0\Orchestrator.Api.genruntimeconfig.cache
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\obj\Debug\net9.0\ref\Orchestrator.Api.dll
+C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Contracts.dll
+C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Contracts.pdb

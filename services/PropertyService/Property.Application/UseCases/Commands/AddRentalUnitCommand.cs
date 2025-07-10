@@ -4,7 +4,7 @@ using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
 using Property.Infrastructure.Repositories;
 
-namespace Property.Application.CQRS.Commands;
+namespace Property.Application.UseCases.Commands;
 
 public record AddRentalUnitCommand(
     int PropertyId,

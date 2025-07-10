@@ -320,3 +320,5 @@ C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Micros
 C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
 C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\RabbitMQ.Client.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Contracts.dll
+C:\Sandbox\Booking\services\PropertyService\Property.Api\bin\Debug\net9.0\Contracts.pdb

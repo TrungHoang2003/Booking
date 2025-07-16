@@ -1,3 +1,4 @@
+using BuildingBlocks.Interfaces;
 using MassTransit;
 
 namespace BuildingBlocks.Commons;

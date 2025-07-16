@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Property.Application.CQRS.Commands;
 using Property.Application.UseCases.Commands;
 
 namespace Property.Api.Controllers;

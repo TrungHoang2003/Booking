@@ -1,11 +1,10 @@
+using BuildingBlocks.Interfaces;
 using Identity.Domain.Entities;
 using Identity.Infrastructure.DbHelper;
 using Identity.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 using Serilog;
 using SqlKata.Compilers;
 using StackExchange.Redis;
@@ -51,5 +50,6 @@ public static class InfrastructureDi
         services.AddSingleton<PostgresCompiler>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

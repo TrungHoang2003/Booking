@@ -1,12 +1,14 @@
-using BuildingBlocks.MessageBrokerSettings;
+using BuildingBlocks.Commons;
 using BuildingBlocks.Middlewares;
 using DotNetEnv;
 using MassTransit;
+using Microsoft.Extensions.Options;
 using Property.Api;
 using Property.Application;
 using Property.Infrastructure;
 using Scalar.AspNetCore;
 using Serilog;
+using Sprache;
 
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 var envFile = environment switch
@@ -24,6 +26,10 @@ if (File.Exists(envPath))
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("MessageBroker"));
+
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
 
 builder.Services.AddMassTransit(busConfigurator =>
 {
@@ -90,6 +96,7 @@ try
 catch (Exception ex)
 {
     Log.Fatal(ex, "Property Service start-up failed");
+    throw;
 }
 finally
 {

@@ -2738,7 +2738,8 @@
           "MassTransit.RabbitMQ": "8.5.0",
           "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
-          "Microsoft.AspNetCore.Http.Extensions": "2.3.0"
+          "Microsoft.AspNetCore.Http.Extensions": "2.3.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "compile": {
           "bin/placeholder/BuildingBlocks.dll": {}

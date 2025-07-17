@@ -1,4 +1,6 @@
-using Identity.Application.Commons;
+using BuildingBlocks.Interfaces;
+using Identity.Application.Interfaces;
+using Identity.Application.Services;
 
 namespace Identity.Api.Middlewares;
 

@@ -1,4 +1,4 @@
-using BuildingBlocks.MessageBrokerSettings;
+using BuildingBlocks.Commons;
 using BuildingBlocks.Middlewares;
 using Identity.Api.Middlewares;
 using Identity.Application;
@@ -83,7 +83,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 app.UseAuthentication();
-app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlerMiddleWare>();
 //app.UseMiddleware<TokenValidateMiddleware>();
 app.UseHttpsRedirection();
@@ -102,6 +101,7 @@ try
 catch (Exception ex)
 {
     Log.Fatal(ex, "Identity Service start-up failed");
+    throw;
 }
 finally
 {

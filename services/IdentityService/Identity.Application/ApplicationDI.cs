@@ -1,6 +1,10 @@
+using BuildingBlocks.Interfaces;
 using BuildingBlocks.PipelineBehaviors;
+using BuildingBlocks.Services;
 using FluentValidation;
-using Identity.Application.Commons;
+using Identity.Application.Interfaces;
+using Identity.Application.Services;
+using Identity.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

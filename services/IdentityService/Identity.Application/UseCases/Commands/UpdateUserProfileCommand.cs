@@ -1,4 +1,5 @@
 using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
 using Identity.Application.Errors;
 using Identity.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -9,10 +10,10 @@ public sealed record UpdateUserProfileCommand(int UserId, string FullName, strin
 
 public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUnitOfWork unitOfWork) : ICommandHandler<UpdateUserProfileCommand>
 {
-    public async Task<Result> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
+    public async Task<ResultPattern> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
     {
         var user = await userManager.FindByIdAsync(command.UserId.ToString());
-        if(user == null) return Result.Failure(UserErrors.UserNotFound);
+        if(user == null) return ResultPattern.Failure(UserErrors.UserNotFound);
         
         user.FullName = command.FullName;
         user.Description = command.Description;
@@ -22,11 +23,11 @@ public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUni
         if (!result.Succeeded)
         {
             var errors = result.Errors.Select(e => new Error(e.Code, e.Description));
-            return Result.Failure(new Error("Update User Error", string.Join("\n", errors)));
+            return ResultPattern.Failure(new Error("Update User Error", string.Join("\n", errors)));
         }
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
         
-        return Result.Success();
+        return ResultPattern.Success();
     }
 }

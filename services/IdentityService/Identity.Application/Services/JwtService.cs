@@ -2,20 +2,13 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Identity.Application.Commons;
+namespace Identity.Application.Services;
 
-public interface IJwtService
-{
-    int GetUserIdFromToken(string? token);
-    string? GenerateJwtToken(User user, string? role);
-    string GenerateRefreshToken();
-    int getAccessTokenValidity();
-    int getRefreshTokenValidity();
-}
 
 public class JwtService(IConfiguration configuration):IJwtService
 {
@@ -50,7 +43,7 @@ public class JwtService(IConfiguration configuration):IJwtService
 
     public string? GenerateJwtToken(User user, string? role)
     {
-        var accesstokenValidity = getAccessTokenValidity();
+        var accesstokenValidity = GetAccessTokenValidity();
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
 
@@ -82,14 +75,14 @@ public class JwtService(IConfiguration configuration):IJwtService
         return base64String.TrimEnd('=');
     }
 
-    public int getAccessTokenValidity()
+    public int GetAccessTokenValidity()
     {
         _ = int.TryParse(configuration["JWT:AccessTokenValidityInMinutes"], out var accessTokenValidity);
 
         return accessTokenValidity;
     }
 
-    public int getRefreshTokenValidity()
+    public int GetRefreshTokenValidity()
     {
         _ = int.TryParse(configuration["JWT:RefreshTokenValidityInDays"], out var refreshTokenValidity);
 

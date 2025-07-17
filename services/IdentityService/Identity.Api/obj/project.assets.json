@@ -3652,7 +3652,8 @@
           "MassTransit.RabbitMQ": "8.5.0",
           "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
-          "Microsoft.AspNetCore.Http.Extensions": "2.3.0"
+          "Microsoft.AspNetCore.Http.Extensions": "2.3.0",
+          "StackExchange.Redis": "2.8.41"
         },
         "compile": {
           "bin/placeholder/BuildingBlocks.dll": {}
@@ -3675,8 +3676,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "BuildingBlocks": "1.0.0",
-          "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj": "1.0.0",
           "Contracts": "1.0.0",
           "FluentValidation.DependencyInjectionExtensions": "12.0.0",
           "Identity.Domain": "1.0.0",
@@ -10984,16 +10983,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Sandbox\\Booking\\Contracts\\Contracts.csproj",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

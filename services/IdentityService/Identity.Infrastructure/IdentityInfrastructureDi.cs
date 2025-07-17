@@ -11,7 +11,7 @@ using StackExchange.Redis;
 
 namespace Identity.Infrastructure;
 
-public static class InfrastructureDi
+public static class IdentityInfrastructureDi
 {
     public static void AddInfrastructure(this IServiceCollection services, string? postgresConnectionString, string? redisConnectionString)
     {

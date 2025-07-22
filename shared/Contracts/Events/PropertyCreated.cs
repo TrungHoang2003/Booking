@@ -1,6 +1,6 @@
 namespace Contracts.Events;
 
-public class PropertyCreated
-{
-    public int PropertyId { get; set; }
-}
+public record PropertyCreated
+(
+   Guid CorrelationId
+);

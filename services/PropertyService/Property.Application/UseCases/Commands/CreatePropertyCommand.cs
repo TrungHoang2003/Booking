@@ -24,7 +24,6 @@ public sealed record CreatePropertyCommand
     bool SmokingAllowed,
     bool PartyAllowed,
     int AgeRestriction,
-    string? NeighborhoodDescription,
     int FloorNumber
 ):Interfaces_ICommand;
 
@@ -38,8 +37,7 @@ public class CreatePropertyCommandHandler(IPropertyRepository propertyRepo, IUni
             command.PetAllowed, command.SmokingAllowed,
             command.PartyAllowed, command.AgeRestriction);
        
-        var location = new Location(
-            command.Address, command.City, command.Country, command.PostCode);
+        var location = new Location(command.Address, command.City, command.Country, command.PostCode);
         
         var property = new Domain.Aggregates.AggregateRoot.Property(
             command.PropertyTypeId,

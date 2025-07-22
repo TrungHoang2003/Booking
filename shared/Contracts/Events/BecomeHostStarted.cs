@@ -1,9 +1,8 @@
-namespace Shared.Contracts.Events;
+using Contracts.Commands;
 
-public class BecomeHostStarted
-{
-    Guid CorrelataionId { get; set; }
-    public int UserId { get; set; }
-    public int PropertyTypeId { get; set; }
-    public DateTime StartedAt { get; set; }
-}
+namespace Contracts.Events;
+
+public record BecomeHostStarted
+(
+    Guid CorrelationId
+);

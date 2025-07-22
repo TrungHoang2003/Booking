@@ -85,7 +85,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service) : Contro
         {
             throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
         }
-        await service.UddateAmenities(draftId, userIdInt, amenities);
+        await service.UpdateAmenities(draftId, userIdInt, amenities);
     }
     
     [HttpPost("UpdateHouseRule")]

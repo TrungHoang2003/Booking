@@ -63,11 +63,11 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
         });
     }
 
-    public Task UddateAmenities(Guid draftId, int userId, List<int> amenities)
+    public Task UpdateAmenities(Guid draftId, int userId, List<int> amenityIds)
     {
         return UpdateStep(draftId, userId, draft =>
         {
-            amenities = draft.Amenities;
+            draft.AmenityIds = amenityIds;
         });
     }
 

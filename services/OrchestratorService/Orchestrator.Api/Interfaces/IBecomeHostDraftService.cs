@@ -12,7 +12,7 @@ public interface IBecomeHostDraftService
    Task UpdatePropertyName(Guid draftId, int userid, string propertyName);
    Task UpdateLocation(Guid draftId, int userId, LocationDto locationDto);
    Task UpdateRentalUnit(Guid draftId, int userId, RentalUnitDto rentalUnitDto);
-   Task UddateAmenities(Guid draftId, int userId, List<int> amenities);
+   Task UpdateAmenities(Guid draftId, int userId, List<int> amenities);
    Task UpdateHouseRule(Guid draftId, int userId, HouseRuleDto houseRuleDto);
    Task UpdateImage(Guid draftId, int userId, List<ImageDto> images);
    Task UpdatePricePerNight(Guid draftId, int userId, decimal pricePerNight);

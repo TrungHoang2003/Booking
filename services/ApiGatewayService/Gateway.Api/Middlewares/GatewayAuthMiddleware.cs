@@ -46,8 +46,8 @@ public class GatewayAuthMiddleware(RequestDelegate next, IConnectionMultiplexer 
                 return;            }
 
             // Add user info to headers for downstream services
-            context.Request.Headers["X-User-Id"] = userId.ToString();
             
+            context.Request.Headers["X-User-Id"] = userId.ToString();
             await next(context);
         }
         catch (Exception ex)

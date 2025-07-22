@@ -1,7 +1,7 @@
 using BuildingBlocks.Interfaces;
 using MassTransit;
 
-namespace BuildingBlocks.Commons;
+namespace BuildingBlocks.Services;
 
 public class MassTransitEventBus(IPublishEndpoint publishEndpoint) : IEventBus
 {

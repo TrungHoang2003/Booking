@@ -4,7 +4,7 @@ namespace Property.Domain.Aggregates.RentalUnitAggregate;
 
 public class EntirePropertyRentalUnit : RentalUnit
 {
-    public EntirePropertyRentalUnit(string? description, Price basePricePerNight, int maxAdults, int maxChildren, int size, int bedroomsCount, int bathroomsCount) : base(description, basePricePerNight, maxAdults, maxChildren)
+    public EntirePropertyRentalUnit(Price basePricePerNight, int maxAdults, int maxChildren, int size, int bedroomsCount, int bathroomsCount) : base(basePricePerNight, maxAdults, maxChildren)
     {
         Size = size;
         BedroomsCount = bedroomsCount;

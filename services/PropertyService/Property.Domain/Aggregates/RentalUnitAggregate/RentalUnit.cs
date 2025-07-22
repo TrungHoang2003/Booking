@@ -8,7 +8,6 @@ namespace Property.Domain.Aggregates.RentalUnitAggregate;
 public abstract class RentalUnit: Entity
 {
     public int PropertyId { get; set; }
-    public string? Description { get; set; }
     public int MaxAdults { get; set; }
     public int MaxChildren { get; set; }
    
@@ -21,13 +20,11 @@ public abstract class RentalUnit: Entity
     public List<Bedroom> Bedrooms = [];
    
     // Constructors
-    public RentalUnit(string? description, Price basePricePerNight, int maxAdults, int maxChildren) 
+    public RentalUnit(Price basePricePerNight, int maxAdults, int maxChildren) 
     {
-        Description = description;
         BasePricePerNight = basePricePerNight;
         MaxAdults = maxAdults;
         MaxChildren = maxChildren;
     }
-   
     public abstract RentalUnitType GetRentalUnitType();
 }

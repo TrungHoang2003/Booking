@@ -1,5 +1,6 @@
 using System.Windows.Input;
 using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
 using Property.Domain.Aggregates.AggregateRoot;
 using Property.Infrastructure.Repositories;
 

@@ -23,7 +23,7 @@ public class RegisterCommandHandler(
     : ICommandHandler<RegisterCommand>
 {
     private const string CustomerRole = "Customer";
-    public async Task<ResultPattern> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    public async Task<Result> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         var user = new User
         {
@@ -36,9 +36,9 @@ public class RegisterCommandHandler(
         if (!result.Succeeded)
         {
             var errors = result.Errors.Select(e => e.Description).ToList();
-            return ResultPattern.Failure(new Error("Register.Failed", string.Join(",", errors)));
+            return Result.Failure(new Error("Register.Failed", string.Join(",", errors)));
         }        var roleExists = await roleRepository.RoleExistsAsync(CustomerRole);
 
-        return ResultPattern.Success();
+        return Result.Success();
     }
 }

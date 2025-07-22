@@ -1,4 +1,4 @@
-namespace Property.Application.DTOs;
+namespace Contracts.DTOs;
 
 public record HouseRuleDto
 (

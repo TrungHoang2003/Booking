@@ -15,7 +15,6 @@ public class PropertyType:Entity
         Description = description;
         IsRoomBased = isRoomBased;
     }
-
     public PropertyType(int id, string name, string description, bool isRoomBased) : base(id)
     {
         Name = name;

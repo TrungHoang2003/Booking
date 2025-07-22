@@ -8,6 +8,7 @@ public interface IPropertyTypeRepository : IGenericRepository<PropertyType>
 {
     public Task<List<PropertyType>> GetRoomBasedPropertyTypes();
     public Task<List<PropertyType>> GetEntirePropertyTypes();
+    public Task<PropertyType?> GetById(int id);
 }
 public class PropertyTypeRepository(PropertyDbContext dbContext, PostgresServer server) :GenericRepository<PropertyType>(dbContext), IPropertyTypeRepository
 {
@@ -38,6 +39,21 @@ public class PropertyTypeRepository(PropertyDbContext dbContext, PostgresServer 
         catch (Exception e)
         {
             throw new Exception("Error while getting entire property types", e);
+        }
+    }
+
+    public async Task<PropertyType?> GetById(int id)
+    {
+        var cnn = server.OpenConnection();
+        try
+        {
+            const string sql = "SELECT * FROM \"PropertyTypes\" WHERE \"Id\" = @id";
+            var result = await cnn.QueryFirstOrDefaultAsync<PropertyType>(sql, new { id });
+            return result;
+        }
+        catch (Exception e)
+        {
+            throw new Exception($"Error while getting property type by id {id}", e);
         }
     }
 }

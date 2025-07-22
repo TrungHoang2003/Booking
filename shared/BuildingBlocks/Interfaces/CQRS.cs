@@ -1,6 +1,7 @@
+using BuildingBlocks.Commons;
 using MediatR;
 
-namespace BuildingBlocks.Commons;
+namespace BuildingBlocks.Interfaces;
 
 public interface ICommand<TResponse> : IRequest<Result<TResponse>>;
 public interface ICommand:IRequest<Result>;

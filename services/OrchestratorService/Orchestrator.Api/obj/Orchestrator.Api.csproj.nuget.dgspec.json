@@ -57,6 +57,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "MassTransit": {
               "target": "Package",
               "version": "[8.5.0, )"
@@ -68,6 +72,22 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Scalar.AspNetCore": {
+              "target": "Package",
+              "version": "[2.6.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -139,6 +159,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.6, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[12.0.0, )"
@@ -162,6 +186,10 @@
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
               "version": "[2.3.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.41, )"
             }
           },
           "imports": [

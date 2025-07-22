@@ -1,7 +1,9 @@
 using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
 using Property.Domain.ValueObjects;
 using Property.Infrastructure.Repositories;
-using ICommand = BuildingBlocks.Commons.ICommand;
+using ICommand = BuildingBlocks.Interfaces.ICommand;
+using Interfaces_ICommand = BuildingBlocks.Interfaces.ICommand;
 
 namespace Property.Application.UseCases.Commands;
 
@@ -22,8 +24,9 @@ public sealed record CreatePropertyCommand
     bool SmokingAllowed,
     bool PartyAllowed,
     int AgeRestriction,
+    string? NeighborhoodDescription,
     int FloorNumber
-):ICommand;
+):Interfaces_ICommand;
 
 public class CreatePropertyCommandHandler(IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : ICommandHandler<CreatePropertyCommand>
 {

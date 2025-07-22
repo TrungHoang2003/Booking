@@ -1,10 +1,11 @@
 using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
 using Property.Application.DTOs;
 using Property.Application.Errors;
 using Property.Domain.Aggregates.AggregateRoot;
 using Property.Infrastructure.Repositories;
 
-namespace Property.Application.CQRS.Commands;
+namespace Property.Application.UseCases.Commands;
 
 public sealed record SetUpPropertyAmenityCommand(
     int PropertyId,
@@ -26,15 +27,11 @@ public class SetUpPropertyAmenityCommandHandler(
         {
             var property = await propertyRepo.GetByIdAsync(command.PropertyId);
             if (property == null)
-            {
                 return Result.Failure(PropertyErrors.PropertyNotFound);
-            }
 
             var amenity = await amenityRepo.GetByIdAsync(setupPropertyAmenityDto.amenityId);
             if (amenity == null)
-            {
                 return Result.Failure(AmenityErrors.AmenityNotFound);
-            }
 
             var propertyAmenity = new PropertyAmenity(property.Id, amenity.Id, setupPropertyAmenityDto.description, setupPropertyAmenityDto.Price);
             listPropertyAmenity.Add(propertyAmenity);

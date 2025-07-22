@@ -207,3 +207,5 @@ C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\Serilog.
 C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\Serilog.Sinks.Seq.dll
 C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\System.Formats.Asn1.dll
 C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\System.Text.Json.dll
+C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\Pipelines.Sockets.Unofficial.dll
+C:\Sandbox\Booking\services\BookingService\Booking.Api\bin\Debug\net9.0\StackExchange.Redis.dll

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Property.Infrastructure.DbHelper;
 using Property.Infrastructure.Repositories;
 using Serilog;
+using BuildingBlocks.Interfaces;
 
 namespace Property.Infrastructure;
 
@@ -25,6 +26,10 @@ public static class PropertyInfrastructureDi
       }
 
       services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
+      services.AddScoped<IPropertyRepository, PropertyRepository>();
+      services.AddScoped<IAmenityRepository, AmenityRepository>();
+      services.AddScoped<IPropertyAmenityRepository, PropertyAmenityRepository>();
+      services.AddScoped<IUnitOfWork, UnitOfWork>();
       services.AddScoped<PostgresServer>();
    }
 }

@@ -15,7 +15,7 @@ builder.Services.AddReverseProxy()
 
 var app = builder.Build();
 
-//app.UseMiddleware<GatewayAuthMiddleware>();
+app.UseMiddleware<GatewayAuthMiddleware>();
 
 // 2. Thêm middleware YARP vào pipeline yêu cầu
 app.MapReverseProxy();

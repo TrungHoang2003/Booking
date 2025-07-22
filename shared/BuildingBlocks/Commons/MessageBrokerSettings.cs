@@ -1,4 +1,4 @@
-namespace BuildingBlocks.MessageBrokerSettings;
+namespace BuildingBlocks.Commons;
 
 public class MessageBrokerSettings
 {

@@ -1,23 +1,71 @@
-using BuildingBlocks.MessageBrokerSettings;
+using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
+using BuildingBlocks.Middlewares;
+using BuildingBlocks.Services;
+using DotNetEnv;
 using MassTransit;
+using Orchestrator.Api.Interfaces;
+using Orchestrator.Api.Services;
+using Scalar.AspNetCore;
+using Serilog;
+using StackExchange.Redis;
+
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+var enFile = environment switch
+{
+    "Development" => ".env.local",
+    "Docker" => ".env.docker",
+    "Production" => ".env.production",
+    _ => ".env.local"
+};
+
+var envPath = Path.Combine(Directory.GetCurrentDirectory(), enFile);
+if (File.Exists(envPath))
+{
+    Env.Load(envPath);
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.Services.AddScoped<IRedisService, RedisService>();
+builder.Services.AddScoped<IBecomeHostDraftService, BecomeHostDraftService>();
+builder.Services.AddControllers();
 
-builder.Services.AddMassTransit(busConfigurator =>
+//Redis
+var redisConnectionString = builder.Configuration["ConnectionStrings:Redis"];
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 {
-    busConfigurator.UsingRabbitMq((context, cfg) =>
+    if (string.IsNullOrEmpty(redisConnectionString))
     {
-        var settings = context.GetRequiredService<MessageBrokerSettings>();
-        
-        cfg.Host(new Uri(settings.Host), h =>
-        {
-            h.Username(settings.Username);
-            h.Password(settings.Password);
-        });
-    }); 
+        Log.Error("Redis connection string is null or empty");
+        throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty");
+    }
+            
+    var configOptions = ConfigurationOptions.Parse(redisConnectionString);
+    return ConnectionMultiplexer.Connect(configOptions);
 });
+
+// Serilog
+builder.Host.UseSerilog((context, services, configuration) => configuration
+        .ReadFrom.Configuration(context.Configuration) // Đọc cấu hình từ appsettings.json
+        .ReadFrom.Services(services) // Cho phép DI cho các enricher/sinks nếu cần
+);
+
+// builder.Services.AddMassTransit(busConfigurator =>
+// {
+//     busConfigurator.UsingRabbitMq((context, cfg) =>
+//     {
+//         var settings = context.GetRequiredService<MessageBrokerSettings>();
+//         
+//         cfg.Host(new Uri(settings.Host), h =>
+//         {
+//             h.Username(settings.Username);
+//             h.Password(settings.Password);
+//         });
+//     }); 
+// });
 
 var app = builder.Build();
 
@@ -25,6 +73,29 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
+app.UseRouting();
+app.UseAuthentication();
+app.UseMiddleware<ExceptionHandlerMiddleWare>();
 app.UseHttpsRedirection();
+app.UseSerilogRequestLogging();
+app.MapControllers();
+
+try
+{
+    Log.Information("Starting Orchestrator Service...");
+    Log.Information("Using Redis connection string: {RedisConnectionString}", redisConnectionString);
+    Log.Information("Environment: {Environment}", environment);
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}

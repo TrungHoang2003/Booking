@@ -1,6 +1,6 @@
-namespace BuildingBlocks.Commons;
+namespace BuildingBlocks.Interfaces;
 
-public interface IUnitOfWork: IDisposable
+public interface IUnitOfWork 
 {
-   Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);
+   Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

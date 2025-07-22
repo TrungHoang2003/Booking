@@ -4,7 +4,7 @@ namespace Property.Domain.Aggregates.RentalUnitAggregate;
 
 public class RoomRentalUnit : RentalUnit
 {
-    public RoomRentalUnit(string name, string? description, Price basePricePerNight, int maxAdults, int maxChildren, int quantity, bool sharedBathroom) : base(description, basePricePerNight, maxAdults, maxChildren)
+    public RoomRentalUnit(string name,  Price basePricePerNight, int maxAdults, int maxChildren, int quantity, bool sharedBathroom) : base(basePricePerNight, maxAdults, maxChildren)
     {
         SharedBathroom = sharedBathroom;
         Name = name;

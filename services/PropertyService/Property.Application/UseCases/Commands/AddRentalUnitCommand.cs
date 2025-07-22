@@ -1,4 +1,5 @@
 using BuildingBlocks.Commons;
+using BuildingBlocks.Interfaces;
 using Property.Application.Errors;
 using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
@@ -13,30 +14,49 @@ public record AddRentalUnitCommand(
     int Size,
     int BedroomsCount,
     int BathroomsCount,
+    bool IsRoomBasedProperty,
+    int Quantity,
+    bool SharedBathroom,
     Price Price
     ):ICommand;
 
-public class AddRentalUnitCommandHandler(IPropertyRepository propertyRepository, IUnitOfWork unitOfWork): ICommandHandler<AddRentalUnitCommand>
+public class AddRentalUnitCommandHandler(
+    IPropertyRepository propertyRepository,
+    IUnitOfWork unitOfWork) : ICommandHandler<AddRentalUnitCommand>
 {
-    public async Task<Result> Handle(AddRentalUnitCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AddRentalUnitCommand command, CancellationToken cancellationToken)
     {
-        var rentalUnit = new EntirePropertyRentalUnit(
-            null,
-            request.Price,
-            request.MaxAdults,
-            request.MaxChildren,
-            request.Size,
-            request.BedroomsCount,
-            request.BathroomsCount 
-        );
-        
-        var property = await propertyRepository.GetByIdAsync(request.PropertyId);
+        var property = await propertyRepository.GetByIdAsync(command.PropertyId);
         if (property is null) return PropertyErrors.PropertyNotFound;
-        
-        property.AddRentalUnit(rentalUnit);
+
+        if (command.IsRoomBasedProperty)
+        {
+            var roomRentalUnit = new RoomRentalUnit(
+                null,
+                command.Price,
+                command.MaxAdults,
+                command.MaxChildren,
+                command.Quantity,
+                command.SharedBathroom);
+
+            property.AddRentalUnit(roomRentalUnit);
+        }
+        else
+        {
+            var entireRentalUnit = new EntirePropertyRentalUnit(
+                command.Price,
+                command.MaxAdults,
+                command.MaxChildren,
+                command.Size,
+                command.BedroomsCount,
+                command.BathroomsCount);
+
+            property.AddRentalUnit(entireRentalUnit);
+        }
+
         await propertyRepository.Update(property);
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        
+
         return Result.Success();
     }
 }

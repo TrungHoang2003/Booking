@@ -24,15 +24,15 @@ public class LoginCommandHandler(
     IRedisService redisService)
     : ICommandHandler<LoginCommand, LoginResponse>
 {
-    public async Task<ResultPattern<LoginResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)
+    public async Task<Result<LoginResponse>> Handle(LoginCommand command, CancellationToken cancellationToken)
     {
         var user = await userRepository.FindByNameAsync(command.UserName);
         if (user == null)
-            return ResultPattern<LoginResponse>.Failure(AuthenErrors.UserNotFound);
+            return Result<LoginResponse>.Failure(AuthenErrors.UserNotFound);
 
         var isPasswordValid = await userRepository.CheckPasswordAsync(user, command.Password);
         if (!isPasswordValid)
-            return ResultPattern<LoginResponse>.Failure(AuthenErrors.WrongPassword);
+            return Result<LoginResponse>.Failure(AuthenErrors.WrongPassword);
 
         var roles = await userRepository.GetRolesAsync(user);
         var accessToken = jwtService.GenerateJwtToken(user, string.Join(",", roles));
@@ -48,10 +48,10 @@ public class LoginCommandHandler(
         }
         catch (Exception ex)
         {
-            return ResultPattern<LoginResponse>.Failure(new Error("Redis.SaveFailed", $"Failed to save tokens: {ex.Message}"));
+            return Result<LoginResponse>.Failure(new Error("Redis.SaveFailed", $"Failed to save tokens: {ex.Message}"));
         }
         
-        return ResultPattern<LoginResponse>.Success(new LoginResponse
+        return Result<LoginResponse>.Success(new LoginResponse
         {
             AccessToken = accessToken,
             RefreshToken = refreshToken,

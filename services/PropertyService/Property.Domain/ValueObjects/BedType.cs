@@ -11,8 +11,6 @@ public record BedType
 
    private BedType(string value)
    {
-      if (string.IsNullOrEmpty(value))
-         throw new ArgumentException("Bed Type cannot be null or empty", nameof(value));
       Value = value;
    }
 }

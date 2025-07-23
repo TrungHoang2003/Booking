@@ -6,7 +6,7 @@ namespace Orchestrator.Api.Drafts;
 public class BecomeHostDraft
 {
     public Guid DraftId { get; set; }
-    public int UserId { get; set; }
+    public int HostId { get; set; }
     public int CurrentStep { get; set; }
     public int PropertyTypeId { get; set; } 
     public string PropertyName { get; set; }

@@ -7,7 +7,7 @@ namespace Orchestrator.Api.Interfaces;
 public interface IBecomeHostDraftService
 {
    Task<BecomeHostDraft> StartAsync(int userId);
-   Task<BecomeHostDraft?> GetAsync(Guid draftId, int userId);
+   Task<BecomeHostDraft> GetAsync(Guid draftId, int userId);
    Task UpdatePropertyType(Guid draftId, int userid, int propertyTypeId);
    Task UpdatePropertyName(Guid draftId, int userid, string propertyName);
    Task UpdateLocation(Guid draftId, int userId, LocationDto locationDto);

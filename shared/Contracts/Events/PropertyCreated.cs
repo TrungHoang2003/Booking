@@ -2,5 +2,6 @@ namespace Contracts.Events;
 
 public record PropertyCreated
 (
-   Guid CorrelationId
+   Guid CorrelationId,
+   int PropertyId
 );

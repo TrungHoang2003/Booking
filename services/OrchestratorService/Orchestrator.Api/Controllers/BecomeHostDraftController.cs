@@ -1,4 +1,6 @@
 using Contracts.DTOs;
+using Contracts.Events;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Orchestrator.Api.Drafts;
 using Orchestrator.Api.DTOs;
@@ -8,7 +10,7 @@ namespace Orchestrator.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BecomeHostDraftController(IBecomeHostDraftService service) : Controller
+public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publisher) : Controller
 {
     [HttpPost("Start")]
     public async Task<BecomeHostDraft> Start()
@@ -22,7 +24,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service) : Contro
     }
     
     [HttpPost("Get")]
-    public async Task<BecomeHostDraft?> Get([FromBody] Guid draftId )
+    public async Task<BecomeHostDraft> Get([FromBody] Guid draftId )
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -121,14 +123,20 @@ public class BecomeHostDraftController(IBecomeHostDraftService service) : Contro
         await service.UpdatePricePerNight(draftId, userIdInt, pricePerNight);
     }
     
-    [HttpPost("CompleteDraft")]
+    [HttpPost("SubmitDraft")]
     public async Task CompleteDraft([FromBody] Guid draftId)
     {
         var userId = Request.Headers["X-User-Id"];
+
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
         {
             throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
         }
+        
+        var draft = await service.GetAsync(draftId, userIdInt);
+        var correlationId = Guid.NewGuid();
+       
+        
         await service.CompleteDraft(draftId, userIdInt);
     }
     

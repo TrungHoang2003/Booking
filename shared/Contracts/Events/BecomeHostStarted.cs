@@ -1,8 +1,10 @@
-using Contracts.Commands;
+
+using Contracts.DTOs;
 
 namespace Contracts.Events;
 
 public record BecomeHostStarted
 (
-    Guid CorrelationId
+    Guid CorrelationId,
+    int HostId
 );

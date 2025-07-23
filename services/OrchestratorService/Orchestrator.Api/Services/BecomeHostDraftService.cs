@@ -16,17 +16,17 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
         var draft = new BecomeHostDraft
         {
             DraftId = Guid.NewGuid(),
-            UserId = userId,
+            HostId = userId,
             CurrentStep = 1
         };
         await SaveAsync(draft);
         return draft;
     }
 
-    public async Task<BecomeHostDraft?> GetAsync(Guid draftId, int userId)
+    public async Task<BecomeHostDraft> GetAsync(Guid draftId, int userId)
     {
-        var json = await redisService.GetValue(Key(userId, draftId));
-        return string.IsNullOrEmpty(json)? null: JsonSerializer.Deserialize<BecomeHostDraft>(json);
+        var json = await redisService.GetValue(Key(userId, draftId)) ?? throw new Exception("Draft json not found");
+        return JsonSerializer.Deserialize<BecomeHostDraft>(json) ?? throw new Exception("Error while deserializing draft json");
     }
 
     public Task UpdatePropertyType(Guid draftId, int userid, int propertyTypeId)
@@ -97,7 +97,7 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
 
     private async Task SaveAsync(BecomeHostDraft draft)
     {
-        await redisService.SetValue(Key(draft.UserId, draft.DraftId), JsonSerializer.Serialize(draft), _ttl);
+        await redisService.SetValue(Key(draft.HostId, draft.DraftId), JsonSerializer.Serialize(draft), _ttl);
     }
 
     private async Task UpdateStep(Guid draftId, int userId, Action<BecomeHostDraft> mutator)

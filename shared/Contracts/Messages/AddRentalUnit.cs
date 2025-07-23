@@ -1,7 +1,7 @@
-namespace Orchestrator.Api.DTOs;
+namespace Contracts.Messages;
 
-public record RentalUnitDto
-(
+public record AddRentalUnit(
+    Guid CorrelationId,
     int PropertyId,
     int MaxAdults,
     int MaxChildren,
@@ -10,5 +10,6 @@ public record RentalUnitDto
     int BathroomsCount,
     bool IsRoomBasedProperty,
     int Quantity,
-    bool SharedBathroom
-);
+    bool SharedBathroom,
+    decimal Amount,
+    string Currency);

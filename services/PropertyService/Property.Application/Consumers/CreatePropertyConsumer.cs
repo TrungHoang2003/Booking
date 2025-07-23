@@ -1,5 +1,5 @@
-using Contracts.Commands;
 using Contracts.Events;
+using Contracts.Messages;
 using MassTransit;
 using Property.Domain.ValueObjects;
 using Property.Infrastructure.Repositories;

@@ -1,4 +1,4 @@
-namespace Contracts.Commands;
+namespace Contracts.Messages;
 
 public record CreateProperty
 (

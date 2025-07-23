@@ -1,25 +1,32 @@
-using Contracts.Commands;
 using Contracts.Events;
+using Contracts.DTOs;
 using MassTransit;
+using Orchestrator.Api.Drafts;
+using Orchestrator.Api.Extensions;
 
 namespace Orchestrator.Api.Sagas;
 
 public class BecomeHostSagaData: SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
-    public CreateProperty Property { get; set; }
-    public int CurrentStep { get; set; }
+    public State CurrentState { get; set; } = null!;
+    public int HostId { get; set; }
+    
+    // Lưu toàn bộ draft data
+    public BecomeHostDraft Draft { get; set; }
 }
 
 public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
 {
-    public State CreatingProperty { get; private set; } = null!;
-    public Event<BecomeHostStarted> Started { get; private set; } = null!;
-    public Event<PropertyCreated> PropertyCreated { get; private set; } = null!;
+    private State CreatingProperty { get; set; } = null!;
+    private State AddingRentalUnit { get; set; } = null!;
+    private Event<BecomeHostStarted> Started { get; set; } = null!;
+    private Event<PropertyCreated> PropertyCreated { get; set; } = null!;
+    private Event<RentalUnitAdded> RentalUnitAdded { get; set; } = null!;
 
     public BecomeHostSaga()
     {
-        InstanceState(x => x.CurrentStep);
+        InstanceState(x => x.CurrentState);
 
         Event(() => Started, x
             => x.CorrelateById(m => m.Message.CorrelationId));
@@ -27,38 +34,27 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
         Event(() => PropertyCreated, x
             => x.CorrelateById(m => m.Message.CorrelationId));
 
+        Event(() => RentalUnitAdded, x
+            => x.CorrelateById(m => m.Message.CorrelationId)); 
+
         Initially(
             When(Started)
-                .Then(context => { 
-                    context.Saga.CurrentStep = 1; 
-                })
+                .Then(context => { context.Saga.HostId = context.Message.HostId; })
                 .TransitionTo(CreatingProperty)
-                .Publish(context => context.Saga.Property with
-                {
-                    CorrelationId = context.Saga.CorrelationId,
-                    PropertyTypeId = context.Saga.Property.PropertyTypeId,
-                    HostId = context.Message.Saga.HostId,
-                    Name = context.Message.Saga.Name,
-                    FloorNumber = context.Message.Property.FloorNumber,
-                    Address = context.Message.Property.Address,
-                    City = context.Message.Property.City,
-                    Country = context.Message.Property.Country,
-                    PostCode = context.Message.Property.PostCode,
-                    CheckInTimeFrom = context.Message.Property.CheckInTimeFrom,
-                    CheckInTimeUntil = context.Message.Property.CheckInTimeUntil,
-                    CheckOutTimeFrom = context.Message.Property.CheckOutTimeFrom,
-                    CheckOutTimeUntil = context.Message.Property.CheckOutTimeUntil,
-                    PetAllowed = context.Message.Property.PetAllowed,
-                    SmokingAllowed = context.Message.Property.SmokingAllowed,
-                    PartyAllowed = context.Message.Property.PartyAllowed,
-                    AgeRestriction = context.Message.Property.AgeRestriction
-                })
+                .Publish(context => context.Saga.Draft.ToCreateProperty())
         );
-    
+        
         During(CreatingProperty,
             When(PropertyCreated)
-                .Then(context => { context.Saga.CurrentStep = 2; })
+                .TransitionTo(AddingRentalUnit)
+                .Publish(context=>context.Saga.Draft.ToAddRentalUnit())
+        );
+        
+        During(AddingRentalUnit,
+            When(RentalUnitAdded)
                 .Finalize()
         );
+
+        SetCompletedWhenFinalized();
     }
-}
+Ư

@@ -1,4 +1,6 @@
+using Property.Domain.Aggregates.AmenityAggregate;
 using Property.Domain.Aggregates.ImageAggregate;
+using Property.Domain.Aggregates.LanguageAggregate;
 using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
 
@@ -11,21 +13,23 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
     public string Name { get; private set; }
     public string? Description { get; private set; }
     public int? FloorNumber { get; private set; }
+    public string? NeighborhoodDescription { get; private set; }
     public string? ThumbnailUrl { get; private set; }
 
     // Value Objects
-    public HouseRule Rules { get; private set; }
-    public Location Location { get; private set; }
+    public HouseRule? Rules { get; private set; }
+    public Location? Location { get; private set; }
 
     // Navigation Properties
-    public PropertyType? Type;
+    public PropertyType Type = null!;
     public List<PropertyAmenity> Amenities = [];
+    public List<PropertyLanguage> Languages = [];
     public List<RentalUnit> RentalUnits = [];
     public List<Image> Images = [];
 
     //Constructors
     public Property(int propertyTypeId, int hostId, string name, string? description, int? floorNumber,
-        string? thumbnailUrl, HouseRule rules, Location location)
+        string? thumbnailUrl, string? neighborhoodDescription)
     {
         PropertyTypeId = propertyTypeId;
         HostId = hostId;
@@ -33,8 +37,7 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
         Description = description;
         FloorNumber = floorNumber;
         ThumbnailUrl = thumbnailUrl;
-        Rules = rules;
-        Location = location;
+        NeighborhoodDescription = neighborhoodDescription;
 
         //AddDomainEvent(new PropertyCreatedDomainEvent(this.Id, propertyTypeId, hostId, name, description, floorNumber, rules, location, thumbnailUrl));
         if (hostId <= 0) throw new ArgumentException("hostId must be valid");
@@ -50,11 +53,11 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
         //AddDomainEvent(new RentalUnitAddedToPropertyDomainEvent(this.Id, rentalUnit.Id));
     }
     
-    public void AddAmenity(PropertyAmenity propertyAmenity)
+    public void AddAmenity(Amenity amenity)
     {
-        ArgumentNullException.ThrowIfNull(propertyAmenity);
+        ArgumentNullException.ThrowIfNull(amenity);
 
-        Amenities.Add(propertyAmenity);
+        Amenities.Add(new PropertyAmenity(Id, amenity.Id, null, null));
         //AddDomainEvent(new PropertyAmenityAddedDomainEvent(this.Id, propertyAmenity.AmenityId));
     }
     
@@ -64,5 +67,38 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
             throw new ArgumentException("Description cannot be null or empty.", nameof(description));
 
         Description = description;
+    }
+
+    public void AddLanguage(Language language)
+    {
+        ArgumentNullException.ThrowIfNull(language);
+        Languages.Add(new PropertyLanguage(Id, language.Id));
+    }
+    
+    public void AddListLanguage(List<Language> languages)
+    {
+        ArgumentNullException.ThrowIfNull(languages);
+        foreach (var language in languages)
+        {
+            Languages.Add(new PropertyLanguage(Id, language.Id));
+        }
+    }
+
+    public void AddType(PropertyType type)
+    {
+        ArgumentNullException.ThrowIfNull(type);
+        Type = type;
+    }
+    
+    public void UpdateHouseRule(HouseRule houseRule)
+    {
+        ArgumentNullException.ThrowIfNull(houseRule);
+        Rules = houseRule;
+    }
+    
+    public void UpdateLocation(Location location)
+    {
+        ArgumentNullException.ThrowIfNull(location);
+        Location = location;
     }
 }

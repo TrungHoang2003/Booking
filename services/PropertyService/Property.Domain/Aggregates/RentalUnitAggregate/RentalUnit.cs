@@ -1,4 +1,5 @@
 using BuildingBlocks.DomainDrivenPattern;
+using Property.Domain.Aggregates.AmenityAggregate;
 using Property.Domain.Aggregates.BedroomAggregate;
 using Property.Domain.Aggregates.ImageAggregate;
 using Property.Domain.ValueObjects;
@@ -13,6 +14,7 @@ public abstract class RentalUnit: Entity
    
     // Value Objects
     public Price BasePricePerNight { get; set; } 
+    public RentalUnitType Type { get; set; }
     
     // Navigation properties
     public List<RentalUnitAmenity> Amenities = [];
@@ -26,5 +28,23 @@ public abstract class RentalUnit: Entity
         MaxAdults = maxAdults;
         MaxChildren = maxChildren;
     }
-    public abstract RentalUnitType GetRentalUnitType();
+    
+    public void AddAmenity(Amenity amenity)
+    {
+        ArgumentNullException.ThrowIfNull(amenity);
+
+        Amenities.Add(new RentalUnitAmenity(Id, amenity.Id));
+        //AddDomainEvent(new RentalUnitAmenityAddedDomainEvent(this.Id, rentalUnitAmenity.AmenityId));
+    }
+    
+    public void AddListAmenity(List<Amenity> amenities)
+    {
+        ArgumentNullException.ThrowIfNull(amenities);
+
+        foreach (var amenity in amenities)
+        {
+            Amenities.Add(new RentalUnitAmenity(Id, amenity.Id));
+        }
+        //AddDomainEvent(new RentalUnitAmenityAddedDomainEvent(this.Id, rentalUnitAmenity.AmenityId));
+    }
 }

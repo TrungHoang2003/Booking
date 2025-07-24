@@ -55,5 +55,10 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
             .WithMany()
             .HasForeignKey(pt=>pt.PropertyTypeId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(p=> p.Languages)
+            .WithOne()
+            .HasForeignKey(pl=>pl.PropertyId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

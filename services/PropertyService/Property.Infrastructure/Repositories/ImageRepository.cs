@@ -3,8 +3,12 @@ using Property.Infrastructure.DbHelper;
 
 namespace Property.Infrastructure.Repositories;
 
-public interface IImageRepository : IGenericRepository<Image>;
+public interface IImageRepository : IGenericRepository<Image>
+{
+    
+}
 
 public class ImageRepository(PropertyDbContext dbContext) : GenericRepository<Image>(dbContext), IImageRepository
 {
+    
 }

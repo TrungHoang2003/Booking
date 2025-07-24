@@ -9,14 +9,11 @@ public class EntirePropertyRentalUnit : RentalUnit
         Size = size;
         BedroomsCount = bedroomsCount;
         BathroomsCount = bathroomsCount;
+        Type = RentalUnitType.EntireProperty();
     }
     
     public int Size { get; private set; } 
     public int BedroomsCount { get; private set; }
     public int BathroomsCount { get; private set; }
    
-    public override RentalUnitType GetRentalUnitType()
-    {
-        return RentalUnitType.EntireProperty();
-    }
 }

@@ -9,14 +9,10 @@ public class RoomRentalUnit : RentalUnit
         SharedBathroom = sharedBathroom;
         Name = name;
         Quantity  = quantity;
+        Type = RentalUnitType.Room();
     }
     
     public string? Name { get; private set; }
     public bool SharedBathroom { get; private set; }
-    
     public int? Quantity { get; private set; }
-    public override RentalUnitType GetRentalUnitType()
-    {
-        return RentalUnitType.Room();
-    }
 }

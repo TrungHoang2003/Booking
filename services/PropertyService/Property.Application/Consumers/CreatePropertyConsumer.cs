@@ -43,9 +43,9 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
         
         property.UpdateHouseRule(houseRules);
         property.UpdateLocation(location);
-        await AddImages(context, property.Id); // Add Images
-        await AddLanguages(context, property); // Add Languages
-        await AddType(context, property); // Add Type
+        await AddImages(context, property.Id); 
+        await AddLanguages(context, property); 
+        await AddType(context, property); 
         
         await repo.Create(property);
         await unitOfWork.SaveChangesAsync();
@@ -70,7 +70,11 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
         foreach (var base64Image in context.Message.Base64Images)
         {
             var imageUrl = await cloudinary.UploadImage(base64Image); 
-            var image = new Image(propertyId, EntityType.Property, imageUrl, false);
+            var image = new Image(propertyId, imageUrl, false);
+            
+            var type = EntityType.Property;
+            image.SetEntityType(type);
+            
             listImage.Add(image);
         }
         await imageRepo.AddRangeAsync(listImage);

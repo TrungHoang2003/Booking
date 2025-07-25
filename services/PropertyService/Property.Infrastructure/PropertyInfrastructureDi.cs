@@ -31,7 +31,6 @@ public static class PropertyInfrastructureDi
       services.AddScoped<IPropertyAmenityRepository, PropertyAmenityRepository>();
       services.AddScoped<IRentalUnitRepository, RentalUnitRepository>();
       services.AddScoped<IRentalUnitAmenityRepository, RentalUnitAmenityRepository>();
-      services.AddScoped<IBedTypeRepository, BedTypeRepository>();
       services.AddScoped<IImageRepository, ImageRepository>();
       services.AddScoped<ILanguageRepository, LanguageRepository>();
       services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -3,6 +3,7 @@ using BuildingBlocks.Interfaces;
 using Property.Application.DTOs;
 using Property.Application.Errors;
 using Property.Domain.Aggregates.AggregateRoot;
+using Property.Domain.ValueObjects;
 using Property.Infrastructure.Repositories;
 
 namespace Property.Application.UseCases.Commands;
@@ -29,11 +30,14 @@ public class SetUpPropertyAmenityCommandHandler(
             if (property == null)
                 return Result.Failure(PropertyErrors.PropertyNotFound);
 
-            var amenity = await amenityRepo.GetByIdAsync(setupPropertyAmenityDto.amenityId);
+            var amenity = await amenityRepo.GetByIdAsync(setupPropertyAmenityDto.AmenityId);
             if (amenity == null)
                 return Result.Failure(AmenityErrors.AmenityNotFound);
 
-            var propertyAmenity = new PropertyAmenity(property.Id, amenity.Id, setupPropertyAmenityDto.description, setupPropertyAmenityDto.Price);
+            var propertyAmenity = new PropertyAmenity(property.Id, amenity.Id, setupPropertyAmenityDto.Description);
+            var price = new Price(setupPropertyAmenityDto.Amount, setupPropertyAmenityDto.Currency);
+            propertyAmenity.SetPrice(price); 
+            
             listPropertyAmenity.Add(propertyAmenity);
         }
 

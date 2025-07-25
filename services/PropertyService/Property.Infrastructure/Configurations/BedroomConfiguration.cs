@@ -15,9 +15,5 @@ public class BedroomConfiguration : IEntityTypeConfiguration<Bedroom>
             .ValueGeneratedOnAdd()
             .IsRequired();
 
-        builder.OwnsOne(b => b.Type, b =>
-        {
-            b.Property(bt => bt.Value).IsRequired();
-        });
     }
 }

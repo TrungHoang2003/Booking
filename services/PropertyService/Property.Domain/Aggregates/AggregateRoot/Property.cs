@@ -6,7 +6,7 @@ using Property.Domain.ValueObjects;
 
 namespace Property.Domain.Aggregates.AggregateRoot;
 
-public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
+public class Property : BuildingBlocks.Interfaces.AggregateRoot
 {
     public int PropertyTypeId { get; private set; }
     public int HostId { get; private set; }
@@ -57,7 +57,7 @@ public class Property : BuildingBlocks.DomainDrivenPattern.AggregateRoot
     {
         ArgumentNullException.ThrowIfNull(amenity);
 
-        Amenities.Add(new PropertyAmenity(Id, amenity.Id, null, null));
+        Amenities.Add(new PropertyAmenity(Id, amenity.Id, null));
         //AddDomainEvent(new PropertyAmenityAddedDomainEvent(this.Id, propertyAmenity.AmenityId));
     }
     

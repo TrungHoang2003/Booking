@@ -13,12 +13,16 @@ public class Image: Entity
     public EntityType EntityType { get; private set; } 
     
     // Constructors
-    public Image(int entityId, EntityType type, string url, bool isPrimary)
+    public Image(int entityId, string url, bool isPrimary)
     {
         EntityId = entityId;
-        EntityType = type;
         Url = url;
         IsPrimary = isPrimary;
+    }
+    
+    public void SetEntityType(EntityType entityType)
+    {
+        EntityType = entityType;
     }
 
     public void SetPrimary()

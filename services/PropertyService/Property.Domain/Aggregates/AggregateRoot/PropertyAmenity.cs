@@ -15,7 +15,7 @@ public class PropertyAmenity: Entity
     public Price? Price { get; private set; }
     
     // Constructors
-    public PropertyAmenity(int propertyId, int amenityId, string? description, Price? price)
+    public PropertyAmenity(int propertyId, int amenityId, string? description)
     {
         if (propertyId <= 0) throw new ArgumentException("propertyId must be valid");
         if (amenityId <= 0) throw new ArgumentException("amenityId must be valid");
@@ -23,7 +23,11 @@ public class PropertyAmenity: Entity
         PropertyId = propertyId;
         AmenityId = amenityId;
         Description = description;
-        Price = price;
     }
     
+    public void SetPrice(Price price)
+    {
+        ArgumentNullException.ThrowIfNull(price);
+        Price = price;
+    }
 }

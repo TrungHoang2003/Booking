@@ -22,9 +22,8 @@ public abstract class RentalUnit: Entity
     public List<Bedroom> Bedrooms = [];
    
     // Constructors
-    public RentalUnit(Price basePricePerNight, int maxAdults, int maxChildren) 
+    public RentalUnit(int maxAdults, int maxChildren) 
     {
-        BasePricePerNight = basePricePerNight;
         MaxAdults = maxAdults;
         MaxChildren = maxChildren;
     }
@@ -46,5 +45,11 @@ public abstract class RentalUnit: Entity
             Amenities.Add(new RentalUnitAmenity(Id, amenity.Id));
         }
         //AddDomainEvent(new RentalUnitAmenityAddedDomainEvent(this.Id, rentalUnitAmenity.AmenityId));
+    }
+    
+    public void SetPrice(Price price)
+    {
+        ArgumentNullException.ThrowIfNull(price);
+        BasePricePerNight = price;
     }
 }

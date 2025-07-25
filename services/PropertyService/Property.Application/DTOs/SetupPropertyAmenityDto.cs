@@ -4,7 +4,8 @@ namespace Property.Application.DTOs;
 
 public record SetupPropertyAmenityDto
 (
-    int amenityId,
-    string? description ,
-    Price? Price
+    int AmenityId,
+    string? Description,
+    decimal Amount = 0,
+    string Currency = "VND"
 );

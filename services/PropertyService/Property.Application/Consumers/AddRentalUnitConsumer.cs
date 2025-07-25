@@ -15,6 +15,7 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
     public async Task Consume(ConsumeContext<AddRentalUnit> context)
     {
         var addRentalUnit = context.Message;
+        var unitPrice = new Price(context.Message.Amount, context.Message.Currency);
         
         var listAmenity = new List<Amenity>();
 
@@ -31,20 +32,18 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
         {
             var roomRentalUnit = new RoomRentalUnit(
                 null,
-                new Price(addRentalUnit.Amount, addRentalUnit.Currency),
                 addRentalUnit.MaxAdults,
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Quantity,
                 addRentalUnit.SharedBathroom);
             
+            roomRentalUnit.SetPrice(unitPrice);
             roomRentalUnit.AddListAmenity(listAmenity);
             property.AddRentalUnit(roomRentalUnit);
         }
         else
         {
-            var entireRentalUnit = new EntirePropertyRentalUnit(
-                new Price(addRentalUnit.Amount, addRentalUnit.Currency),
-                addRentalUnit.MaxAdults,
+            var entireRentalUnit = new EntirePropertyRentalUnit(addRentalUnit.MaxAdults,
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Size,
                 addRentalUnit.BedroomsCount,

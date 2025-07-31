@@ -9,7 +9,7 @@ namespace Identity.Api.Controllers;
 [ApiController]
 public class AuthenController(IMediator mediator, ILogger<AuthenController> logger): Controller
 {
-    [HttpPost("Login")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
         logger.LogInformation("Login attempt for user: {UserName}", command.UserName);
@@ -25,7 +25,7 @@ public class AuthenController(IMediator mediator, ILogger<AuthenController> logg
         return BadRequest(result.Error);
     }
 
-    [HttpPost("Register")]
+    [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterCommand command)
     {
         logger.LogInformation("Registration attempt for user: {Email}", command.Email);

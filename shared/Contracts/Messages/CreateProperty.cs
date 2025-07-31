@@ -18,5 +18,9 @@ public record CreateProperty
     bool SmokingAllowed,
     bool PartyAllowed,
     int AgeRestriction,
-    int FloorNumber
+    int FloorNumber,
+    List<int> LanguageIds,
+    List<string> Base64Images,
+    string? Description,
+    string? NeighborhoodDescription
 );

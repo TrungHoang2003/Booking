@@ -1647,6 +1647,7 @@
       "System.ValueTuple/4.5.0": {},
       "BuildingBlocks/1.0.0": {
         "dependencies": {
+          "CloudinaryDotNet": "1.27.6",
           "FluentValidation": "12.0.0",
           "MassTransit": "8.5.0",
           "MassTransit.RabbitMQ": "8.5.0",
@@ -1665,7 +1666,6 @@
       "Identity.Domain/1.0.0": {
         "dependencies": {
           "BuildingBlocks": "1.0.0",
-          "CloudinaryDotNet": "1.27.6",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.6"
         },

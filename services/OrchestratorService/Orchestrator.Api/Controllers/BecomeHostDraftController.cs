@@ -1,9 +1,9 @@
 using Contracts.DTOs;
 using Contracts.Events;
+using Contracts.Messages;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Orchestrator.Api.Drafts;
-using Orchestrator.Api.DTOs;
 using Orchestrator.Api.Interfaces;
 
 namespace Orchestrator.Api.Controllers;
@@ -12,7 +12,7 @@ namespace Orchestrator.Api.Controllers;
 [Route("[controller]")]
 public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publisher) : Controller
 {
-    [HttpPost("Start")]
+    [HttpPost("start")]
     public async Task<BecomeHostDraft> Start()
     {
         var userId = Request.Headers["X-User-Id"];
@@ -23,7 +23,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         return await service.StartAsync(userIdInt);
     }
     
-    [HttpPost("Get")]
+    [HttpPost("get")]
     public async Task<BecomeHostDraft> Get([FromBody] Guid draftId )
     {
         var userId = Request.Headers["X-User-Id"];
@@ -35,7 +35,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         return draft;
     }
 
-    [HttpPost("UpdatePropertyType")]
+    [HttpPost("update-property-type")]
     public async Task UpdatePropertyType([FromBody] Guid draftId, [FromQuery] int propertyTypeId)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -46,7 +46,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdatePropertyType(draftId, userIdInt, propertyTypeId);
     }
     
-    [HttpPost("UpdatePropertyName")]
+    [HttpPost("update-property-name")]
     public async Task UpdatePropertyName([FromBody] Guid draftId, [FromQuery] string propertyName)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -57,7 +57,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdatePropertyName(draftId, userIdInt, propertyName);
     }
     
-    [HttpPost("UpdateLocation")]
+    [HttpPost("update-location")]
     public async Task UpdateLocation([FromBody] Guid draftId, [FromBody] LocationDto locationDto)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -68,7 +68,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdateLocation(draftId, userIdInt, locationDto);
     }
     
-    [HttpPost("UpdateRentalUnit")]
+    [HttpPost("update-rental-unit")]
     public async Task UpdateRentalUnit([FromBody] Guid draftId, [FromBody] RentalUnitDto rentalUnitDto)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -79,7 +79,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdateRentalUnit(draftId, userIdInt, rentalUnitDto);
     }
     
-    [HttpPost("UpdateAmenities")]
+    [HttpPost("update-amenities")]
     public async Task UpdateAmenities([FromBody] Guid draftId, [FromBody] List<int> amenities)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -90,7 +90,18 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdateAmenities(draftId, userIdInt, amenities);
     }
     
-    [HttpPost("UpdateHouseRule")]
+    [HttpPost("update-languages")]
+    public async Task UpdateLanguages([FromBody] Guid draftId, [FromBody] List<int> languages)
+    {
+        var userId = Request.Headers["X-User-Id"];
+        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        {
+            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+        }
+        await service.UpdateLanguages(draftId, userIdInt, languages);
+    }
+    
+    [HttpPost("update-houseRule")]
     public async Task UpdateHouseRule([FromBody] Guid draftId, [FromBody] HouseRuleDto houseRuleDto)
     {
         var userId = Request.Headers["X-User-Id"];
@@ -101,29 +112,18 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         await service.UpdateHouseRule(draftId, userIdInt, houseRuleDto);
     }
     
-    [HttpPost("UpdatePhotos")]
-    public async Task UpdatePhotos([FromBody] Guid draftId, [FromBody] List<ImageDto> images)
+    [HttpPost("update-photos")]
+    public async Task UpdatePhotos([FromBody] Guid draftId, [FromBody] List<string> base64Images)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
         {
             throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
         }
-        await service.UpdateImage(draftId, userIdInt, images);
+        await service.UpdateImage(draftId, userIdInt, base64Images);
     }
     
-    [HttpPost("UpdatePricePerNight")]
-    public async Task UpdatePricePerNight([FromBody] Guid draftId, [FromQuery] decimal pricePerNight)
-    {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
-        {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
-        }
-        await service.UpdatePricePerNight(draftId, userIdInt, pricePerNight);
-    }
-    
-    [HttpPost("SubmitDraft")]
+    [HttpPost("submit-draft")]
     public async Task CompleteDraft([FromBody] Guid draftId)
     {
         var userId = Request.Headers["X-User-Id"];

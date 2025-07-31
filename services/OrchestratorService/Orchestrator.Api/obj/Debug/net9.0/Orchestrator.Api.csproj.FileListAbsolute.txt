@@ -62,3 +62,5 @@ C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Serilog.Sinks.File.dll
 C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Sprache.dll
+C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\CloudinaryDotNet.dll
+C:\Sandbox\Booking\Services\OrchestratorService\Orchestrator.Api\bin\Debug\net9.0\Newtonsoft.Json.dll

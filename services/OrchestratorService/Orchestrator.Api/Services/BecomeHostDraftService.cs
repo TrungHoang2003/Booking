@@ -1,8 +1,8 @@
 using System.Text.Json;
 using BuildingBlocks.Interfaces;
 using Contracts.DTOs;
+using Contracts.Messages;
 using Orchestrator.Api.Drafts;
-using Orchestrator.Api.DTOs;
 using Orchestrator.Api.Interfaces;
 
 namespace Orchestrator.Api.Services;
@@ -79,19 +79,19 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
         });
     }
 
-    public Task UpdateImage(Guid draftId, int userId, List<ImageDto> images)
+    public Task UpdateImage(Guid draftId, int userId, List<string> base64Images)
     {
-        return UpdateStep(draftId, userId, d =>
+        return UpdateStep(draftId, userId, d=>
         {
-            d.Photos = images;
+            d.Base64Images = base64Images;
         });
     }
 
-    public Task UpdatePricePerNight(Guid draftId, int userId, decimal pricePerNight)
+    public Task UpdateLanguages(Guid draftId, int userId, List<int> languageIds)
     {
         return UpdateStep(draftId, userId, d =>
         {
-            d.PricePerNight = pricePerNight;
+            d.LanguageIds = languageIds;
         });
     }
 

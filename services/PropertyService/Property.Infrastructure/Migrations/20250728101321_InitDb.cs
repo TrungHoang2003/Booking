@@ -20,13 +20,11 @@ namespace Property.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AmenityGroupId = table.Column<int>(type: "integer", nullable: false),
+                    AmenityGroupId = table.Column<int>(type: "integer", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    IconUrl = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    IsPaid = table.Column<bool>(type: "boolean", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    PriceCurrency = table.Column<string>(type: "text", nullable: false)
+                    IconUrl = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    IsPaid = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,6 +44,19 @@ namespace Property.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AmenityGroups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,20 +84,20 @@ namespace Property.Infrastructure.Migrations
                     HostId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Property_FloorNumber = table.Column<int>(type: "integer", nullable: true),
+                    FloorNumber = table.Column<int>(type: "integer", nullable: true),
+                    NeighborhoodDescription = table.Column<string>(type: "text", nullable: true),
                     ThumbnailUrl = table.Column<string>(type: "text", nullable: true),
-                    CheckInTimeFrom = table.Column<TimeSpan>(type: "interval", nullable: false),
-                    CheckInTimeUntil = table.Column<TimeSpan>(type: "interval", nullable: false),
-                    CheckOutTimeUntil = table.Column<TimeSpan>(type: "interval", nullable: false),
-                    PetAllowed = table.Column<bool>(type: "boolean", nullable: false),
-                    SmokingAllowed = table.Column<bool>(type: "boolean", nullable: false),
-                    PartyAllowed = table.Column<bool>(type: "boolean", nullable: false),
-                    AgeRestriction = table.Column<int>(type: "integer", nullable: false),
-                    FloorNumber = table.Column<int>(type: "integer", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false),
-                    Country = table.Column<string>(type: "text", nullable: false),
-                    PostCode = table.Column<string>(type: "text", nullable: false)
+                    CheckInTimeFrom = table.Column<TimeSpan>(type: "interval", nullable: true),
+                    CheckInTimeUntil = table.Column<TimeSpan>(type: "interval", nullable: true),
+                    CheckOutTimeUntil = table.Column<TimeSpan>(type: "interval", nullable: true),
+                    PetAllowed = table.Column<bool>(type: "boolean", nullable: true),
+                    SmokingAllowed = table.Column<bool>(type: "boolean", nullable: true),
+                    PartyAllowed = table.Column<bool>(type: "boolean", nullable: true),
+                    AgeRestriction = table.Column<int>(type: "integer", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    PostCode = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,7 +117,10 @@ namespace Property.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PropertyId = table.Column<int>(type: "integer", nullable: false),
-                    AmenityId = table.Column<int>(type: "integer", nullable: false)
+                    AmenityId = table.Column<int>(type: "integer", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Amount = table.Column<decimal>(type: "numeric", nullable: true),
+                    Currency = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,24 +134,44 @@ namespace Property.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PropertyLanguages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PropertyId = table.Column<int>(type: "integer", nullable: false),
+                    LanguageId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PropertyLanguages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PropertyLanguages_Properties_PropertyId",
+                        column: x => x.PropertyId,
+                        principalTable: "Properties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RentalUnits",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PropertyId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
                     MaxAdults = table.Column<int>(type: "integer", nullable: false),
                     MaxChildren = table.Column<int>(type: "integer", nullable: false),
-                    Quantity = table.Column<int>(type: "integer", nullable: false),
                     BasePricePerNight = table.Column<decimal>(type: "numeric", nullable: false),
                     PriceCurrency = table.Column<string>(type: "text", nullable: false),
+                    RentalType = table.Column<string>(type: "text", nullable: false),
                     BathroomsCount = table.Column<int>(type: "integer", nullable: false),
                     BedroomsCount = table.Column<int>(type: "integer", nullable: false),
-                    RentalType = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
+                    RentalUnit_RentalType = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
                     SharedBathroom = table.Column<bool>(type: "boolean", nullable: false),
-                    Size = table.Column<int>(type: "integer", nullable: false)
+                    Size = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -157,12 +191,13 @@ namespace Property.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RentalUnitId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    CotQuantity = table.Column<string>(type: "text", nullable: false),
-                    SmokeAllowed = table.Column<bool>(type: "boolean", nullable: false),
-                    CotPrice = table.Column<decimal>(type: "numeric", nullable: false),
-                    CotPriceCurrency = table.Column<string>(type: "text", nullable: false),
-                    Type_Value = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    SingleBeds = table.Column<int>(type: "integer", nullable: false),
+                    DoubleBeds = table.Column<int>(type: "integer", nullable: false),
+                    KingBeds = table.Column<int>(type: "integer", nullable: false),
+                    SofaBeds = table.Column<int>(type: "integer", nullable: false),
+                    SmokeAllowed = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,9 +217,9 @@ namespace Property.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     EntityId = table.Column<int>(type: "integer", nullable: false),
-                    EntityType = table.Column<string>(type: "text", nullable: false),
                     Url = table.Column<string>(type: "text", nullable: false),
-                    IsPrimary = table.Column<bool>(type: "boolean", nullable: false)
+                    IsPrimary = table.Column<bool>(type: "boolean", nullable: false),
+                    EntityType = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,6 +256,35 @@ namespace Property.Infrastructure.Migrations
                         principalTable: "RentalUnits",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Amenities",
+                columns: new[] { "Id", "AmenityGroupId", "Description", "IconUrl", "IsPaid", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, false, "Air conditioning" },
+                    { 2, null, null, null, false, "Heating" },
+                    { 3, null, null, null, false, "Free Wifi" },
+                    { 4, null, null, null, false, "Electric vehicle charing station" },
+                    { 5, null, null, null, false, "Free parking on premises" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "English" },
+                    { 2, "French" },
+                    { 3, "German" },
+                    { 4, "Italian" },
+                    { 5, "Spanish" },
+                    { 6, "Japanese" },
+                    { 7, "Chinese" },
+                    { 8, "Korean" },
+                    { 9, "Russian" },
+                    { 10, "Arabic" }
                 });
 
             migrationBuilder.InsertData(
@@ -273,6 +337,11 @@ namespace Property.Infrastructure.Migrations
                 column: "PropertyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PropertyLanguages_PropertyId",
+                table: "PropertyLanguages",
+                column: "PropertyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RentalUnitAmenities_RentalUnitId",
                 table: "RentalUnitAmenities",
                 column: "RentalUnitId");
@@ -299,7 +368,13 @@ namespace Property.Infrastructure.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
+                name: "Languages");
+
+            migrationBuilder.DropTable(
                 name: "PropertyAmenities");
+
+            migrationBuilder.DropTable(
+                name: "PropertyLanguages");
 
             migrationBuilder.DropTable(
                 name: "RentalUnitAmenities");

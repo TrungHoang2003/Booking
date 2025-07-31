@@ -1,11 +1,9 @@
 using BuildingBlocks.Commons;
 using BuildingBlocks.Middlewares;
-using Identity.Api.Middlewares;
 using Identity.Application;
 using Identity.Infrastructure;
 using Scalar.AspNetCore;
 using Serilog;
-using Serilog.Exceptions;
 using DotNetEnv;
 using MassTransit;
 using Microsoft.Extensions.Options;

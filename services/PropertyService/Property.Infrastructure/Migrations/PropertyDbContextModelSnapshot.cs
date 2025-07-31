@@ -43,6 +43,9 @@ namespace Property.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("NeighborhoodDescription")
+                        .HasColumnType("text");
+
                     b.Property<int>("PropertyTypeId")
                         .HasColumnType("integer");
 
@@ -53,11 +56,7 @@ namespace Property.Infrastructure.Migrations
 
                     b.HasIndex("PropertyTypeId");
 
-                    b.ToTable("Properties", null, t =>
-                        {
-                            t.Property("FloorNumber")
-                                .HasColumnName("Property_FloorNumber");
-                        });
+                    b.ToTable("Properties", (string)null);
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.AggregateRoot.PropertyAmenity", b =>
@@ -71,6 +70,9 @@ namespace Property.Infrastructure.Migrations
                     b.Property<int>("AmenityId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<int>("PropertyId")
                         .HasColumnType("integer");
 
@@ -79,6 +81,27 @@ namespace Property.Infrastructure.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("PropertyAmenities", (string)null);
+                });
+
+            modelBuilder.Entity("Property.Domain.Aggregates.AggregateRoot.PropertyLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PropertyId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropertyId");
+
+                    b.ToTable("PropertyLanguages", (string)null);
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.AggregateRoot.PropertyType", b =>
@@ -271,15 +294,13 @@ namespace Property.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AmenityGroupId")
+                    b.Property<int?>("AmenityGroupId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("IconUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsPaid")
@@ -292,6 +313,38 @@ namespace Property.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Amenities", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsPaid = false,
+                            Name = "Air conditioning"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsPaid = false,
+                            Name = "Heating"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsPaid = false,
+                            Name = "Free Wifi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsPaid = false,
+                            Name = "Electric vehicle charing station"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsPaid = false,
+                            Name = "Free parking on premises"
+                        });
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.AmenityAggregate.AmenityGroup", b =>
@@ -327,19 +380,29 @@ namespace Property.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CotQuantity")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("DoubleBeds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("KingBeds")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
 
                     b.Property<int>("RentalUnitId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("SingleBeds")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("SmokeAllowed")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("SofaBeds")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -359,10 +422,6 @@ namespace Property.Infrastructure.Migrations
                     b.Property<int>("EntityId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("EntityType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<bool>("IsPrimary")
                         .HasColumnType("boolean");
 
@@ -375,6 +434,75 @@ namespace Property.Infrastructure.Migrations
                     b.HasIndex("EntityId");
 
                     b.ToTable("Images", (string)null);
+                });
+
+            modelBuilder.Entity("Property.Domain.Aggregates.LanguageAggregate.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "English"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "French"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "German"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Italian"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Spanish"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Japanese"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Chinese"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Korean"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Russian"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Arabic"
+                        });
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit", b =>
@@ -393,23 +521,13 @@ namespace Property.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("BedroomsCount");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
                     b.Property<int>("MaxAdults")
                         .HasColumnType("integer");
 
                     b.Property<int>("MaxChildren")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("PropertyId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
                     b.Property<string>("RentalType")
@@ -429,7 +547,11 @@ namespace Property.Infrastructure.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("RentalUnits", (string)null);
+                    b.ToTable("RentalUnits", null, t =>
+                        {
+                            t.Property("RentalType")
+                                .HasColumnName("RentalUnit_RentalType");
+                        });
 
                     b.HasDiscriminator<string>("RentalType").HasValue("RentalUnit");
 
@@ -461,12 +583,30 @@ namespace Property.Infrastructure.Migrations
                 {
                     b.HasBaseType("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit");
 
+                    b.ToTable("RentalUnits", t =>
+                        {
+                            t.Property("RentalType")
+                                .HasColumnName("RentalUnit_RentalType");
+                        });
+
                     b.HasDiscriminator().HasValue("EntireProperty");
                 });
 
             modelBuilder.Entity("Property.Domain.Aggregates.RentalUnitAggregate.RoomRentalUnit", b =>
                 {
                     b.HasBaseType("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.ToTable("RentalUnits", t =>
+                        {
+                            t.Property("RentalType")
+                                .HasColumnName("RentalUnit_RentalType");
+                        });
 
                     b.HasDiscriminator().HasValue("RoomBased");
                 });
@@ -499,10 +639,6 @@ namespace Property.Infrastructure.Migrations
                             b1.Property<TimeSpan>("CheckOutTimeUntil")
                                 .HasColumnType("interval")
                                 .HasColumnName("CheckOutTimeUntil");
-
-                            b1.Property<int>("FloorNumber")
-                                .HasColumnType("integer")
-                                .HasColumnName("FloorNumber");
 
                             b1.Property<bool>("PartyAllowed")
                                 .HasColumnType("boolean")
@@ -544,9 +680,8 @@ namespace Property.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("Country");
 
-                            b1.Property<string>("PostCode")
-                                .IsRequired()
-                                .HasColumnType("text")
+                            b1.Property<int>("PostCode")
+                                .HasColumnType("integer")
                                 .HasColumnName("PostCode");
 
                             b1.HasKey("PropertyId");
@@ -557,11 +692,9 @@ namespace Property.Infrastructure.Migrations
                                 .HasForeignKey("PropertyId");
                         });
 
-                    b.Navigation("Location")
-                        .IsRequired();
+                    b.Navigation("Location");
 
-                    b.Navigation("Rules")
-                        .IsRequired();
+                    b.Navigation("Rules");
 
                     b.Navigation("Type");
                 });
@@ -573,33 +706,38 @@ namespace Property.Infrastructure.Migrations
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Property.Domain.Aggregates.AmenityAggregate.Amenity", b =>
-                {
                     b.OwnsOne("Property.Domain.ValueObjects.Price", "Price", b1 =>
                         {
-                            b1.Property<int>("AmenityId")
+                            b1.Property<int>("PropertyAmenityId")
                                 .HasColumnType("integer");
 
                             b1.Property<decimal>("Amount")
                                 .HasColumnType("numeric")
-                                .HasColumnName("Price");
+                                .HasColumnName("Amount");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("PriceCurrency");
+                                .HasColumnName("Currency");
 
-                            b1.HasKey("AmenityId");
+                            b1.HasKey("PropertyAmenityId");
 
-                            b1.ToTable("Amenities");
+                            b1.ToTable("PropertyAmenities");
 
                             b1.WithOwner()
-                                .HasForeignKey("AmenityId");
+                                .HasForeignKey("PropertyAmenityId");
                         });
 
-                    b.Navigation("Price")
+                    b.Navigation("Price");
+                });
+
+            modelBuilder.Entity("Property.Domain.Aggregates.AggregateRoot.PropertyLanguage", b =>
+                {
+                    b.HasOne("Property.Domain.Aggregates.AggregateRoot.Property", null)
+                        .WithMany("Languages")
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -609,51 +747,6 @@ namespace Property.Infrastructure.Migrations
                         .WithMany("Bedrooms")
                         .HasForeignKey("RentalUnitId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("Property.Domain.ValueObjects.Price", "CotPrice", b1 =>
-                        {
-                            b1.Property<int>("BedroomId")
-                                .HasColumnType("integer");
-
-                            b1.Property<decimal>("Amount")
-                                .HasColumnType("numeric")
-                                .HasColumnName("CotPrice");
-
-                            b1.Property<string>("Currency")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("CotPriceCurrency");
-
-                            b1.HasKey("BedroomId");
-
-                            b1.ToTable("Bedrooms");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BedroomId");
-                        });
-
-                    b.OwnsOne("Property.Domain.ValueObjects.BedType", "Type", b1 =>
-                        {
-                            b1.Property<int>("BedroomId")
-                                .HasColumnType("integer");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasColumnType("text");
-
-                            b1.HasKey("BedroomId");
-
-                            b1.ToTable("Bedrooms");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BedroomId");
-                        });
-
-                    b.Navigation("CotPrice")
-                        .IsRequired();
-
-                    b.Navigation("Type")
                         .IsRequired();
                 });
 
@@ -669,6 +762,27 @@ namespace Property.Infrastructure.Migrations
                         .WithMany("Images")
                         .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("Property.Domain.ValueObjects.EntityType", "EntityType", b1 =>
+                        {
+                            b1.Property<int>("ImageId")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("EntityType");
+
+                            b1.HasKey("ImageId");
+
+                            b1.ToTable("Images");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ImageId");
+                        });
+
+                    b.Navigation("EntityType")
                         .IsRequired();
                 });
 
@@ -702,7 +816,28 @@ namespace Property.Infrastructure.Migrations
                                 .HasForeignKey("RentalUnitId");
                         });
 
+                    b.OwnsOne("Property.Domain.ValueObjects.RentalUnitType", "Type", b1 =>
+                        {
+                            b1.Property<int>("RentalUnitId")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("RentalType");
+
+                            b1.HasKey("RentalUnitId");
+
+                            b1.ToTable("RentalUnits");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RentalUnitId");
+                        });
+
                     b.Navigation("BasePricePerNight")
+                        .IsRequired();
+
+                    b.Navigation("Type")
                         .IsRequired();
                 });
 
@@ -720,6 +855,8 @@ namespace Property.Infrastructure.Migrations
                     b.Navigation("Amenities");
 
                     b.Navigation("Images");
+
+                    b.Navigation("Languages");
 
                     b.Navigation("RentalUnits");
                 });

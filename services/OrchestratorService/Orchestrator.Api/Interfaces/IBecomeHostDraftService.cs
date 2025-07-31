@@ -1,6 +1,6 @@
 using Contracts.DTOs;
+using Contracts.Messages;
 using Orchestrator.Api.Drafts;
-using Orchestrator.Api.DTOs;
 
 namespace Orchestrator.Api.Interfaces;
 
@@ -13,8 +13,8 @@ public interface IBecomeHostDraftService
    Task UpdateLocation(Guid draftId, int userId, LocationDto locationDto);
    Task UpdateRentalUnit(Guid draftId, int userId, RentalUnitDto rentalUnitDto);
    Task UpdateAmenities(Guid draftId, int userId, List<int> amenities);
+   Task UpdateLanguages(Guid draftId, int userId, List<int> languageIds);
    Task UpdateHouseRule(Guid draftId, int userId, HouseRuleDto houseRuleDto);
-   Task UpdateImage(Guid draftId, int userId, List<ImageDto> images);
-   Task UpdatePricePerNight(Guid draftId, int userId, decimal pricePerNight);
+   Task UpdateImage(Guid draftId, int userId, List<string> base64Images);
    Task<bool> CompleteDraft(Guid draftId, int userId);
 }

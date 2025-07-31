@@ -9,7 +9,7 @@ namespace Identity.Api.Controllers;
 [Route("[controller]")]
 public class UserController(IMediator mediator): Controller
 {
-   [HttpPut("UpdateHostProfile")]
+   [HttpPut("update-host-profile")]
    public async Task<IActionResult> UpdateHostProfile([FromBody] UpdateUserProfileCommand command)
    {
       var result = await mediator.Send(command);

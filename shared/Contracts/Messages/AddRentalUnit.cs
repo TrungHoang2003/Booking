@@ -12,4 +12,5 @@ public record AddRentalUnit(
     int Quantity,
     bool SharedBathroom,
     decimal Amount,
-    string Currency);
+    string Currency,
+    List<int> AmenityIds);

@@ -2,7 +2,7 @@ namespace Property.Domain.ValueObjects;
 
 public record Location
 {
-    public Location(string address, string city, string country, int postCode)
+    public Location(string address, string city, string country, int? postCode)
     {
         Address = address;
         City = city;

@@ -14,5 +14,11 @@ public class PropertyAmenityConfiguration:IEntityTypeConfiguration<PropertyAmeni
         builder.Property(pa => pa.Id)
             .ValueGeneratedOnAdd()
             .IsRequired();
+
+        builder.OwnsOne(pa => pa.Price, price =>
+        {
+            price.Property(p => p.Amount).HasColumnName("Amount").IsRequired();
+            price.Property(p => p.Currency).HasColumnName("Currency").IsRequired();
+        });
     }
 }

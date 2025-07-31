@@ -26,15 +26,19 @@ public static class BecomeHostExtensions{
             draft.HouseRuleDto.SmokingAllowed,
             draft.HouseRuleDto.PartyAllowed,
             draft.HouseRuleDto.AgeRestriction,
-            draft.HouseRuleDto.FloorNumber
-        );
+            draft.HouseRuleDto.FloorNumber,
+            draft.LanguageIds,
+            draft.Base64Images,
+            draft.HostProfileDto?.PropertyDescription,
+            draft.HostProfileDto?.NeighborhoodDescription
+        );  
     }
 
-    public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft)
+    public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft, int propertyId)
     {
         return new AddRentalUnit(
             draft.DraftId,
-            draft.RentalUnitDto.PropertyId,
+            propertyId,
             draft.RentalUnitDto.MaxAdults,
             draft.RentalUnitDto.MaxChildren,
             draft.RentalUnitDto.Size,
@@ -43,8 +47,8 @@ public static class BecomeHostExtensions{
             draft.RentalUnitDto.IsRoomBasedProperty,
             draft.RentalUnitDto.Quantity,
             draft.RentalUnitDto.SharedBathroom,
-            draft.PricePerNight,
-            "EUR"
-        );
+            draft.RentalUnitDto.Amount,
+            draft.RentalUnitDto.Currency,
+            draft.AmenityIds);
     }
 }

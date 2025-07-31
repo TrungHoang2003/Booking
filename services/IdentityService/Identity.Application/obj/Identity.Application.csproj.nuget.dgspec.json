@@ -233,6 +233,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.3.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"

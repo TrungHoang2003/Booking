@@ -34,6 +34,11 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
             basePricePerNight.Property(p => p.Currency).HasColumnName("PriceCurrency").IsRequired();
         });
         
+        builder.OwnsOne(r=>r.Type, type=>
+        {
+            type.Property(t=>t.Value).HasColumnName("RentalType").IsRequired();
+        });
+        
         builder.HasMany(r => r.Amenities)
             .WithOne()
             .HasForeignKey(ra => ra.RentalUnitId)

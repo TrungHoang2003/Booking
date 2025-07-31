@@ -8,7 +8,7 @@ namespace Property.Api.Controllers;
 [ApiController]
 public class PropertyTypeController(IMediator mediator):Controller
 {
-    [HttpGet("GetPropertyTypes")]
+    [HttpGet("get-property-types")]
     public async Task<IActionResult> GetPropertyTypes(GetPropertyTypesQuery query)
     {
         var result = await mediator.Send(query);

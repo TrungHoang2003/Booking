@@ -1,5 +1,5 @@
 using Contracts.DTOs;
-using Orchestrator.Api.DTOs;
+using Contracts.Messages;
 
 namespace Orchestrator.Api.Drafts;
 
@@ -13,7 +13,8 @@ public class BecomeHostDraft
     public LocationDto LocationDto { get; set; }
     public RentalUnitDto RentalUnitDto { get; set; }
     public List<int> AmenityIds { get; set; } 
+    public List<int> LanguageIds { get; set; }
     public HouseRuleDto HouseRuleDto { get; set; }
-    public List<ImageDto> Photos { get; set; } 
-    public decimal PricePerNight { get; set; }
+    public List<string> Base64Images { get; set; } 
+    public HostProfileDto? HostProfileDto { get; set; }
 }

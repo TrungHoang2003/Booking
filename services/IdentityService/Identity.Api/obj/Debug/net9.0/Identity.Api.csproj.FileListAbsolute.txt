@@ -373,3 +373,17 @@ C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\MassTr
 C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\RabbitMQ.Client.dll
 C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Contracts.dll
 C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Contracts.pdb
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Npgsql.DependencyInjection.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\Npgsql.OpenTelemetry.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\OpenTelemetry.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\OpenTelemetry.Api.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\OpenTelemetry.Api.ProviderBuilderExtensions.dll
+C:\Sandbox\Booking\services\IdentityService\Identity.Api\bin\Debug\net9.0\OpenTelemetry.Extensions.Hosting.dll

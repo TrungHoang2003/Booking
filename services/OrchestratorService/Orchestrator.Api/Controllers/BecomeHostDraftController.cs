@@ -10,7 +10,7 @@ namespace Orchestrator.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publisher) : Controller
+public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publishEndpoint) : Controller
 {
     [HttpPost("start")]
     public async Task<BecomeHostDraft> Start()
@@ -36,7 +36,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
 
     [HttpPost("update-property-type")]
-    public async Task UpdatePropertyType([FromBody] Guid draftId, [FromQuery] int propertyTypeId)
+    public async Task UpdatePropertyType([FromQuery] Guid draftId, [FromQuery] int propertyTypeId)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -47,7 +47,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-property-name")]
-    public async Task UpdatePropertyName([FromBody] Guid draftId, [FromQuery] string propertyName)
+    public async Task UpdatePropertyName([FromQuery] Guid draftId, [FromQuery] string propertyName)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -58,7 +58,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-location")]
-    public async Task UpdateLocation([FromBody] Guid draftId, [FromBody] LocationDto locationDto)
+    public async Task UpdateLocation([FromQuery] Guid draftId, [FromBody] LocationDto locationDto)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -69,7 +69,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-rental-unit")]
-    public async Task UpdateRentalUnit([FromBody] Guid draftId, [FromBody] RentalUnitDto rentalUnitDto)
+    public async Task UpdateRentalUnit([FromQuery] Guid draftId, [FromBody] RentalUnitDto rentalUnitDto)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -80,7 +80,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-amenities")]
-    public async Task UpdateAmenities([FromBody] Guid draftId, [FromBody] List<int> amenities)
+    public async Task UpdateAmenities([FromQuery] Guid draftId, [FromBody] List<int> amenities)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -91,7 +91,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-languages")]
-    public async Task UpdateLanguages([FromBody] Guid draftId, [FromBody] List<int> languages)
+    public async Task UpdateLanguages([FromQuery] Guid draftId, [FromBody] List<int> languages)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -102,7 +102,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-houseRule")]
-    public async Task UpdateHouseRule([FromBody] Guid draftId, [FromBody] HouseRuleDto houseRuleDto)
+    public async Task UpdateHouseRule([FromQuery] Guid draftId, [FromBody] HouseRuleDto houseRuleDto)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -113,7 +113,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("update-photos")]
-    public async Task UpdatePhotos([FromBody] Guid draftId, [FromBody] List<string> base64Images)
+    public async Task UpdatePhotos([FromQuery] Guid draftId, [FromBody] List<string> base64Images)
     {
         var userId = Request.Headers["X-User-Id"];
         if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
@@ -124,7 +124,7 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
     }
     
     [HttpPost("submit-draft")]
-    public async Task CompleteDraft([FromBody] Guid draftId)
+    public async Task CompleteDraft([FromQuery] Guid draftId)
     {
         var userId = Request.Headers["X-User-Id"];
 
@@ -136,7 +136,10 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         var draft = await service.GetAsync(draftId, userIdInt);
         var correlationId = Guid.NewGuid();
        
-        
+        // public Become Host Saga 
+        var startSagaEvent = new BecomeHostStarted(correlationId, userIdInt);
+
+        await publishEndpoint.Publish(startSagaEvent);
         await service.CompleteDraft(draftId, userIdInt);
     }
     

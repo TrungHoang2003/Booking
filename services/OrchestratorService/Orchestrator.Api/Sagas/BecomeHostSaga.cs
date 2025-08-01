@@ -66,7 +66,6 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
                 ))
         );
         
-
         SetCompletedWhenFinalized();
     }
 }

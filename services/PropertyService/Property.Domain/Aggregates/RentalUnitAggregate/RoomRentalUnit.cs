@@ -4,7 +4,7 @@ namespace Property.Domain.Aggregates.RentalUnitAggregate;
 
 public class RoomRentalUnit : RentalUnit
 {
-    public RoomRentalUnit(string? name, int maxAdults, int maxChildren, int? quantity, bool sharedBathroom) : base( maxAdults, maxChildren)
+    public RoomRentalUnit(string name, int maxAdults, int maxChildren, int? quantity, bool sharedBathroom) : base( maxAdults, maxChildren)
     {
         SharedBathroom = sharedBathroom;
         Name = name;
@@ -12,7 +12,7 @@ public class RoomRentalUnit : RentalUnit
         Type = RentalUnitType.Room();
     }
     
-    public string? Name { get; private set; }
+    public string Name { get; private set; }
     public bool SharedBathroom { get; private set; }
     public int? Quantity { get; private set; }
 }

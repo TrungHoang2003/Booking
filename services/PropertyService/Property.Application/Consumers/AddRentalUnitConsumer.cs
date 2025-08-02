@@ -31,7 +31,7 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
         if (property.Type.IsRoomBased)
         {
             var roomRentalUnit = new RoomRentalUnit(
-                null,
+                addRentalUnit.Name,
                 addRentalUnit.MaxAdults,
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Quantity,

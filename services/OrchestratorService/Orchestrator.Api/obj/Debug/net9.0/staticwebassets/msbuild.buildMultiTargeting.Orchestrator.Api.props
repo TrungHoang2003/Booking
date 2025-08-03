@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Orchestrator.Api.props" />
-</Project>

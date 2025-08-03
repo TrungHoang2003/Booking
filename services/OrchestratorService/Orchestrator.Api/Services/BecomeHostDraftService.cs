@@ -63,6 +63,14 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
         });
     }
 
+    public Task UpdateBedrooms(Guid draftId, int userId, List<BedroomDto> bedroomDtos)
+    {
+        return UpdateStep(draftId, userId, d =>
+        {
+            d.BedroomDtos = bedroomDtos;
+        });
+    }
+
     public Task UpdateAmenities(Guid draftId, int userId, List<int> amenityIds)
     {
         return UpdateStep(draftId, userId, draft =>
@@ -84,6 +92,14 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
         return UpdateStep(draftId, userId, d=>
         {
             d.Base64Images = base64Images;
+        });
+    }
+
+    public Task UpdateHostProfile(Guid draftId, int userId, HostProfileDto hostProfileDto)
+    {
+        return UpdateStep(draftId, userId, d =>
+        {
+            d.HostProfileDto = hostProfileDto;
         });
     }
 

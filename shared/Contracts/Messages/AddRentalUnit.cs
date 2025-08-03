@@ -1,6 +1,7 @@
 namespace Contracts.Messages;
 
 public record AddRentalUnit(
+    string Name,
     Guid CorrelationId,
     int PropertyId,
     int MaxAdults,

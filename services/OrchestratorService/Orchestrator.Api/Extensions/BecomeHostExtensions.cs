@@ -37,6 +37,7 @@ public static class BecomeHostExtensions{
     public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft, int propertyId)
     {
         return new AddRentalUnit(
+            draft.RentalUnitDto.Name,
             draft.DraftId,
             propertyId,
             draft.RentalUnitDto.MaxAdults,

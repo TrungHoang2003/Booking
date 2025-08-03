@@ -2,6 +2,7 @@ namespace Contracts.DTOs;
 
 public record RentalUnitDto
 (
+    string Name,
     int PropertyId,
     int MaxAdults,
     int MaxChildren,

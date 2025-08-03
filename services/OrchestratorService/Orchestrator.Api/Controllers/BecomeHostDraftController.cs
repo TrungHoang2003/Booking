@@ -78,6 +78,17 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
         }
         await service.UpdateRentalUnit(draftId, userIdInt, rentalUnitDto);
     }
+
+    [HttpPost("update-bedroom")]
+    public async Task UpdateBedrooms([FromQuery] Guid draftId, [FromBody] List<BedroomDto> bedroomDtos)
+    {
+        var userId = Request.Headers["X-User-Id"];
+        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        {
+            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+        }
+        await service.UpdateBedrooms(draftId, userIdInt, bedroomDtos); 
+    }
     
     [HttpPost("update-amenities")]
     public async Task UpdateAmenities([FromQuery] Guid draftId, [FromBody] List<int> amenities)

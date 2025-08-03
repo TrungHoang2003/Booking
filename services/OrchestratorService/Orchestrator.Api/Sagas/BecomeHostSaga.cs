@@ -66,6 +66,10 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
                 ))
         );
         
+        During(UpdatingHostProfile,
+            When(HostProfileUpdated)
+                .Publish(context=> new UpdateB))
+        
         SetCompletedWhenFinalized();
     }
 }

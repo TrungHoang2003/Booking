@@ -1,17 +1,21 @@
+using BuildingBlocks.Interfaces;
+
 namespace Contracts.Messages;
 
-public record AddRentalUnit(
-    string Name,
-    Guid CorrelationId,
-    int PropertyId,
-    int MaxAdults,
-    int MaxChildren,
-    int Size,
-    int BedroomsCount,
-    int BathroomsCount,
-    bool IsRoomBasedProperty,
-    int Quantity,
-    bool SharedBathroom,
-    decimal Amount,
-    string Currency,
-    List<int> AmenityIds);
+public class AddRentalUnit : IMessage
+{
+    public Guid CorrelationId { get; set; }
+    public string Name { get; set; }
+    public int PropertyId { get; set; }
+    public int MaxAdults { get; set; }
+    public int MaxChildren { get; set; }
+    public int Size { get; set; }
+    public int BedroomsCount { get; set; }
+    public int BathroomsCount { get; set; }
+    public bool IsRoomBasedProperty { get; set; }
+    public int Quantity { get; set; }
+    public bool SharedBathroom { get; set; }
+    public decimal Amount { get; set; }
+    public string Currency { get; set; }
+    public List<int>? AmenityIds { get; set; }
+}

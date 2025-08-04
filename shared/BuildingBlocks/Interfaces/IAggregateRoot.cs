@@ -1,5 +1,3 @@
-using BuildingBlocks.DomainDrivenPattern;
-
 namespace BuildingBlocks.Interfaces;
 
 public interface IAggregateRoot;

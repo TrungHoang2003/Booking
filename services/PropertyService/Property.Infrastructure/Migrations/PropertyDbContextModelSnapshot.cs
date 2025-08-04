@@ -386,20 +386,11 @@ namespace Property.Infrastructure.Migrations
                     b.Property<int>("KingBeds")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
                     b.Property<int>("RentalUnitId")
                         .HasColumnType("integer");
 
                     b.Property<int>("SingleBeds")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("SmokeAllowed")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("SofaBeds")
                         .HasColumnType("integer");
@@ -597,6 +588,7 @@ namespace Property.Infrastructure.Migrations
                     b.HasBaseType("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("Quantity")

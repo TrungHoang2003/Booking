@@ -2,6 +2,7 @@ using Identity.Application.CQRS.Commands;
 using Identity.Application.UseCases.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Identity.Api.Controllers;
 
@@ -12,6 +13,7 @@ public class AuthenController(IMediator mediator, ILogger<AuthenController> logg
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
+        Log.Logger.Information("Executing login command: {command}", command);
         logger.LogInformation("Login attempt for user: {UserName}", command.UserName);
         var result = await mediator.Send(command);
         

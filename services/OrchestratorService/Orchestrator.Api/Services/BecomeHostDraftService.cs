@@ -67,7 +67,7 @@ public class BecomeHostDraftService(IRedisService redisService): IBecomeHostDraf
     {
         return UpdateStep(draftId, userId, d =>
         {
-            d.BedroomDtos = bedroomDtos;
+            d.ListBedroomDtos= bedroomDtos;
         });
     }
 

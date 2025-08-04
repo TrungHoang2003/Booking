@@ -1,4 +1,4 @@
-namespace BuildingBlocks.DomainDrivenPattern;
+namespace BuildingBlocks.Interfaces;
 
 public interface IEntity;
 

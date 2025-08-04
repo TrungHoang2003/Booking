@@ -43,8 +43,13 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
         
         property.UpdateHouseRule(houseRules);
         property.UpdateLocation(location);
-        await AddImages(context, property.Id); 
-        await AddLanguages(context, property); 
+        
+        if(context.Message.Base64Images != null)
+            await AddImages(context, property.Id); 
+        
+        if(context.Message.LanguageIds!= null)
+            await AddLanguages(context, property); 
+        
         await AddType(context, property); 
         
         await repo.Create(property);
@@ -67,7 +72,7 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
     {
         var listImage = new List<Image>(); // Init List Image
         
-        foreach (var base64Image in context.Message.Base64Images)
+        foreach (var base64Image in context.Message.Base64Images!)
         {
             var imageUrl = await cloudinary.UploadImage(base64Image); 
             var image = new Image(propertyId, imageUrl, false);
@@ -84,7 +89,7 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
     {
         var listLanguage = new List<Language>(); // Init List Language
         
-        foreach (var languageId in context.Message.LanguageIds)
+        foreach (var languageId in context.Message.LanguageIds!)
         {
             var language = await languageRepo.GetById(languageId) ?? throw new Exception("Language not found");
             listLanguage.Add(language);

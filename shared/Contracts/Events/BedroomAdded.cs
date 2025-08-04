@@ -2,7 +2,7 @@ using BuildingBlocks.Interfaces;
 
 namespace Contracts.Events;
 
-public class HostProfileUpdated: IEvent
+public class BedroomAdded: IEvent
 {
     public Guid CorrelationId { get; set; }
 }

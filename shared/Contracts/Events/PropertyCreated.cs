@@ -1,7 +1,9 @@
+using BuildingBlocks.Interfaces;
+
 namespace Contracts.Events;
 
-public record PropertyCreated
-(
-   Guid CorrelationId,
-   int PropertyId
-);
+public class PropertyCreated: IEvent
+{
+    public Guid CorrelationId { get; set; }
+    public int PropertyId { get; set; }
+}

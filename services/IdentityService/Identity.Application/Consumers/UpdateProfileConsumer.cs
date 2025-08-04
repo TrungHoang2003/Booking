@@ -19,8 +19,8 @@ public class UpdateProfileConsumer(UserManager<User> userManager) : IConsumer<Up
         await userManager.UpdateAsync(user);
 
         await context.RespondAsync(new HostProfileUpdated
-        (
-            context.Message.CorrelationId
-        ));
+        {
+            CorrelationId = context.Message.CorrelationId
+        });
     }
 }

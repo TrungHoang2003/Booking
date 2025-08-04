@@ -1,4 +1,4 @@
-using BuildingBlocks.DomainDrivenPattern;
+using BuildingBlocks.Interfaces;
 
 namespace Property.Domain.Aggregates.AmenityAggregate;
 

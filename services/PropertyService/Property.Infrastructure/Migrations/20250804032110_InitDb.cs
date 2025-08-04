@@ -191,13 +191,10 @@ namespace Property.Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RentalUnitId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Quantity = table.Column<int>(type: "integer", nullable: false),
-                    SingleBeds = table.Column<int>(type: "integer", nullable: false),
                     DoubleBeds = table.Column<int>(type: "integer", nullable: false),
+                    SingleBeds = table.Column<int>(type: "integer", nullable: false),
                     KingBeds = table.Column<int>(type: "integer", nullable: false),
-                    SofaBeds = table.Column<int>(type: "integer", nullable: false),
-                    SmokeAllowed = table.Column<bool>(type: "boolean", nullable: false)
+                    SofaBeds = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

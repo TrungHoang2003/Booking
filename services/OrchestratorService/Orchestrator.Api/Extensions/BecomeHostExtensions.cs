@@ -6,50 +6,75 @@ using Orchestrator.Api.Sagas;
 
 namespace Orchestrator.Api.Extensions;
 
-public static class BecomeHostExtensions{
+public static class BecomeHostExtensions
+{
     public static CreateProperty ToCreateProperty(this BecomeHostDraft draft)
     {
-        return new CreateProperty(
-            draft.DraftId,
-            draft.HostId,
-            draft.PropertyName,
-            draft.PropertyTypeId,
-            draft.LocationDto.Address,
-            draft.LocationDto.City,
-            draft.LocationDto.Country,
-            draft.LocationDto.PostCode,
-            draft.HouseRuleDto.CheckInTimeFrom,
-            draft.HouseRuleDto.CheckInTimeUntil,
-            draft.HouseRuleDto.CheckOutTimeFrom,
-            draft.HouseRuleDto.CheckOutTimeUntil,
-            draft.HouseRuleDto.PetAllowed,
-            draft.HouseRuleDto.SmokingAllowed,
-            draft.HouseRuleDto.PartyAllowed,
-            draft.HouseRuleDto.AgeRestriction,
-            draft.HouseRuleDto.FloorNumber,
-            draft.LanguageIds,
-            draft.Base64Images,
-            draft.HostProfileDto?.PropertyDescription,
-            draft.HostProfileDto?.NeighborhoodDescription
-        );  
+        return new CreateProperty
+        {
+            CorrelationId = draft.DraftId,
+            HostId = draft.HostId,
+            Name = draft.PropertyName,
+            PropertyTypeId = draft.PropertyTypeId,
+            Address = draft.LocationDto.Address,
+            City = draft.LocationDto.City,
+            Country = draft.LocationDto.Country,
+            PostCode = draft.LocationDto.PostCode,
+            CheckInTimeFrom = draft.HouseRuleDto.CheckInTimeFrom,
+            CheckInTimeUntil = draft.HouseRuleDto.CheckInTimeUntil,
+            CheckOutTimeFrom = draft.HouseRuleDto.CheckOutTimeFrom,
+            CheckOutTimeUntil = draft.HouseRuleDto.CheckOutTimeUntil,
+            PetAllowed = draft.HouseRuleDto.PetAllowed,
+            SmokingAllowed = draft.HouseRuleDto.SmokingAllowed,
+            PartyAllowed = draft.HouseRuleDto.PartyAllowed,
+            AgeRestriction = draft.HouseRuleDto.AgeRestriction,
+            FloorNumber = draft.HouseRuleDto.FloorNumber,
+            LanguageIds = draft.LanguageIds,
+            Base64Images = draft.Base64Images,
+            Description = draft.HostProfileDto?.PropertyDescription,
+            NeighborhoodDescription = draft.HostProfileDto?.NeighborhoodDescription
+        };
     }
 
     public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft, int propertyId)
     {
-        return new AddRentalUnit(
-            draft.RentalUnitDto.Name,
-            draft.DraftId,
-            propertyId,
-            draft.RentalUnitDto.MaxAdults,
-            draft.RentalUnitDto.MaxChildren,
-            draft.RentalUnitDto.Size,
-            draft.RentalUnitDto.BedroomsCount,
-            draft.RentalUnitDto.BathroomsCount,
-            draft.RentalUnitDto.IsRoomBasedProperty,
-            draft.RentalUnitDto.Quantity,
-            draft.RentalUnitDto.SharedBathroom,
-            draft.RentalUnitDto.Amount,
-            draft.RentalUnitDto.Currency,
-            draft.AmenityIds);
+        return new AddRentalUnit
+        {
+            Name = draft.RentalUnitDto.Name,
+            CorrelationId = draft.DraftId,
+            PropertyId = propertyId,
+            MaxAdults = draft.RentalUnitDto.MaxAdults,
+            MaxChildren = draft.RentalUnitDto.MaxChildren,
+            Size = draft.RentalUnitDto.Size,
+            BedroomsCount = draft.RentalUnitDto.BedroomsCount,
+            BathroomsCount = draft.RentalUnitDto.BathroomsCount,
+            IsRoomBasedProperty = draft.RentalUnitDto.IsRoomBasedProperty,
+            Quantity = draft.RentalUnitDto.Quantity,
+            SharedBathroom = draft.RentalUnitDto.SharedBathroom,
+            Amount = draft.RentalUnitDto.Amount,
+            Currency = draft.RentalUnitDto.Currency,
+            AmenityIds = draft.AmenityIds
+        };
+    }
+
+    public static AddBedroom ToAddBedroom(this BecomeHostDraft draft, int rentalUnitId)
+    {
+        return new AddBedroom
+        {
+            CorrelationId = draft.DraftId,
+            RentalUnitId = rentalUnitId,
+            ListBedrooms= draft.ListBedroomDtos
+        };
+    }
+
+    public static UpdateHostProfile ToUpdateHostProfile(this BecomeHostDraft draft, int hostId)
+    {
+        return new UpdateHostProfile
+        {
+            CorrelationId = draft.DraftId,
+            HostId = hostId,
+            HostName= draft.HostProfileDto.HostName,
+            HostDescription = draft.HostProfileDto.HostDescription
+        };
     }
 }

@@ -1,4 +1,4 @@
-using BuildingBlocks.DomainDrivenPattern;
+using BuildingBlocks.Interfaces;
 using Property.Domain.ValueObjects;
 
 namespace Property.Domain.Aggregates.BedroomAggregate;

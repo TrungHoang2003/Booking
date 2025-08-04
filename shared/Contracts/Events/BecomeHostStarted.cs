@@ -1,10 +1,11 @@
 
+using BuildingBlocks.Interfaces;
 using Contracts.DTOs;
 
 namespace Contracts.Events;
 
-public record BecomeHostStarted
-(
-    Guid CorrelationId,
-    int HostId
-);
+public class BecomeHostStarted : IEvent
+{
+    public Guid CorrelationId { get; set; }
+    public int HostId { get; set; }
+}

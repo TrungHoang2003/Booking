@@ -14,6 +14,8 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
 {
     public async Task Consume(ConsumeContext<AddRentalUnit> context)
     {
+        int rentalUnitId;
+        
         var addRentalUnit = context.Message;
         var unitPrice = new Price(context.Message.Amount, context.Message.Currency);
         
@@ -40,9 +42,14 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
             roomRentalUnit.SetPrice(unitPrice);
             roomRentalUnit.AddListAmenity(listAmenity);
             property.AddRentalUnit(roomRentalUnit);
+
+            rentalUnitId = roomRentalUnit.Id;
         }
         else
         {
+            if (addRentalUnit.IsRoomBasedProperty)
+                throw new Exception("Entire Property Type cant have Room based rental unit");
+            
             var entireRentalUnit = new EntirePropertyRentalUnit(addRentalUnit.MaxAdults,
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Size,
@@ -51,6 +58,8 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
 
             entireRentalUnit.AddListAmenity(listAmenity);
             property.AddRentalUnit(entireRentalUnit);
+
+            rentalUnitId = entireRentalUnit.Id;
         }
 
         await propertyRepository.Update(property);
@@ -58,7 +67,8 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
         
         await context.RespondAsync(new RentalUnitAdded
         {
-            CorrelationId = context.Message.CorrelationId
+            CorrelationId = context.Message.CorrelationId,
+            RentalUnitId = rentalUnitId
         });
     }
 }

@@ -1,4 +1,4 @@
-using BuildingBlocks.DomainDrivenPattern;
+using BuildingBlocks.Interfaces;
 using Property.Domain.Aggregates.AmenityAggregate;
 using Property.Domain.Aggregates.BedroomAggregate;
 using Property.Domain.Aggregates.ImageAggregate;

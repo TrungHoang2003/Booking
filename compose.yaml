@@ -58,7 +58,7 @@ services:
       retries: 5
       start_period: 10s
 
-  Property-db:
+  property-db:
     image: postgres:16-alpine
     container_name: booking-property-db
     ports:
@@ -71,6 +71,24 @@ services:
       - booking-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U trung -d propertydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+      
+  orchestrator-db:
+    image: postgres:16-alpine
+    container_name: booking-orchestrator-db
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=trung
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=orchestratordb
+    networks:
+      - booking-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U trung -d orchestratordb" ]
       interval: 10s
       timeout: 5s
       retries: 5

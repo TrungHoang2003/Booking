@@ -12,7 +12,7 @@ using Property.Infrastructure.DbHelper;
 namespace Property.Infrastructure.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    [Migration("20250728101321_InitDb")]
+    [Migration("20250804032110_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -389,20 +389,11 @@ namespace Property.Infrastructure.Migrations
                     b.Property<int>("KingBeds")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
                     b.Property<int>("RentalUnitId")
                         .HasColumnType("integer");
 
                     b.Property<int>("SingleBeds")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("SmokeAllowed")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("SofaBeds")
                         .HasColumnType("integer");
@@ -600,6 +591,7 @@ namespace Property.Infrastructure.Migrations
                     b.HasBaseType("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("Quantity")

@@ -12,10 +12,10 @@ public class BecomeHostDraft
     public string PropertyName { get; set; }
     public LocationDto LocationDto { get; set; }
     public RentalUnitDto RentalUnitDto { get; set; }
-    public List<BedroomDto> BedroomDtos { get; set; }
+    public List<BedroomDto> ListBedroomDtos { get; set; }
     public List<int> AmenityIds { get; set; } 
     public List<int> LanguageIds { get; set; }
     public HouseRuleDto HouseRuleDto { get; set; }
     public List<string> Base64Images { get; set; } 
-    public HostProfileDto? HostProfileDto { get; set; }
+    public HostProfileDto HostProfileDto { get; set; }
 }

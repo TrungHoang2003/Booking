@@ -27,10 +27,13 @@ if (File.Exists(envPath))
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Lấy section "MessageBroker" từ file appsettings.json và bind nó vào class MessageBrokerSettings.
 builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("MessageBroker"));
 
+// Đăng ký MessageBrokerSettings 
 builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
 
+// Cấu hình và khởi tạo MassTransit dùng RabbitMQ
 builder.Services.AddMassTransit(busConfigurator =>
 {
    busConfigurator.UsingRabbitMq((context, cfg) =>

@@ -9,7 +9,7 @@ using Orchestrator.Api.Interfaces;
 namespace Orchestrator.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("become-host-draft")]
 public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publishEndpoint) : Controller
 {
     [HttpPost("start")]
@@ -144,14 +144,16 @@ public class BecomeHostDraftController(IBecomeHostDraftService service, IPublish
             throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
         }
         
-        var draft = await service.GetAsync(draftId, userIdInt);
         var correlationId = Guid.NewGuid();
        
-        // public Become Host Saga 
-        var startSagaEvent = new BecomeHostStarted(correlationId, userIdInt);
+        // publish Become Host Saga Event
+        var startSagaEvent = new BecomeHostStarted
+        {
+            CorrelationId =  correlationId,
+            HostId = userIdInt
+        };
 
         await publishEndpoint.Publish(startSagaEvent);
         await service.CompleteDraft(draftId, userIdInt);
     }
-    
 }

@@ -1,8 +1,11 @@
+using BuildingBlocks.Interfaces;
+
 namespace Contracts.Messages;
 
-public record UpdateHostProfile(
-    Guid CorrelationId,
-    int HostId,
-    string? HostDescription,
-    string? HostName 
-    );
+public class UpdateHostProfile: IMessage
+{
+    public Guid CorrelationId { get; set; }
+    public int HostId { get; set; }
+    public string? HostDescription { get; set; }
+    public string? HostName { get; set; }
+}

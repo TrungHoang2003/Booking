@@ -316,3 +316,13 @@ $6
 UNLINK
 $55
 draft:becomeHost:1:7c4da5ab-895b-48c0-98ff-ca4a8cc74c58
+*2
+$6
+SELECT
+$1
+0
+*2
+$3
+DEL
+$13
+accessToken:1

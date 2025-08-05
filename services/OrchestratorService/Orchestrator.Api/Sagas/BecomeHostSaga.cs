@@ -9,7 +9,7 @@ namespace Orchestrator.Api.Sagas;
 public class BecomeHostSagaData: SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
-    public State CurrentState { get; set; } = null!;
+    public State CurrentState { get; set; }
     public int HostId { get; set; }
     public int PropertyId { get; set; }
     

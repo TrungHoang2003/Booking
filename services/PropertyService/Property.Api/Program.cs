@@ -36,6 +36,9 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBroker
 // Cấu hình và khởi tạo MassTransit dùng RabbitMQ
 builder.Services.AddMassTransit(busConfigurator =>
 {
+    // Đăng ký consumers
+    busConfigurator.AddConsumers(typeof(Program).Assembly);
+    
    busConfigurator.UsingRabbitMq((context, cfg) =>
    {
        var settings = context.GetRequiredService<MessageBrokerSettings>();

@@ -1,45 +1,5 @@
 services:
-#   # Api Gateway
-#   api-gateway:
-#     container_name: booking-api-gateway
-#     build:
-#       context: .
-#       dockerfile: ./services/ApiGateway/Dockerfile
-#     ports:
-#       - "5000:80"
-#     env_file:
-#       - .env.docker
-#     networks:
-#       - booking-network
-#     depends_on:
-#       identity-api:
-#         condition: service_healthy
-
-  # Identity Service API
-  # identity-api:
-  #   container_name: booking-identity-api
-  #   build:
-  #     context: .
-  #     dockerfile: ./services/IdentityService/Dockerfile
-  #   ports:
-  #     - "5194:8080"
-  #   env_file:
-  #     -  .env.docker
-  #   networks:
-  #     - booking-network
-  #   depends_on:
-  #     identity-db:
-  #       condition: service_healthy
-  #     redis:
-  #       condition: service_healthy
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
-  #     start_period: 40s
-
-  # PostgreSQL Database
+  # PostgreSQL - Identity
   identity-db:
     image: postgres:16-alpine
     container_name: booking-identity-db
@@ -57,7 +17,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+    volumes:
+      - identity-data:/var/lib/postgresql/data
 
+  # PostgreSQL - Property
   property-db:
     image: postgres:16-alpine
     container_name: booking-property-db
@@ -75,7 +38,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-      
+    volumes:
+      - property-data:/var/lib/postgresql/data
+
+  # PostgreSQL - Orchestrator
   orchestrator-db:
     image: postgres:16-alpine
     container_name: booking-orchestrator-db
@@ -88,13 +54,15 @@ services:
     networks:
       - booking-network
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U trung -d orchestratordb" ]
+      test: ["CMD-SHELL", "pg_isready -U trung -d orchestratordb"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
-      
-  # Redis Cache
+    volumes:
+      - orchestrator-data:/var/lib/postgresql/data
+
+  # Redis
   redis:
     image: redis:7-alpine
     container_name: booking-redis
@@ -112,7 +80,7 @@ services:
       - ./redis-data:/data
     command: redis-server --appendonly yes
 
-  # Seq for logging
+  # Seq
   seq:
     image: datalust/seq:latest
     container_name: booking-seq
@@ -123,8 +91,8 @@ services:
       - ACCEPT_EULA=Y
     networks:
       - booking-network
-    
-  # rabbitMQ
+
+  # RabbitMQ
   rabbitmq:
     image: rabbitmq:3-management
     container_name: booking-rabbitmq
@@ -144,4 +112,8 @@ networks:
 
 volumes:
   identity-data:
+    driver: local
+  property-data:
+    driver: local
+  orchestrator-data:
     driver: local

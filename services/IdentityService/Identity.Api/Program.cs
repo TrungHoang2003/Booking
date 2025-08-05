@@ -33,6 +33,7 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBroker
 builder.Services.AddMassTransit(busConfigurator =>
 {
     // Register consumers
+    busConfigurator.AddConsumers(typeof(Program).Assembly);
     
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {

@@ -68,6 +68,9 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBroker
 // Cấu hình và khởi tạo MassTransit dùng RabbitMQ
 builder.Services.AddMassTransit(busConfigurator =>
 {
+    // Đăng ký consumers
+    busConfigurator.AddConsumers(typeof(Program).Assembly);
+    
     // Đăng ký Saga
     busConfigurator.AddSagaStateMachine<BecomeHostSaga, BecomeHostSagaData>()
         .EntityFrameworkRepository(r =>
@@ -78,7 +81,6 @@ builder.Services.AddMassTransit(busConfigurator =>
                 optionsBuilder.UseNpgsql(postgresConnectionString);
             });
         });
-    
     
     busConfigurator.UsingRabbitMq((context, cfg) =>
     {
@@ -111,6 +113,7 @@ app.MapControllers();
 try
 {
     Log.Information("Starting Orchestrator Service...");
+    Log.Information("Using connection string: {postgresConnectionString}",postgresConnectionString );
     Log.Information("Using Redis connection string: {RedisConnectionString}", redisConnectionString);
     Log.Information("Environment: {Environment}", environment);
     app.Run();

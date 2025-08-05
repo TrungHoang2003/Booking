@@ -2,21 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Orchestrator.Api.Database;
+using Orchestrator.Infrastructure.Database;
 
 #nullable disable
 
-namespace Orchestrator.Api.Migrations
+namespace Orchestrator.Infrastructure.Migrations
 {
     [DbContext(typeof(SagaDbContext))]
-    [Migration("20250805014410_InitDb")]
-    partial class InitDb
+    partial class SagaDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +22,7 @@ namespace Orchestrator.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Orchestrator.Api.Sagas.BecomeHostSagaData", b =>
+            modelBuilder.Entity("Orchestrator.Domain.Models.BecomeHostSagaData", b =>
                 {
                     b.Property<Guid>("CorrelationId")
                         .ValueGeneratedOnAdd()

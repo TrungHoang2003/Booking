@@ -24,8 +24,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Orchestrator.Application\Orchestrator.Application.csproj" />
+      <ProjectReference Include="..\Orchestrator.Infrastructure\Orchestrator.Infrastructure.csproj" />
       <ProjectReference Include="..\..\..\shared\BuildingBlocks\BuildingBlocks.csproj" />
-      <ProjectReference Include="..\..\..\Shared\Contracts\Contracts.csproj" />
+      <ProjectReference Include="..\..\..\shared\Contracts\Contracts.csproj" />
     </ItemGroup>
 
 </Project>

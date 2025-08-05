@@ -1,11 +1,11 @@
-
 using BuildingBlocks.Interfaces;
-using Contracts.DTOs;
+using Contracts.Drafts;
 
-namespace Contracts.Events;
+namespace Contracts.Messages;
 
 public class BecomeHostStarted : IEvent
 {
     public Guid CorrelationId { get; set; }
     public int HostId { get; set; }
+    public BecomeHostDraft Draft { get; set; }
 }

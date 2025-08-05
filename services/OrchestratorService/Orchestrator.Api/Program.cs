@@ -1,19 +1,17 @@
 using BuildingBlocks.Commons;
-using BuildingBlocks.Interfaces;
 using BuildingBlocks.Middlewares;
-using BuildingBlocks.Services;
 using DotNetEnv;
 using MassTransit;
+using MassTransit.EntityFrameworkCoreIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Orchestrator.Api.Database;
-using Orchestrator.Api.Interfaces;
-using Orchestrator.Api.Sagas;
-using Orchestrator.Api.Services;
+using Orchestrator.Application;
+using Orchestrator.Application.Sagas;
+using Orchestrator.Domain.Models;
+using Orchestrator.Infrastructure;
+using Orchestrator.Infrastructure.Database;
 using Scalar.AspNetCore;
 using Serilog;
-using Sprache;
-using StackExchange.Redis;
 
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 var enFile = environment switch
@@ -33,25 +31,18 @@ if (File.Exists(envPath))
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddScoped<IRedisService, RedisService>();
-builder.Services.AddScoped<IBecomeHostDraftService, BecomeHostDraftService>();
 builder.Services.AddControllers();
 
 // ConnectionStrings
 var redisConnectionString = builder.Configuration["ConnectionStrings:Redis"];
 var postgresConnectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 
-builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
-{
-    if (string.IsNullOrEmpty(redisConnectionString))
-    {
-        Log.Error("Redis connection string is null or empty");
-        throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty");
-    }
-            
-    var configOptions = ConfigurationOptions.Parse(redisConnectionString);
-    return ConnectionMultiplexer.Connect(configOptions);
-});
+
+// Add Infrastructure layer with PostgresSQL configuration
+builder.Services.AddInfrastructure(redisConnectionString, postgresConnectionString);
+
+// Add Application layer
+builder.Services.AddApplication();
 
 // Serilog
 builder.Host.UseSerilog((context, services, configuration) => configuration
@@ -71,15 +62,15 @@ builder.Services.AddMassTransit(busConfigurator =>
     // Đăng ký consumers
     busConfigurator.AddConsumers(typeof(Program).Assembly);
     
-    // Đăng ký Saga
+    // Đăng ký Saga - sử dụng DbContext đã được đăng ký trong Infrastructure
     busConfigurator.AddSagaStateMachine<BecomeHostSaga, BecomeHostSagaData>()
         .EntityFrameworkRepository(r =>
         {
             r.ConcurrencyMode = ConcurrencyMode.Pessimistic; // hoặc Optimistic
-            r.AddDbContext<DbContext, SagaDbContext>((provider, optionsBuilder) =>
-            {
-                optionsBuilder.UseNpgsql(postgresConnectionString);
-            });
+
+            r.UsePostgres();
+            
+            r.ExistingDbContext<Orchestrator.Infrastructure.Database.SagaDbContext>();
         });
     
     busConfigurator.UsingRabbitMq((context, cfg) =>
@@ -91,6 +82,9 @@ builder.Services.AddMassTransit(busConfigurator =>
             h.Username(settings.Username);
             h.Password(settings.Password);
         });
+        
+        // Configure endpoints for consumers and sagas
+        cfg.ConfigureEndpoints(context);
     }); 
 });
 

@@ -1,8 +1,8 @@
 using System.Text.Json;
 using BuildingBlocks.Interfaces;
+using Contracts.Drafts;
 using Contracts.DTOs;
 using Contracts.Messages;
-using Orchestrator.Api.Drafts;
 using Orchestrator.Api.Interfaces;
 
 namespace Orchestrator.Api.Services;

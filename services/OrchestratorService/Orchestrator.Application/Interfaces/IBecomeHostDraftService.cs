@@ -1,8 +1,7 @@
+using Contracts.Drafts;
 using Contracts.DTOs;
-using Contracts.Messages;
-using Orchestrator.Api.Drafts;
 
-namespace Orchestrator.Api.Interfaces;
+namespace Orchestrator.Application.Interfaces;
 
 public interface IBecomeHostDraftService
 {

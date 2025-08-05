@@ -1,8 +1,5 @@
-using Contracts.Events;
+using Contracts.Drafts;
 using Contracts.Messages;
-using Contracts.DTOs;
-using Orchestrator.Api.Drafts;
-using Orchestrator.Api.Sagas;
 
 namespace Orchestrator.Api.Extensions;
 

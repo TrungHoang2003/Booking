@@ -1,10 +1,8 @@
 using Contracts.DTOs;
-using Contracts.Events;
 using Contracts.Messages;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Orchestrator.Api.Drafts;
-using Orchestrator.Api.Interfaces;
+using Orchestrator.Application.Interfaces;
 
 namespace Orchestrator.Api.Controllers;
 
@@ -13,147 +11,266 @@ namespace Orchestrator.Api.Controllers;
 public class BecomeHostDraftController(IBecomeHostDraftService service, IPublishEndpoint publishEndpoint) : Controller
 {
     [HttpPost("start")]
-    public async Task<BecomeHostDraft> Start()
+    public async Task<IActionResult> Start()
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            var draft = await service.StartAsync(userIdInt);
+            return Ok(draft);
         }
-        return await service.StartAsync(userIdInt);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to start draft: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("get")]
-    public async Task<BecomeHostDraft> Get([FromBody] Guid draftId )
+    public async Task<IActionResult> Get([FromQuery] Guid draftId)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        var draft = await service.GetAsync(draftId, userIdInt);
-        return draft;
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to get draft: {ex.Message}");
+        }
     }
 
     [HttpPost("update-property-type")]
-    public async Task UpdatePropertyType([FromQuery] Guid draftId, [FromQuery] int propertyTypeId)
+    public async Task<IActionResult> UpdatePropertyType([FromQuery] Guid draftId, [FromQuery] int propertyTypeId)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdatePropertyType(draftId, userIdInt, propertyTypeId);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdatePropertyType(draftId, userIdInt, propertyTypeId);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update property type: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-property-name")]
-    public async Task UpdatePropertyName([FromQuery] Guid draftId, [FromQuery] string propertyName)
+    public async Task<IActionResult> UpdatePropertyName([FromQuery] Guid draftId, [FromQuery] string propertyName)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdatePropertyName(draftId, userIdInt, propertyName);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdatePropertyName(draftId, userIdInt, propertyName);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update property name: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-location")]
-    public async Task UpdateLocation([FromQuery] Guid draftId, [FromBody] LocationDto locationDto)
+    public async Task<IActionResult> UpdateLocation([FromQuery] Guid draftId, [FromBody] LocationDto locationDto)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (locationDto == null)
+            return BadRequest("Location information is required");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateLocation(draftId, userIdInt, locationDto);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateLocation(draftId, userIdInt, locationDto);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update location: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-rental-unit")]
-    public async Task UpdateRentalUnit([FromQuery] Guid draftId, [FromBody] RentalUnitDto rentalUnitDto)
+    public async Task<IActionResult> UpdateRentalUnit([FromQuery] Guid draftId, [FromBody] RentalUnitDto rentalUnitDto)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (rentalUnitDto == null)
+            return BadRequest("Rental unit information is required");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateRentalUnit(draftId, userIdInt, rentalUnitDto);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateRentalUnit(draftId, userIdInt, rentalUnitDto);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update rental unit: {ex.Message}");
+        }
     }
 
     [HttpPost("update-bedroom")]
-    public async Task UpdateBedrooms([FromQuery] Guid draftId, [FromBody] List<BedroomDto> bedroomDtos)
+    public async Task<IActionResult> UpdateBedrooms([FromQuery] Guid draftId, [FromBody] List<BedroomDto> bedroomDtos)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (bedroomDtos == null || !bedroomDtos.Any())
+            return BadRequest("At least one bedroom is required");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateBedrooms(draftId, userIdInt, bedroomDtos);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateBedrooms(draftId, userIdInt, bedroomDtos); 
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update bedrooms: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-amenities")]
-    public async Task UpdateAmenities([FromQuery] Guid draftId, [FromBody] List<int> amenities)
+    public async Task<IActionResult> UpdateAmenities([FromQuery] Guid draftId, [FromBody] List<int> amenities)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (amenities == null)
+            return BadRequest("Amenities list cannot be null");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateAmenities(draftId, userIdInt, amenities);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateAmenities(draftId, userIdInt, amenities);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update amenities: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-languages")]
-    public async Task UpdateLanguages([FromQuery] Guid draftId, [FromBody] List<int> languages)
+    public async Task<IActionResult> UpdateLanguages([FromQuery] Guid draftId, [FromBody] List<int> languages)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (languages == null)
+            return BadRequest("Languages list cannot be null");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateLanguages(draftId, userIdInt, languages);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateLanguages(draftId, userIdInt, languages);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update languages: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-houseRule")]
-    public async Task UpdateHouseRule([FromQuery] Guid draftId, [FromBody] HouseRuleDto houseRuleDto)
+    public async Task<IActionResult> UpdateHouseRule([FromQuery] Guid draftId, [FromBody] HouseRuleDto houseRuleDto)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+        if (houseRuleDto == null)
+            return BadRequest("House rule information is required");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateHouseRule(draftId, userIdInt, houseRuleDto);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateHouseRule(draftId, userIdInt, houseRuleDto);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update house rule: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("update-photos")]
-    public async Task UpdatePhotos([FromQuery] Guid draftId, [FromBody] List<string> base64Images)
+    public async Task<IActionResult> UpdatePhotos([FromQuery] Guid draftId, [FromBody] List<string> base64Images)
     {
-        var userId = Request.Headers["X-User-Id"];
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
+
+        if (base64Images == null)
+            return BadRequest("Images list cannot be null");
+
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            await service.UpdateImage(draftId, userIdInt, base64Images);
+            var draft = await service.GetAsync(draftId, userIdInt);
+            return Ok(draft);
         }
-        await service.UpdateImage(draftId, userIdInt, base64Images);
+        catch (Exception ex)
+        {
+            return BadRequest($"Failed to update photos: {ex.Message}");
+        }
     }
-    
+
     [HttpPost("submit-draft")]
-    public async Task CompleteDraft([FromQuery] Guid draftId)
+    public async Task<IActionResult> CompleteDraft([FromQuery] Guid draftId)
     {
-        var userId = Request.Headers["X-User-Id"];
+        var userId = Request.Headers["X-User-Id"].ToString();
+        if (!int.TryParse(userId, out var userIdInt))
+            return BadRequest("Invalid userId");
 
-        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var userIdInt))
+        try
         {
-            throw new UnauthorizedAccessException("User is not authenticated or userId is invalid.");
+            var draft = await service.GetAsync(draftId, userIdInt);
+
+            // // Validate draft before submission
+            // var submissionValidation = BecomeHostDraftValidator.ValidateForSubmission(draft);
+            // if (!submissionValidation.IsValid)
+            //     return BadRequest(submissionValidation.ErrorMessage);
+
+            var startBecomeHost = new StartBecomeHost
+            {
+                CorrelationId = draftId,
+                HostId = userIdInt,
+                Draft = draft
+            };
+            await publishEndpoint.Publish(startBecomeHost);
+
+            await service.CompleteDraft(draftId, userIdInt);
+
+            return Ok(new
+            {
+                CorrelationId = draftId,
+                Message = "Draft submitted successfully. Use the CorrelationId to track progress."
+            });
         }
-        
-        var correlationId = Guid.NewGuid();
-       
-        // publish Become Host Saga Event
-        var startSagaEvent = new BecomeHostStarted
+        catch (Exception ex)
         {
-            CorrelationId =  correlationId,
-            HostId = userIdInt
-        };
-
-        await publishEndpoint.Publish(startSagaEvent);
-        await service.CompleteDraft(draftId, userIdInt);
+            return BadRequest($"Failed to submit draft: {ex.Message}");
+        }
     }
 }

@@ -1,7 +1,7 @@
+using Contracts.Drafts;
 using Contracts.Events;
 using Contracts.Messages;
 using MassTransit;
-using Orchestrator.Api.Drafts;
 using Orchestrator.Api.Extensions;
 
 namespace Orchestrator.Api.Sagas;
@@ -10,6 +10,10 @@ public class BecomeHostSagaData: SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
     public State CurrentState { get; set; }
+    public State CreatingProperty { get; set; }
+    public State AddingRentalUnit { get; set; }
+    public State AddingBedroom { get; set; }
+    public State UpdatingHostProfile { get; set; }
     public int HostId { get; set; }
     public int PropertyId { get; set; }
     
@@ -21,14 +25,8 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
 {
     private readonly ILogger<BecomeHostSaga> _logger;
     
-    // States
-    private State CreatingProperty { get; set; }
-    private State AddingRentalUnit { get; set; }
-    private State AddingBedroom { get; set; }
-    private State UpdatingHostProfile { get; set; }
-    
     // Events
-    private Event<BecomeHostStarted> Started { get; set; }
+    private Event<StartBecomeHost> Started { get; set; }
     private Event<PropertyCreated> PropertyCreated { get; set; }
     private Event<RentalUnitAdded> RentalUnitAdded { get; set; }
     private Event<BedroomAdded> BedroomAdded { get; set; }
@@ -43,6 +41,7 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
     public BecomeHostSaga(ILogger<BecomeHostSaga> logger)
     {
         _logger = logger;
+        
         InstanceState(x => x.CurrentState);
 
         Event(() => Started, x
@@ -76,11 +75,19 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
             When(Started)
                 .Then(context =>
                 {
-                    _logger.LogInformation("Saga started");
+                    _logger.LogInformation("Saga started for HostId: {HostId}, CorrelationId: {CorrelationId}", 
+                        context.Message.HostId, context.Message.CorrelationId);
                     context.Saga.HostId = context.Message.HostId;
+                    context.Saga.Draft = context.Message.Draft;
                 })
                 .TransitionTo(CreatingProperty)
-                .Publish(context => context.Saga.Draft.ToCreateProperty())
+                .Publish(context => 
+                {
+                    var createPropertyCommand = context.Saga.Draft.ToCreateProperty();
+                    _logger.LogInformation("Publishing CreateProperty command for CorrelationId: {CorrelationId}", 
+                        context.Message.CorrelationId);
+                    return createPropertyCommand;
+                })
         );
 
         During(CreatingProperty,
@@ -121,7 +128,7 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
 
         During(UpdatingHostProfile,
             When(HostProfileUpdated)
-                .Then(context =>
+                .Then(_ =>
                 {
                     _logger.LogInformation("Saga completed");
                 })

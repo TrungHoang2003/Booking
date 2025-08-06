@@ -1,8 +1,11 @@
+using System.Text.Json;
 using BuildingBlocks.Interfaces;
+using Contracts.Drafts;
 using Contracts.Events;
 using Contracts.Messages;
 using MassTransit;
 using Property.Application.Errors;
+using Property.Domain.Aggregates.AggregateRoot;
 using Property.Domain.Aggregates.AmenityAggregate;
 using Property.Domain.Aggregates.RentalUnitAggregate;
 using Property.Domain.ValueObjects;
@@ -10,40 +13,40 @@ using Property.Infrastructure.Repositories;
 
 namespace Property.Application.Consumers;
 
-public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepository propertyRepository, IUnitOfWork unitOfWork) : IConsumer<AddRentalUnit>
+public class AddRentalUnitConsumer(IPropertyTypeRepository propertyTypeRepos, IAmenityRepository amenityRepo,
+    IPropertyRepository propertyRepo, IUnitOfWork unitOfWork) : IConsumer<AddRentalUnit>
 {
     public async Task Consume(ConsumeContext<AddRentalUnit> context)
     {
+        var addRentalUnit = context.Message;
         int rentalUnitId;
         
-        var addRentalUnit = context.Message;
         var unitPrice = new Price(context.Message.Amount, context.Message.Currency);
         
         var listAmenity = new List<Amenity>();
 
         foreach (var amenityId in context.Message.AmenityIds)
         {
-            var amenity = await amenityRepo.GetByIdAsync(amenityId) ?? throw new Exception("Amenity not found");
+            var amenity = await amenityRepo.GetById(amenityId);
             listAmenity.Add(amenity);
         }
         
-        var property = await propertyRepository.GetByIdAsync(context.Message.PropertyId);
-        if (property is null) throw new Exception("Property not found");
+        var property = await propertyRepo.GetById(context.Message.PropertyId);
+        var propertyType = await propertyTypeRepos.GetById(context.Message.PropertyTypeId);
 
-        if (property.Type.IsRoomBased)
+        if (propertyType.IsRoomBased)
         {
             var roomRentalUnit = new RoomRentalUnit(
                 addRentalUnit.Name,
                 addRentalUnit.MaxAdults,
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Quantity,
-                addRentalUnit.SharedBathroom);
+                addRentalUnit.SharedBathroom,
+                unitPrice,
+                RentalUnitType.Room());
             
-            roomRentalUnit.SetPrice(unitPrice);
             roomRentalUnit.AddListAmenity(listAmenity);
             property.AddRentalUnit(roomRentalUnit);
-
-            rentalUnitId = roomRentalUnit.Id;
         }
         else
         {
@@ -54,17 +57,18 @@ public class AddRentalUnitConsumer(IAmenityRepository amenityRepo, IPropertyRepo
                 addRentalUnit.MaxChildren,
                 addRentalUnit.Size,
                 addRentalUnit.BedroomsCount,
-                addRentalUnit.BathroomsCount);
-
+                addRentalUnit.BathroomsCount,
+                unitPrice,
+                RentalUnitType.EntireProperty());
+            
             entireRentalUnit.AddListAmenity(listAmenity);
             property.AddRentalUnit(entireRentalUnit);
-
-            rentalUnitId = entireRentalUnit.Id;
         }
 
-        await propertyRepository.Update(property);
+        await propertyRepo.Update(property);
         await unitOfWork.SaveChangesAsync();
-        
+        rentalUnitId = property.RentalUnits.First().Id;
+
         await context.RespondAsync(new RentalUnitAdded
         {
             CorrelationId = context.Message.CorrelationId,

@@ -1,10 +1,12 @@
 using BuildingBlocks.Commons;
 using BuildingBlocks.Middlewares;
+using Contracts.Messages;
 using DotNetEnv;
 using MassTransit;
 using Microsoft.Extensions.Options;
 using Property.Api;
 using Property.Application;
+using Property.Application.Consumers;
 using Property.Infrastructure;
 using Scalar.AspNetCore;
 using Serilog;
@@ -37,7 +39,9 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBroker
 builder.Services.AddMassTransit(busConfigurator =>
 {
     // Đăng ký consumers
-    busConfigurator.AddConsumers(typeof(Program).Assembly);
+    busConfigurator.AddConsumer<CreatePropertyConsumer>();
+    busConfigurator.AddConsumer<AddRentalUnitConsumer>();
+    busConfigurator.AddConsumer<AddBedroomConsumer>();
     
    busConfigurator.UsingRabbitMq((context, cfg) =>
    {
@@ -48,6 +52,9 @@ builder.Services.AddMassTransit(busConfigurator =>
            h.Username(settings.Username);
            h.Password(settings.Password);
        });
+       
+       // Configure endpoints for consumers and sagas
+       cfg.ConfigureEndpoints(context);
    }); 
 });
 

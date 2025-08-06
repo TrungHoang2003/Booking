@@ -6,26 +6,28 @@ using Property.Domain.ValueObjects;
 
 namespace Property.Domain.Aggregates.RentalUnitAggregate;
 
-public abstract class RentalUnit: Entity
+public class RentalUnit: Entity
 {
     public int PropertyId { get; set; }
     public int MaxAdults { get; set; }
     public int MaxChildren { get; set; }
    
     // Value Objects
-    public Price BasePricePerNight { get; set; } 
-    public RentalUnitType Type { get; set; }
-    
+    public Price BasePricePerNight { get; set; }
+    public RentalUnitType Type { get; set; } 
+
     // Navigation properties
     public List<RentalUnitAmenity> Amenities = [];
-    public List<Image> Images= [];
     public List<Bedroom> Bedrooms = [];
    
-    // Constructors
-    public RentalUnit(int maxAdults, int maxChildren) 
+    // Constructor
+    protected RentalUnit(){}
+    public RentalUnit(int maxAdults, int maxChildren, Price basePricePerNight, RentalUnitType type) 
     {
         MaxAdults = maxAdults;
         MaxChildren = maxChildren;
+        BasePricePerNight = basePricePerNight;
+        Type = type;
     }
     
     public void AddAmenity(Amenity amenity)

@@ -12,5 +12,12 @@ public record RentalUnitType
     }
     public static RentalUnitType Room() => new ("Room");
     public static RentalUnitType EntireProperty() => new("EntireProperty");
+    
+    public static RentalUnitType FromValue(string value) => value switch
+    {
+        "RoomBased" => Room(),
+        "EntireProperty" => EntireProperty(),
+        _ => throw new ArgumentException($"Invalid RentalUnitType value: {value}")
+    };
 
 }

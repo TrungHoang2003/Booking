@@ -5,7 +5,7 @@ namespace Property.Infrastructure.Repositories;
 
 public interface IBedroomRepository : IGenericRepository<Bedroom>;
 
-public class BedroomRepository(PropertyDbContext dbContext) : GenericRepository<Bedroom>(dbContext), IGenericRepository<Bedroom>
+public class BedroomRepository(PropertyDbContext dbContext) : GenericRepository<Bedroom>(dbContext), IBedroomRepository
 {
     
 }

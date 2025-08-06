@@ -1,9 +1,12 @@
+using BuildingBlocks.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Property.Infrastructure.DbHelper;
 
 namespace Property.Infrastructure.Repositories;
 
-public interface IGenericRepository<T> where T : class
+public interface IGenericRepository<T> where T : class, IEntity
 {
+    public Task<T> GetById(int id);
     public Task Update(T entity);
     public Task Create(T entity);
     public Task Delete(T entity);
@@ -11,7 +14,7 @@ public interface IGenericRepository<T> where T : class
 }
 
 public class GenericRepository<T>(PropertyDbContext dbContext):IGenericRepository<T> 
-    where T : class
+    where T : class, IEntity
 {
     public async Task AddRangeAsync(List<T> entities)
     {
@@ -21,6 +24,13 @@ public class GenericRepository<T>(PropertyDbContext dbContext):IGenericRepositor
     {
         await dbContext.Set<T>().AddAsync(entity);
     }
+
+    public async Task<T> GetById(int id)
+    {
+        return await dbContext.Set<T>().FirstOrDefaultAsync(e => e.Id == id)
+               ?? throw new Exception($"{typeof(T).Name} with Id = {id} not found");
+    }
+
     public Task Update(T entity)
     {
         dbContext.Set<T>().Update(entity);

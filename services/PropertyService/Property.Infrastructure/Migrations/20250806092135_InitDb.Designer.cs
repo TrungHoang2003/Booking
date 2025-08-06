@@ -12,7 +12,7 @@ using Property.Infrastructure.DbHelper;
 namespace Property.Infrastructure.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    [Migration("20250804032110_InitDb")]
+    [Migration("20250806092135_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Property.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.6")
+                .HasAnnotation("ProductVersion", "9.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -425,8 +425,6 @@ namespace Property.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EntityId");
-
                     b.ToTable("Images", (string)null);
                 });
 
@@ -747,18 +745,6 @@ namespace Property.Infrastructure.Migrations
 
             modelBuilder.Entity("Property.Domain.Aggregates.ImageAggregate.Image", b =>
                 {
-                    b.HasOne("Property.Domain.Aggregates.AggregateRoot.Property", null)
-                        .WithMany("Images")
-                        .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Property.Domain.Aggregates.RentalUnitAggregate.RentalUnit", null)
-                        .WithMany("Images")
-                        .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.OwnsOne("Property.Domain.ValueObjects.EntityType", "EntityType", b1 =>
                         {
                             b1.Property<int>("ImageId")
@@ -849,8 +835,6 @@ namespace Property.Infrastructure.Migrations
                 {
                     b.Navigation("Amenities");
 
-                    b.Navigation("Images");
-
                     b.Navigation("Languages");
 
                     b.Navigation("RentalUnits");
@@ -861,8 +845,6 @@ namespace Property.Infrastructure.Migrations
                     b.Navigation("Amenities");
 
                     b.Navigation("Bedrooms");
-
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

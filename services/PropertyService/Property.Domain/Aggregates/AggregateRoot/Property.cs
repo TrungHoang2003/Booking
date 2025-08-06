@@ -21,13 +21,11 @@ public class Property : BuildingBlocks.Interfaces.AggregateRoot
     public Location? Location { get; private set; }
 
     // Navigation Properties
-    public PropertyType Type = null!;
+    public PropertyType? Type { get; init; }
     public List<PropertyAmenity> Amenities = [];
     public List<PropertyLanguage> Languages = [];
     public List<RentalUnit> RentalUnits = [];
-    public List<Image> Images = [];
 
-    //Constructors
     public Property(int propertyTypeId, int hostId, string name, string? description, int? floorNumber,
         string? thumbnailUrl, string? neighborhoodDescription)
     {
@@ -39,7 +37,6 @@ public class Property : BuildingBlocks.Interfaces.AggregateRoot
         ThumbnailUrl = thumbnailUrl;
         NeighborhoodDescription = neighborhoodDescription;
 
-        //AddDomainEvent(new PropertyCreatedDomainEvent(this.Id, propertyTypeId, hostId, name, description, floorNumber, rules, location, thumbnailUrl));
         if (hostId <= 0) throw new ArgumentException("hostId must be valid");
         if (propertyTypeId <= 0) throw new ArgumentException("propertyTypeId must be valid");
     }
@@ -50,7 +47,6 @@ public class Property : BuildingBlocks.Interfaces.AggregateRoot
         ArgumentNullException.ThrowIfNull(rentalUnit);
 
         RentalUnits.Add(rentalUnit);
-        //AddDomainEvent(new RentalUnitAddedToPropertyDomainEvent(this.Id, rentalUnit.Id));
     }
     
     public void AddAmenity(Amenity amenity)
@@ -84,12 +80,6 @@ public class Property : BuildingBlocks.Interfaces.AggregateRoot
         }
     }
 
-    public void AddType(PropertyType type)
-    {
-        ArgumentNullException.ThrowIfNull(type);
-        Type = type;
-    }
-    
     public void UpdateHouseRule(HouseRule houseRule)
     {
         ArgumentNullException.ThrowIfNull(houseRule);

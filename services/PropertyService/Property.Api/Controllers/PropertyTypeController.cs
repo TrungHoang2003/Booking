@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Property.Application.CQRS.Queries;
 
 namespace Property.Api.Controllers;
 
@@ -8,12 +7,5 @@ namespace Property.Api.Controllers;
 [ApiController]
 public class PropertyTypeController(IMediator mediator):Controller
 {
-    [HttpGet("get-property-types")]
-    public async Task<IActionResult> GetPropertyTypes(GetPropertyTypesQuery query)
-    {
-        var result = await mediator.Send(query);
-        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
-    }
-    
     
 }

@@ -44,10 +44,6 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
             .HasForeignKey(ra => ra.RentalUnitId)
             .OnDelete(DeleteBehavior.Cascade);
         
-        builder.HasMany(r => r.Images)
-            .WithOne()
-            .HasForeignKey(i => i.EntityId);
-
         builder.HasMany(r => r.Bedrooms)
             .WithOne()
             .HasForeignKey(b => b.RentalUnitId);

@@ -34,6 +34,7 @@ public static class PropertyInfrastructureDi
       services.AddScoped<IImageRepository, ImageRepository>();
       services.AddScoped<ILanguageRepository, LanguageRepository>();
       services.AddScoped<IUnitOfWork, UnitOfWork>();
+      services.AddScoped<IBedroomRepository, BedroomRepository>();
       services.AddScoped<PostgresServer>();
    }
 }

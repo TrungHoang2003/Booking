@@ -47,6 +47,22 @@ namespace Property.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EntityId = table.Column<int>(type: "integer", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: false),
+                    IsPrimary = table.Column<bool>(type: "boolean", nullable: false),
+                    EntityType = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Languages",
                 columns: table => new
                 {
@@ -208,34 +224,6 @@ namespace Property.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    EntityId = table.Column<int>(type: "integer", nullable: false),
-                    Url = table.Column<string>(type: "text", nullable: false),
-                    IsPrimary = table.Column<bool>(type: "boolean", nullable: false),
-                    EntityType = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Properties_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "Properties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Images_RentalUnits_EntityId",
-                        column: x => x.EntityId,
-                        principalTable: "RentalUnits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RentalUnitAmenities",
                 columns: table => new
                 {
@@ -317,11 +305,6 @@ namespace Property.Infrastructure.Migrations
                 name: "IX_Bedrooms_RentalUnitId",
                 table: "Bedrooms",
                 column: "RentalUnitId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_EntityId",
-                table: "Images",
-                column: "EntityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Properties_PropertyTypeId",

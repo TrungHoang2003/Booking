@@ -16,11 +16,13 @@ public class ImageConfiguration:IEntityTypeConfiguration<Image>
         builder.Property(i => i.Id)
             .ValueGeneratedOnAdd()
             .IsRequired();
-        
+
         // config value objects
         builder.OwnsOne(i=>i.EntityType, entityType=>
         {
             entityType.Property(et=>et.Value).HasColumnName("EntityType").IsRequired();
         });
+        
+        //builder.HasIndex(e => new { e.EntityId, e.EntityType });
     }
 }

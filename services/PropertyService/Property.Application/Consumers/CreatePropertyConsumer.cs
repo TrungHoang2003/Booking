@@ -11,7 +11,7 @@ using Property.Infrastructure.Repositories;
 namespace Property.Application.Consumers;
 
 public class CreatePropertyConsumer(ILanguageRepository languageRepo, 
-    IPropertyRepository repo, IPropertyTypeRepository propertyTypeRepo,
+    IPropertyRepository repo,
     IUnitOfWork unitOfWork, CloudinaryService cloudinary, IImageRepository imageRepo) : IConsumer<CreateProperty>
 {
     public async Task Consume(ConsumeContext<CreateProperty> context)
@@ -41,6 +41,9 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
             null,
             context.Message.NeighborhoodDescription);
         
+        await repo.Create(property);
+        await unitOfWork.SaveChangesAsync();
+        
         property.UpdateHouseRule(houseRules);
         property.UpdateLocation(location);
         
@@ -50,22 +53,13 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
         if(context.Message.LanguageIds!= null)
             await AddLanguages(context, property); 
         
-        await AddType(context, property); 
+        await unitOfWork.SaveChangesAsync(); 
         
-        await repo.Create(property);
-        await unitOfWork.SaveChangesAsync();
-
         await context.RespondAsync<PropertyCreated>(new
         {
             PropertyId = property.Id,
             Correlationid = context.Message.CorrelationId,
         });
-    }
-    
-    private async Task AddType(ConsumeContext<CreateProperty> context, Domain.Aggregates.AggregateRoot.Property property)
-    {
-        var propertyType = await propertyTypeRepo.GetById(context.Message.PropertyTypeId) ?? throw new Exception("Property type not found");
-        property.AddType(propertyType);
     }
 
     private async Task AddImages(ConsumeContext<CreateProperty> context, int propertyId)
@@ -75,10 +69,8 @@ public class CreatePropertyConsumer(ILanguageRepository languageRepo,
         foreach (var base64Image in context.Message.Base64Images!)
         {
             var imageUrl = await cloudinary.UploadImage(base64Image); 
-            var image = new Image(propertyId, imageUrl, false);
-            
             var type = EntityType.Property;
-            image.SetEntityType(type);
+            var image = new Image(propertyId, imageUrl, false, type);
             
             listImage.Add(image);
         }

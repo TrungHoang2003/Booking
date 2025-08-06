@@ -46,11 +46,6 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
             .HasForeignKey(ru => ru.PropertyId)
             .OnDelete(DeleteBehavior.Cascade);
         
-        builder.HasMany(p=>p.Images)
-            .WithOne()
-            .HasForeignKey(i => i.EntityId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
         builder.HasOne(p=>p.Type)
             .WithMany()
             .HasForeignKey(pt=>pt.PropertyTypeId)

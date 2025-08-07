@@ -1,20 +1,16 @@
-using BuildingBlocks.Commons;
-using BuildingBlocks.Middlewares;
-using DotNetEnv;
+using BuildingBlocks.Extensions;
 using MassTransit;
 using MassTransit.EntityFrameworkCoreIntegration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Orchestrator.Application;
 using Orchestrator.Application.Sagas;
 using Orchestrator.Domain.Models;
 using Orchestrator.Infrastructure;
-using Orchestrator.Infrastructure.Database;
-using Scalar.AspNetCore;
-using Serilog;
+using DotNetEnv;
+using OrchestratorSagaDbContext = Orchestrator.Infrastructure.Database.SagaDbContext;
 
+// Load environment-specific .env file
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
-var enFile = environment switch
+var envFile = environment switch
 {
     "Development" => ".env.local",
     "Docker" => ".env.docker",
@@ -22,7 +18,7 @@ var enFile = environment switch
     _ => ".env.local"
 };
 
-var envPath = Path.Combine(Directory.GetCurrentDirectory(), enFile);
+var envPath = Path.Combine(Directory.GetCurrentDirectory(), envFile);
 if (File.Exists(envPath))
 {
     Env.Load(envPath);
@@ -30,94 +26,42 @@ if (File.Exists(envPath))
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
-builder.Services.AddControllers();
+// Add common API services with CORS
+builder.Services.AddCommonApiServicesWithCors();
 
-// ConnectionStrings
+// Get connection strings from configuration
 var redisConnectionString = builder.Configuration["ConnectionStrings:Redis"];
 var postgresConnectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 
-
-// Add Infrastructure layer with PostgresSQL configuration
+// Add Infrastructure and Application layers
 builder.Services.AddInfrastructure(redisConnectionString, postgresConnectionString);
-
-// Add Application layer
 builder.Services.AddApplication();
 
-// Serilog
-builder.Host.UseSerilog((context, services, configuration) => configuration
-        .ReadFrom.Configuration(context.Configuration) // Đọc cấu hình từ appsettings.json
-        .ReadFrom.Services(services) // Cho phép DI cho các enricher/sinks nếu cần
-);
+// Add MessageBroker configuration
+builder.Services.AddMessageBrokerSettings(builder.Configuration);
 
-// Lấy section "MessageBroker" từ file appsettings.json và bind nó vào class MessageBrokerSettings.
-builder.Services.Configure<MessageBrokerSettings>(builder.Configuration.GetSection("MessageBroker"));
-
-// Đăng ký MessageBrokerSettings 
-builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
-
-// Cấu hình và khởi tạo MassTransit dùng RabbitMQ
-builder.Services.AddMassTransit(busConfigurator =>
+// Add MassTransit with RabbitMQ and Saga support
+builder.Services.AddMassTransitWithRabbitMqAndSaga<OrchestratorSagaDbContext>(busConfigurator =>
 {
-    // Đăng ký consumers
-    busConfigurator.AddConsumers(typeof(Program).Assembly);
-    
-    // Đăng ký Saga - sử dụng DbContext đã được đăng ký trong Infrastructure
-    busConfigurator.AddSagaStateMachine<BecomeHostSaga, BecomeHostSagaData>()
-        .EntityFrameworkRepository(r =>
-        {
-            r.ConcurrencyMode = ConcurrencyMode.Pessimistic; // hoặc Optimistic
-
-            r.UsePostgres();
-            
-            r.ExistingDbContext<Orchestrator.Infrastructure.Database.SagaDbContext>();
-        });
-    
-    busConfigurator.UsingRabbitMq((context, cfg) =>
-    {
-        var settings = context.GetRequiredService<MessageBrokerSettings>();
-        
-        cfg.Host(new Uri(settings.Host), h =>
-        {
-            h.Username(settings.Username);
-            h.Password(settings.Password);
-        });
-        
-        // Configure endpoints for consumers and sagas
-        cfg.ConfigureEndpoints(context);
-    }); 
+    // Register Saga with Entity Framework
+    busConfigurator.AddSagaWithEntityFramework<BecomeHostSaga, BecomeHostSagaData, OrchestratorSagaDbContext>(
+        ConcurrencyMode.Pessimistic);
 });
+
+// Add Serilog
+builder.AddSerilogConfiguration();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+// Configure the HTTP request pipeline
+app.UseCommonDevelopmentMiddleware();
+app.UseCommonMiddleware();
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseMiddleware<ExceptionHandlerMiddleWare>();
-app.UseHttpsRedirection();
-app.UseSerilogRequestLogging();
-app.MapControllers();
+// Run with logging
+var connectionStrings = new Dictionary<string, string?>
+{
+    ["DefaultConnection"] = postgresConnectionString,
+    ["Redis"] = redisConnectionString
+};
 
-try
-{
-    Log.Information("Starting Orchestrator Service...");
-    Log.Information("Using connection string: {postgresConnectionString}",postgresConnectionString );
-    Log.Information("Using Redis connection string: {RedisConnectionString}", redisConnectionString);
-    Log.Information("Environment: {Environment}", environment);
-    app.Run();
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Application terminated unexpectedly");
-    throw;
-}
-finally
-{
-    Log.CloseAndFlush();
-}
+app.RunWithLogging("Orchestrator Service", connectionStrings, environment);

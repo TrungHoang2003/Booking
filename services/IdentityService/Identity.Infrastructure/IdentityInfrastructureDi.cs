@@ -1,4 +1,5 @@
 using BuildingBlocks.Interfaces;
+using BuildingBlocks.Middlewares;
 using Identity.Domain.Entities;
 using Identity.Infrastructure.DbHelper;
 using Identity.Infrastructure.Repositories;
@@ -39,7 +40,7 @@ public static class IdentityInfrastructureDi
             if (string.IsNullOrEmpty(redisConnectionString))
             {
                 Log.Error("Redis connection string is null or empty");
-                throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty");
+                throw new BusinessException(nameof(redisConnectionString), "Redis connection string cannot be null or empty");
             }
             
             var configOptions = ConfigurationOptions.Parse(redisConnectionString);

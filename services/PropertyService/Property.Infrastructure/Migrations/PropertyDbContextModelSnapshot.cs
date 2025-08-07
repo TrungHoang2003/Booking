@@ -747,7 +747,7 @@ namespace Property.Infrastructure.Migrations
                             b1.Property<int>("ImageId")
                                 .HasColumnType("integer");
 
-                            b1.Property<string>("Value")
+                            b1.Property<string>("Data")
                                 .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("EntityType");
@@ -799,7 +799,7 @@ namespace Property.Infrastructure.Migrations
                             b1.Property<int>("RentalUnitId")
                                 .HasColumnType("integer");
 
-                            b1.Property<string>("Value")
+                            b1.Property<string>("Data")
                                 .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("RentalType");

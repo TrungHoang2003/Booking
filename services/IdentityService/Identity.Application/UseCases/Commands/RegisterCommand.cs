@@ -1,14 +1,10 @@
-using System.Windows.Input;
 using BuildingBlocks.Commons;
 using BuildingBlocks.Interfaces;
 using Identity.Domain.Entities;
 using Identity.Infrastructure.Repositories;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using ICommand = BuildingBlocks.Interfaces.ICommand;
 using Interfaces_ICommand = BuildingBlocks.Interfaces.ICommand;
 
-namespace Identity.Application.CQRS.Commands;
+namespace Identity.Application.UseCases.Commands;
 
 public sealed record RegisterCommand(
     string UserName,
@@ -18,11 +14,11 @@ public sealed record RegisterCommand(
 ):Interfaces_ICommand;
 
 public class RegisterCommandHandler(
-    IUserRepository userRepository,
-    IRoleRepository roleRepository)
+    IUserRepository userRepository)
     : ICommandHandler<RegisterCommand>
 {
     private const string CustomerRole = "Customer";
+
     public async Task<Result> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         var user = new User
@@ -37,8 +33,9 @@ public class RegisterCommandHandler(
         {
             var errors = result.Errors.Select(e => e.Description).ToList();
             return Result.Failure(new Error("Register.Failed", string.Join(",", errors)));
-        }        var roleExists = await roleRepository.RoleExistsAsync(CustomerRole);
+        }
 
-        return Result.Success();
+        await userRepository.AddToRoleAsync(user, CustomerRole);
+        return Result.IsSuccess();
     }
 }

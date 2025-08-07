@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { BRAND_NAME } from "@/lib/constants";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Booking.com - Find deals on hotels, homes, and much more",
-  description: "Search deals on hotels, homes, and much more with Booking.com",
+  title: `${BRAND_NAME} - Find deals on hotels, homes, and much more`,
+  description: `Search deals on hotels, homes, and much more with ${BRAND_NAME}`,
 };
 
 export default function RootLayout({

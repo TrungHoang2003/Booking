@@ -9,7 +9,7 @@ public class Image: Entity
     public string Url { get; private set; } = null!;
     public bool IsPrimary { get; private set; }
     
-    // Value Objects
+    // Data Objects
     public EntityType EntityType { get; private set; }
     
     // Constructors

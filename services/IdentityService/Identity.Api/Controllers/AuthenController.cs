@@ -1,4 +1,4 @@
-using Identity.Application.CQRS.Commands;
+using BuildingBlocks.Commons;
 using Identity.Application.UseCases.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +17,14 @@ public class AuthenController(IMediator mediator, ILogger<AuthenController> logg
         logger.LogInformation("Login attempt for user: {UserName}", command.UserName);
         var result = await mediator.Send(command);
         
-        if (result.IsSuccess)
+        if (result.Success)
         {
             logger.LogInformation("Login successful for user: {UserName}", command.UserName);
-            return Ok(result.Value);
+            return Ok(result);
         }
         
         logger.LogWarning("Login failed for user: {UserName}. Error: {Error}", command.UserName, result.Error);
-        return BadRequest(result.Error);
+        return BadRequest(result);
     }
 
     [HttpPost("register")]
@@ -33,13 +33,13 @@ public class AuthenController(IMediator mediator, ILogger<AuthenController> logg
         logger.LogInformation("Registration attempt for user: {Email}", command.Email);
         var result = await mediator.Send(command);
         
-        if (result.IsSuccess)
+        if (result.Success)
         {
             logger.LogInformation("Registration successful for user: {Email}", command.Email);
             return Ok(result);
         }
         
         logger.LogWarning("Registration failed for user: {Email}. Error: {Error}", command.Email, result.Error);
-        return BadRequest(result.Error);
+        return BadRequest(result);
     }
 }

@@ -7,7 +7,7 @@ public record RentalUnitType
     private RentalUnitType(string value)
     {
         if (string.IsNullOrEmpty(value))
-            throw new ArgumentException("Value cannot be null or empty");
+            throw new ArgumentException("Data cannot be null or empty");
         Value = value;
     }
     public static RentalUnitType Room() => new ("Room");

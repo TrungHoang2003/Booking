@@ -2,26 +2,32 @@
 
 import { useState } from 'react';
 import SocialLoginButtons from './social-login-buttons';
+import { BRAND_NAME } from '@/lib/constants';
+import { authService, LoginRequest } from '@/services/auth.service';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     
     try {
-      // TODO: Implement actual login logic here
-      console.log('Login attempt with email:', email);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Redirect to dashboard or next page
-      // router.push('/dashboard');
-    } catch (error) {
-      console.error('Login failed:', error);
+      const credentials: LoginRequest = {
+        userName,
+        password,
+      };
+
+      const result = await authService.login(credentials);
+      if(result.success) {
+        console.log('Login successful:', result.data);
+      } else {
+        setError(result.error?.message|| 'Login failed. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -35,20 +41,38 @@ export default function LoginForm() {
         </h1>
         
         <p className="text-gray-600 text-center mb-8">
-          You can sign in using your Booking.com account to access our services.
+          You can sign in using your {BRAND_NAME} account to access our services.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="text-red-600 text-sm text-center bg-red-50 p-2 rounded-md">
+              {error}
+            </div>
+          )}
+          
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email address
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                Username
             </label>
             <input
-              id="email"
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="username"
+              type="text"
+              placeholder="Enter your Username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 text-gray-900"
+            />
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 text-gray-900"
             />
@@ -65,10 +89,10 @@ export default function LoginForm() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Loading...
+                Signing in...
               </>
             ) : (
-              'Continue with email'
+              'Sign In'
             )}
           </button>
         </form>
@@ -92,7 +116,7 @@ export default function LoginForm() {
 
         <div className="mt-4 text-xs text-center text-gray-500">
           All rights reserved.<br />
-          Copyright (2006 - 2025) - Booking.com™
+          Copyright (2006 - 2025) - {BRAND_NAME}™
         </div>
       </div>
     </div>

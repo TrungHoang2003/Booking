@@ -23,20 +23,25 @@ public class CloudinaryService
 
     public async Task<string> UploadImage(string base64Image)
     {
+        // Nếu base64 có dạng: "data:image/png;base64,iVBORw0KGgoAAAANS..." thì tách phần dữ liệu ra
+        var base64Data = base64Image.Contains(',') ? base64Image.Split(',')[1] : base64Image;
+
+        // Convert base64 string to byte[]
+        var imageBytes = Convert.FromBase64String(base64Data);
+
+        await using var stream = new MemoryStream(imageBytes);
+
         var uploadParams = new ImageUploadParams
         {
-            File = new FileDescription("Base64Image",base64Image),
-            Folder = "Booking-images",
+            File = new FileDescription("Base64Image.png", stream),
+            Folder = "Booking-images"
         };
 
         var uploadResult = await _cloudinary.UploadAsync(uploadParams);
-        
-        if (uploadResult.Error != null)
-        {
-            throw new Exception($"Error uploading image: {uploadResult.Error.Message}");
-        }
 
-        // Return the URL of the uploaded image
+        if (uploadResult.Error != null)
+            throw new Exception($"Error uploading image: {uploadResult.Error.Message}");
+
         return uploadResult.SecureUrl.ToString();
     }
 }

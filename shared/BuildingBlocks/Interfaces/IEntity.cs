@@ -1,6 +1,9 @@
 namespace BuildingBlocks.Interfaces;
 
-public interface IEntity;
+public interface IEntity
+{
+    int Id { get; set; }
+}
 
 public abstract class Entity : IEntity
 {

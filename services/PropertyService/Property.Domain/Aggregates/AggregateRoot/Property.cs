@@ -16,7 +16,7 @@ public class Property : BuildingBlocks.Interfaces.AggregateRoot
     public string? NeighborhoodDescription { get; private set; }
     public string? ThumbnailUrl { get; private set; }
 
-    // Value Objects
+    // Data Objects
     public HouseRule? Rules { get; private set; }
     public Location? Location { get; private set; }
 

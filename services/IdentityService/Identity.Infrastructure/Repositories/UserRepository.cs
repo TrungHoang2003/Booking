@@ -1,10 +1,11 @@
 ﻿using Identity.Domain.Entities;
 using Identity.Infrastructure.DbHelper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace Identity.Infrastructure.Repositories;
 
-public interface IUserRepository: IGenericRepository<User>
+public interface IUserRepository 
 {
     Task<User?> GetById(int id);
     Task<User?> FindByNameAsync(string userName);
@@ -15,7 +16,7 @@ public interface IUserRepository: IGenericRepository<User>
     Task<IdentityResult> AddToRoleAsync(User user, string role);
 }
 
-public class UserRepository(UserManager<User> userManager, IdentityDbContext dbContext) : GenericRepository<User>(dbContext), IUserRepository
+public class UserRepository(UserManager<User> userManager, IdentityDbContext dbContext, ILogger<UserRepository> logger) :  IUserRepository
 {
     public async Task<User?> GetById(int id)
     {
@@ -46,7 +47,15 @@ public class UserRepository(UserManager<User> userManager, IdentityDbContext dbC
 
     public async Task<IList<string>> GetRolesAsync(User user)
     {
-        return await userManager.GetRolesAsync(user);
+        try
+        {
+            return await userManager.GetRolesAsync(user);
+        }
+        catch (Exception e)
+        {
+            logger.LogError("Error while getting Roles: {e.Message}", e.Message);
+            throw;
+        }
     }
 
     public async Task<IdentityResult> AddToRoleAsync(User user, string role)

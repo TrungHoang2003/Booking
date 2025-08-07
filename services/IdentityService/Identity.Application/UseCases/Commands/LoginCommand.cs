@@ -51,7 +51,7 @@ public class LoginCommandHandler(
             return Result<LoginResponse>.Failure(new Error("Redis.SaveFailed", $"Failed to save tokens: {ex.Message}"));
         }
         
-        return Result<LoginResponse>.Success(new LoginResponse
+        return Result<LoginResponse>.IsSuccess(new LoginResponse
         {
             AccessToken = accessToken,
             RefreshToken = refreshToken,

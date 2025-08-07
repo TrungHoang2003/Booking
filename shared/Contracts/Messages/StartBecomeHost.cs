@@ -3,7 +3,7 @@ using Contracts.Drafts;
 
 namespace Contracts.Messages;
 
-public class BecomeHostStarted : IEvent
+public class StartBecomeHost : IEvent
 {
     public Guid CorrelationId { get; set; }
     public int HostId { get; set; }

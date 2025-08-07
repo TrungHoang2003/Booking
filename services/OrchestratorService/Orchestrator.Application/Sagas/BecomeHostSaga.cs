@@ -92,7 +92,7 @@ public class BecomeHostSaga : MassTransitStateMachine<BecomeHostSagaData>
             When(PropertyCreated)
                 .Then(context => { context.Saga.PropertyId = context.Message.PropertyId; })
                 .TransitionTo(AddingRentalUnit)
-                .Publish(context => context.Saga.Draft.ToAddRentalUnit(context.Saga.PropertyId)),
+                .Publish(context => context.Saga.Draft.ToAddRentalUnit(context.Saga.PropertyId, context.Saga.HostId)),
             When(CreatePropertyFailed)
                 .Then(ctx =>
                 {

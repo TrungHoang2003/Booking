@@ -26,7 +26,7 @@ public class RentalUnitConfiguration:IEntityTypeConfiguration<RentalUnit>
         builder.Property<int>("BedroomsCount").HasColumnName("BedroomsCount");
         builder.Property<int>("BathroomsCount").HasColumnName("BathroomsCount");
          
-        // Config Value Objects
+        // Config Data Objects
 
         builder.OwnsOne(r => r.BasePricePerNight, basePricePerNight =>
         {

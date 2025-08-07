@@ -12,7 +12,7 @@ public class RentalUnit: Entity
     public int MaxAdults { get; set; }
     public int MaxChildren { get; set; }
    
-    // Value Objects
+    // Data Objects
     public Price BasePricePerNight { get; set; }
     public RentalUnitType Type { get; set; } 
 

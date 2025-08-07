@@ -6,7 +6,9 @@ public class AddRentalUnit : IMessage
 {
     public Guid CorrelationId { get; set; }
     public string Name { get; set; }
+    public int HostId { get; set; }
     public int PropertyId { get; set; }
+    public int PropertyTypeId { get; set; }
     public int MaxAdults { get; set; }
     public int MaxChildren { get; set; }
     public int Size { get; set; }

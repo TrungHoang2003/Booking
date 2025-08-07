@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using BuildingBlocks.Middlewares;
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +20,7 @@ public class JwtService(IConfiguration configuration):IJwtService
             var handler = new JwtSecurityTokenHandler();
 
             if (!handler.CanReadToken(token))
-                throw new Exception("Cant read token or invalid token");
+                throw new ArgumentException("Cant read token or invalid token");
 
             var jwtToken = handler.ReadJwtToken(token);
 
@@ -27,10 +28,10 @@ public class JwtService(IConfiguration configuration):IJwtService
 
             if (string.IsNullOrEmpty(userIdStr))
             {
-                throw new Exception("Cant find userId");
+                throw new ArgumentException("Cant find userId");
             }
 
-            var userId = int.TryParse(userIdStr, out var id) ? id : throw new Exception("UserId is not a number");
+            var userId = int.TryParse(userIdStr, out var id) ? id : throw new ArgumentException("UserId is not a number");
 
             return userId;
         }
@@ -45,7 +46,7 @@ public class JwtService(IConfiguration configuration):IJwtService
     {
         var accesstokenValidity = GetAccessTokenValidity();
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"] ?? throw new ArgumentException("Jwt secret not found or not configured in development mode")));
 
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

@@ -28,6 +28,6 @@ public class UpdateUserProfileCommandHandler(UserManager<User> userManager, IUni
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
         
-        return Result.Success();
+        return Result.IsSuccess();
     }
 }

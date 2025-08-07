@@ -11,7 +11,7 @@ public class PropertyAmenity: Entity
     
     public string? Description { get; private set; }
    
-    // Value Objects
+    // Data Objects
     public Price? Price { get; private set; }
     
     // Constructors

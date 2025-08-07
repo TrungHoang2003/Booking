@@ -1,3 +1,4 @@
+import { BRAND_NAME } from "@/lib/constants";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-6">
               <div className="text-xl font-bold">
-                Booking.com
+                {BRAND_NAME}
               </div>
               
               <nav className="hidden md:flex items-center gap-4 text-sm">
@@ -279,7 +280,7 @@ export default function Home() {
           </div>
           
           <div className="border-t border-blue-700 mt-8 pt-8 text-center text-sm">
-            <p>Copyright © 2006-2025 Booking.com™. All rights reserved.</p>
+            <p>Copyright © 2006-2025 {BRAND_NAME}™. All rights reserved.</p>
           </div>
         </div>
       </footer>

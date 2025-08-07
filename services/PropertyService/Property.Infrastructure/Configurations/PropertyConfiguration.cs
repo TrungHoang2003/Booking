@@ -15,7 +15,7 @@ public class PropertyConfiguration: IEntityTypeConfiguration<Domain.Aggregates.A
             .ValueGeneratedOnAdd()
             .IsRequired();
 
-        // Config Value Objects
+        // Config Data Objects
         builder.OwnsOne(p => p.Rules, rules =>
         {
             rules.Property(hr=>hr.AgeRestriction).HasColumnName("AgeRestriction").IsRequired();

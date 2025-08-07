@@ -33,13 +33,15 @@ public static class BecomeHostExtensions
         };
     }
 
-    public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft, int propertyId)
+    public static AddRentalUnit ToAddRentalUnit(this BecomeHostDraft draft, int propertyId, int hostId)
     {
         return new AddRentalUnit
         {
             Name = draft.RentalUnitDto.Name,
             CorrelationId = draft.DraftId,
+            HostId = hostId,
             PropertyId = propertyId,
+            PropertyTypeId = draft.PropertyTypeId,
             MaxAdults = draft.RentalUnitDto.MaxAdults,
             MaxChildren = draft.RentalUnitDto.MaxChildren,
             Size = draft.RentalUnitDto.Size,

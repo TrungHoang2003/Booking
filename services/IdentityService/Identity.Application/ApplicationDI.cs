@@ -16,7 +16,6 @@ public static class ApplicationDi
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
             typeof(ApplicationDi).Assembly
         ));
-        services.AddValidatorsFromAssembly(typeof(ApplicationDi).Assembly);
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddSingleton<IJwtService, JwtService>();
         services.AddSingleton<IRedisService, RedisService>();

@@ -19,4 +19,5 @@ public class RoleRepository(RoleManager<IdentityRole<int>> roleManager): IRoleRe
     {
         return await roleManager.CreateAsync(role);
     }
+    
 }

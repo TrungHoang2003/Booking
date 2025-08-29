@@ -2,6 +2,12 @@
 
 A distributed property booking platform built with .NET 9.0 microservices architecture, featuring event-driven communication and saga orchestration patterns.
 
+## 🎯 Project Purpose
+
+This is a **demo implementation inspired by Booking.com**, created for **learning and research purposes**. The project demonstrates modern software architecture patterns including microservices, event-driven design, and distributed system orchestration. It serves as a practical exploration of enterprise-level .NET development, showcasing how complex booking workflows can be implemented using industry best practices.
+
+**Note**: This is an educational project and not intended for production use.
+
 ## Overview
 
 This system manages the complete booking workflow including user authentication, host registration, property management, and booking orchestration through a scalable microservices architecture.
